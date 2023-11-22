@@ -1,0 +1,1 @@
+[30-Oct-2023 18:55:11 Asia/Makassar] PHP Fatal error:  Cannot redeclare Page::developer() in /home/merf5443/public_html/gramercy.merapuku.com/application/controllers/Page.php on line 223
