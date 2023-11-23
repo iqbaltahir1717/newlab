@@ -61,8 +61,8 @@
             </li>
 
             <li
-                class="sidebar-item <?= active_menu('unit'); ?>">
-                <a href="<?php echo site_url('unit')?>" class='sidebar-link'>
+                class="sidebar-item <?= active_menu('product'); ?>">
+                <a href="<?php echo site_url('product')?>" class='sidebar-link'>
                     <i class="bi bi-house-fill"></i>
                     <span>Product</span>
                 </a>

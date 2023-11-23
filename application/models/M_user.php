@@ -61,6 +61,8 @@ class M_user extends CI_Model {
 
     public function create($data) {
         $this->db->insert('tbl_user', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id; 
     }
     
     public function update($data) {
@@ -86,9 +88,24 @@ class M_user extends CI_Model {
         return null;
     }
 
+    public function get_email($email)
+    {
+        $this->db->select('a.*, b.group_name');
+        $this->db->from('tbl_user a');
+        $this->db->join('tbl_group b', 'a.group_id = b.group_id', 'LEFT');
+        $this->db->where('a.user_email', $email);
+        $query = $this->db->get();
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return null;
+    }
+
     function __destruct() {
         $this->db->close();
     }
     
 }
-?>

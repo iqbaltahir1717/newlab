@@ -1,10 +1,12 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class News extends CI_Controller {
+class News extends CI_Controller
+{
 
-    public function __construct() {
+    public function __construct()
+    {
 
         parent::__construct();
 
@@ -26,25 +28,24 @@ class News extends CI_Controller {
 
             // ALERT
 
-			$alertStatus  = 'failed';
+            $alertStatus  = 'failed';
 
-			$alertMessage = 'Anda tidak memiliki Hak Akses atau Session anda sudah habis';
+            $alertMessage = 'Anda tidak memiliki Hak Akses atau Session anda sudah habis';
 
-			getAlert($alertStatus, $alertMessage);
+            getAlert($alertStatus, $alertMessage);
 
-			redirect('auth');
-
+            redirect('auth');
         }
-
     }
 
-    
 
 
 
-    public function index() {
 
-        
+    public function index()
+    {
+
+
 
         //DATA
 
@@ -54,25 +55,25 @@ class News extends CI_Controller {
 
         $data['news']    = $this->m_news->read('', '', '', '', '');
 
-		
+
 
 
 
         // TEMPLATE
 
-		$view         = "news/data";
+        $view         = "news/data";
 
-		$viewCategory = "all";
+        $viewCategory = "all";
 
-		TemplateApp($data, $view, $viewCategory);
-
+        TemplateApp($data, $view, $viewCategory);
     }
 
-    
 
 
 
-    public function create_page() {
+
+    public function create_page()
+    {
 
         //DATA
 
@@ -80,27 +81,27 @@ class News extends CI_Controller {
 
         $data['title']         = 'Tambah Informasi';
 
-        $data['field']         = $this->m_field->read('','','',);
+        $data['field']         = $this->m_field->read('', '', '',);
 
-        $data['news_category'] = $this->m_news_category->read('','','');
+        $data['news_category'] = $this->m_news_category->read('', '', '');
 
-		
+
 
         // TEMPLATE
 
-		$view         = "news/_create";
+        $view         = "news/_create";
 
-		$viewCategory = "all";
+        $viewCategory = "all";
 
-		TemplateApp($data, $view, $viewCategory);
-
+        TemplateApp($data, $view, $viewCategory);
     }
 
 
 
 
 
-    public function update_page() {
+    public function update_page()
+    {
 
         //DATA
 
@@ -110,27 +111,27 @@ class News extends CI_Controller {
 
         $data['news']          = $this->m_news->get($this->uri->segment(3));
 
-        $data['field']         = $this->m_field->read('','','');
+        $data['field']         = $this->m_field->read('', '', '');
 
-        $data['news_category'] = $this->m_news_category->read('','','');
+        $data['news_category'] = $this->m_news_category->read('', '', '');
 
-		
+
 
         // TEMPLATE
 
-		$view         = "news/_update";
+        $view         = "news/_update";
 
-		$viewCategory = "all";
+        $viewCategory = "all";
 
-		TemplateApp($data, $view, $viewCategory);
-
+        TemplateApp($data, $view, $viewCategory);
     }
 
 
 
 
 
-    public function detail_page() {
+    public function detail_page()
+    {
 
         //DATA
 
@@ -140,33 +141,33 @@ class News extends CI_Controller {
 
         $data['news']          = $this->m_news->get($this->uri->segment(3));
 
-        $data['field']         = $this->m_field->read('','','');
+        $data['field']         = $this->m_field->read('', '', '');
 
-        $data['news_category'] = $this->m_news_category->read('','','');
+        $data['news_category'] = $this->m_news_category->read('', '', '');
 
-		
+
 
         // TEMPLATE
 
-		$view         = "news/_detail";
+        $view         = "news/_detail";
 
-		$viewCategory = "all";
+        $viewCategory = "all";
 
-		TemplateApp($data, $view, $viewCategory);
-
+        TemplateApp($data, $view, $viewCategory);
     }
 
-    
 
 
 
-    public function create() {
+
+    public function create()
+    {
 
         csrfValidate();
 
 
 
-        $filename_1              = "thumbnailnews-".date('YmdHis');
+        $filename_1              = "thumbnailnews-" . date('YmdHis');
 
         $config['upload_path']   = "./upload/news/";
 
@@ -193,15 +194,11 @@ class News extends CI_Controller {
             $alertMessage = $this->upload->display_errors();
 
             getAlert($alertStatus, $alertMessage);
-
-
-
         } else {
 
             $dat  = $this->upload->data();
 
             $data['news_cover']       = $dat['file_name'];
-
         }
 
 
@@ -236,7 +233,7 @@ class News extends CI_Controller {
 
         // LOG
 
-        $message    = $this->session->userdata('user_fullname')." menambah data informasi : ".$data['news_title'];
+        $message    = $this->session->userdata('user_fullname') . " menambah data informasi : " . $data['news_title'];
 
         createLog($message);
 
@@ -246,29 +243,29 @@ class News extends CI_Controller {
 
         $alertStatus  = "success";
 
-        $alertMessage = "Berhasil menambah data informasi : ".$data['news_title'];
+        $alertMessage = "Berhasil menambah data informasi : " . $data['news_title'];
 
         getAlert($alertStatus, $alertMessage);
 
 
 
         redirect('news');
-
     }
 
-    
 
 
 
-    public function update() {
+
+    public function update()
+    {
 
         csrfValidate();
 
 
 
-        if($_FILES['news_cover']['name']!=""){  
+        if ($_FILES['news_cover']['name'] != "") {
 
-            $filename_1              = "thumbnailnews-".date('YmdHis');
+            $filename_1              = "thumbnailnews-" . date('YmdHis');
 
             $config['upload_path']   = "./upload/news/";
 
@@ -288,7 +285,7 @@ class News extends CI_Controller {
 
             if (!$this->upload->do_upload('news_cover')) {
 
-                
+
 
                 // ALERT
 
@@ -297,16 +294,13 @@ class News extends CI_Controller {
                 $alertMessage = $this->upload->display_errors();
 
                 getAlert($alertStatus, $alertMessage);
-
-
-
             } else {
 
                 $dat  = $this->upload->data();
 
 
 
-                unlink('./upload/news/'. $this->input->post('news_cover_old'));
+                unlink('./upload/news/' . $this->input->post('news_cover_old'));
 
 
 
@@ -328,27 +322,25 @@ class News extends CI_Controller {
 
                 $this->m_news->update($data);
 
-    
+
 
                 // LOG
 
-                $message    = $this->session->userdata('user_fullname')." mengubah data informasi dengan ID - nama : ".$data['news_id']." - ".$data['news_title'];
+                $message    = $this->session->userdata('user_fullname') . " mengubah data informasi dengan ID - nama : " . $data['news_id'] . " - " . $data['news_title'];
 
                 createLog($message);
 
-    
+
 
                 // ALERT
 
                 $alertStatus  = "success";
 
-                $alertMessage = "Berhasil mengubah data informasi ID : ".$data['news_title'];
+                $alertMessage = "Berhasil mengubah data informasi ID : " . $data['news_title'];
 
                 getAlert($alertStatus, $alertMessage);
-
             }
-
-        }else{
+        } else {
 
             // POST
 
@@ -370,7 +362,7 @@ class News extends CI_Controller {
 
             // LOG
 
-            $message    = $this->session->userdata('user_name')." mengubah data informasi dengan ID : ".$data['news_id'];
+            $message    = $this->session->userdata('user_name') . " mengubah data informasi dengan ID : " . $data['news_id'];
 
             createLog($message);
 
@@ -380,27 +372,26 @@ class News extends CI_Controller {
 
             $alertStatus  = "success";
 
-            $alertMessage = "Berhasil mengubah data informasi nama : ".$data['news_title'];
+            $alertMessage = "Berhasil mengubah data informasi nama : " . $data['news_title'];
 
             getAlert($alertStatus, $alertMessage);
-
         }
 
 
 
-        
+
 
 
 
         redirect('news');
-
     }
 
-    
 
 
 
-    public function delete() {
+
+    public function delete()
+    {
 
         csrfValidate();
 
@@ -408,11 +399,11 @@ class News extends CI_Controller {
 
         $this->m_news->delete($this->input->post('news_id'));
 
-        
+
 
         // LOG
 
-        $message    = $this->session->userdata('user_name')." menghapus data informasi dengan ID : ".$this->input->post('news_id');
+        $message    = $this->session->userdata('user_name') . " menghapus data informasi dengan ID : " . $this->input->post('news_id');
 
         createLog($message);
 
@@ -422,22 +413,12 @@ class News extends CI_Controller {
 
         $alertStatus  = "failed";
 
-        $alertMessage = "Menghapus data informasi dengan ID : ".$this->input->post('news_id');
+        $alertMessage = "Menghapus data informasi dengan ID : " . $this->input->post('news_id');
 
         getAlert($alertStatus, $alertMessage);
 
 
 
         redirect('news');
-
     }
-
-
-
-
-
-    
-
 }
-
-?>
