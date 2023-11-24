@@ -68,7 +68,7 @@ class Google extends CI_Controller
 
                 redirect('dashboard');
             }
-        }
+        } 
         // }
         // $login_button = '';
         // if (!$this->session->userdata('access_token')) {
