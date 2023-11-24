@@ -4,7 +4,7 @@
 }
 
 .btn-secondary {
-  background-color: #6f5500 !important;
+  background-color: #C2A058 !important;
   color: #fafafa;
   padding: 12px 16px;
   border: none;
@@ -88,7 +88,7 @@
 }
 
 .hero-new5 .unit-row .card-unit img {
-  width: 340px;
+  width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
   height: 280px;

@@ -51,6 +51,19 @@
             }
         }
     }
+    if(!function_exists('TemplateForm')){
+        function TemplateForm($data, $view, $viewCategory){
+            switch($viewCategory){
+                case "single": 
+                    get_instance()->load->view($view,$data);
+                    break;
+                default:
+                    get_instance()->load->view("landing_page/template/header", $data);
+                    get_instance()->load->view("landing_page/template/menu");
+                    get_instance()->load->view($view);
+            }
+        }
+    }
     if(!function_exists('TemplateLandingPageBlack')){
         function TemplateLandingPageBlack($data, $view, $viewCategory){
             switch($viewCategory){

@@ -1,38 +1,6 @@
-<link href="<?= base_url('assets/landing_page/vendor/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
-<script src="<?= base_url('assets/landing_page/vendor/jquery/jquery.min.js') ?>"></script>
-<script src="<?= base_url('assets/landing_page/vendor/bootstrap/js/bootstrap.min.js') ?>"></script>
-
-
-
-<style>
-
-    @media (max-width: 542px){
-
-    	.hero-new5{
-
-        	.unit-row{
-
-        	    .card-unit{
-
-        	        text-align:center;
-
-        	        .details{
-
-        	            justify-content:center;
-
-        	        }
-
-        	    }
-
-        	}
-
-    	}
-
-	}
-
-</style>
-
-
+    <link href="<?= base_url('assets/landing_page/vendor/bootstrap/css/bootstrap.min.css') ?>" rel="stylesheet">
+    <script src="<?= base_url('assets/landing_page/vendor/jquery/jquery.min.js') ?>"></script>
+    <script src="<?= base_url('assets/landing_page/vendor/bootstrap/js/bootstrap.min.js') ?>"></script>
 
     <main id="main mt-5">
 
@@ -67,17 +35,10 @@
             </div>
 
         </div>
-
     </section>
-
-    
-
     <!-- section-banner-image -->
-
     <section id="hero-new2" class="hero-new2 mt-2">
-
         <img loading="eager" src="<?= base_url();?>assets/core-images/arma-compressed.avif" alt="unit arma">
-
     </section>
 
 

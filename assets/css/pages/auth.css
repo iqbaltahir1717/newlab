@@ -1,36 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+
 body {
 	background-color: #fff;
+	font-family: 'Inter', sans-serif !important;
+}
+
+.logo-apps{
+	width:200px;
+	height: 40px;
+	object-fit: cover;
 }
 #auth {
-	height: 100vh;
+	max-height: 100vh;
 	overflow-x: hidden;
 }
 
-#auth #auth-left {
-	padding: 5rem 8rem;
+.form-control.form-control-xl{
+	font-size: 16px;
+	padding: 16px 24px;
+	border: 1px solid #F2F2F2;
+	border-radius: 0px;
 }
-#auth #auth-left .auth-title {
-	font-size: 4rem;
-	margin-bottom: 1rem;
-}
-#auth #auth-left .auth-subtitle {
-	color: #a8aebb;
-	font-size: 1rem;
-	line-height: 2.5rem;
-}
-#auth #auth-left .auth-logo {
-	margin-bottom: 4rem;
-}
-#auth #auth-left .auth-logo img {
-	height: 2rem;
-}
+
+.btn-success {
+	background: linear-gradient(to left, #fafafa 50%, #000 50%);
+	background-size: 200% 100%;
+	background-position: left bottom;
+	color: #fff;
+	font-size: 16px;
+	padding: 16px 24px;
+	font-weight: 500;
+	transition: background-position 0.5s, color 0.5s;
+	border: 1px solid #999999;
+	outline: none;
+	cursor: pointer;
+ }
+ 
+ .btn-success:hover {
+	background-position: right bottom;
+	border: 1px solid #999999;
+	color: #000;
+ }
+
+ .btn-login {
+	background: linear-gradient(to left, #000 50%, #fafafa 50%);
+	background-size: 200% 100%;
+	background-position: left bottom;
+	color: #000;
+	font-size: 16px;
+	padding: 16px 24px;
+	font-weight: 500;
+	transition: background-position 0.5s, color 0.5s;
+	border: 1px solid #999999;
+	outline: none;
+	cursor: pointer;
+ }
+ 
+ .btn-login:hover {
+	background-position: right bottom;
+	border: 1px solid #999999;
+	color: #fafafa;
+ }
+
 @media screen and (max-width: 767px) {
 	#auth #auth-left {
-		padding: 5rem;
+		padding: 24px;
 	}
 }
 @media screen and (max-width: 576px) {
 	#auth #auth-left {
-		padding: 5rem 3rem;
+		padding: 24px;
 	}
 }
