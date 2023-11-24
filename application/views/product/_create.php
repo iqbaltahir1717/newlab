@@ -54,14 +54,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label><b>Product Description <span style="color:red">*</span></b></label>
+                                    <label><b>Product Description </b></label>
                                     <textarea cols="80" id="dark" name="product_description" rows="10" style="resize:none;max-width:700px;"></textarea>
                                 </div>
 
                                 <div class="form-group">
                                     <label for=""><b>Status <span style="color:red">*</span></b></label>
                                     <select class="choices form-select" name="product_status" required style="width:100%">
-                                        <option value="">-Pilih Status-</option>
+                                        <!-- <option value="">-Pilih Status-</option> -->
                                         <option>Aktif</option>
                                         <option>Non-Aktif</option>
                                     </select>
