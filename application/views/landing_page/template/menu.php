@@ -14,22 +14,34 @@
                 <div class="navbar-collapse collapse dual-nav order-4 order-md-4 justify-content-end">
                     <ul class="navbar-nav align-items-center">
                         <li class="nav-item">
-                            <a class="nav-link active" href="<?php echo site_url('page/project'); ?>">Projects</a>
+                            <a class="nav-link active" href="<?php echo site_url('#'); ?>">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="<?php echo site_url('developer'); ?>">Developer</a>
+                            <a class="nav-link active" href="<?php echo site_url('#'); ?>">About Us</a>
                         </li>
-                        <li class="drop-down">
-                            <a class="active" href="#">News</a>
-                            <ul>
-                                <?php if ($news_category) {
-                                    foreach ($news_category as $c) { ?>
-                                        <li><a href="<?php echo site_url('page/information/' . $c->news_category_id . '/1') ?>"><?= $c->news_category_name; ?></a></li>
-                                    <?php }
-                                } else { ?>
-                                    <li><a href="#">TIDAK ADA DATA</a></li>
-                                <?php } ?>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="<?php echo site_url('#'); ?>">Shop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="<?php echo site_url('#'); ?>">Media</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="<?php echo site_url('#'); ?>">Blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="<?php echo site_url('#'); ?>">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="<?php echo site_url('#'); ?>">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="<?php echo site_url('#'); ?>">Simulation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="<?php echo site_url('#'); ?>">Consultation</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="<?php echo site_url('#'); ?>">Agen Resmi</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="https://<?= $setting[0]->setting_instagram; ?>" target="_blank">
