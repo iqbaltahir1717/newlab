@@ -2,74 +2,130 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
 
 body {
-	background-color: #fff;
-	font-family: 'Inter', sans-serif !important;
+   background-color: #fff;
+   font-family: 'Inter', sans-serif !important;
+   position: relative;
 }
 
-.logo-apps{
-	width:200px;
-	height: 40px;
-	object-fit: cover;
+.logo-apps {
+   width: 200px;
+   height: 40px;
+   object-fit: cover;
 }
+
+.ornament {
+   position: absolute;
+   z-index: -999;
+   width: 240px;
+}
+
+.ornament1 {
+   bottom: -100px;
+   left: 100px;
+}
+
+.ornament2 {
+   bottom: -50px;
+   right: 100px;
+}
+
+.ornament3 {
+   top: 50px;
+   right: 100px;
+}
+
+.ornament4 {
+   top: 50px;
+   left: 100px;
+}
+
+.logo-apps-form {
+   width: 20rem;
+   object-fit: cover;
+}
+
 #auth {
-	max-height: 100vh;
-	overflow-x: hidden;
+   max-height: 100vh;
+   overflow-x: hidden;
 }
 
-.form-control.form-control-xl{
-	font-size: 16px;
-	padding: 16px 24px;
-	border: 1px solid #F2F2F2;
-	border-radius: 0px;
+.auth-border {
+   padding: 40px;
+   border: 1px solid #E9E9E9;
+   background: #FFF;
+   box-shadow: 0px 54px 21.7px -20px rgba(0, 0, 0, 0.15);
+   margin-bottom: 32px;
+}
+
+.form-control.form-control-xl {
+   font-size: 16px;
+   padding: 12px 16px !important;
+   border: 1px solid #F2F2F2;
+   border-radius: 0px;
+   color: #000;
 }
 
 .btn-success {
-	background: linear-gradient(to left, #fafafa 50%, #000 50%);
-	background-size: 200% 100%;
-	background-position: left bottom;
-	color: #fff;
-	font-size: 16px;
-	padding: 16px 24px;
-	font-weight: 500;
-	transition: background-position 0.5s, color 0.5s;
-	border: 1px solid #999999;
-	outline: none;
-	cursor: pointer;
- }
- 
- .btn-success:hover {
-	background-position: right bottom;
-	border: 1px solid #999999;
-	color: #000;
- }
+   background: linear-gradient(to left, #fafafa 50%, #000 50%);
+   background-size: 200% 100%;
+   background-position: left bottom;
+   color: #fff;
+   font-size: 16px;
+   padding: 12px 16px;
+   font-weight: 500;
+   transition: background-position 0.5s, color 0.5s;
+   border: 1px solid #999999;
+   outline: none;
+   cursor: pointer;
+}
 
- .btn-login {
-	background: linear-gradient(to left, #000 50%, #fafafa 50%);
-	background-size: 200% 100%;
-	background-position: left bottom;
-	color: #000;
-	font-size: 16px;
-	padding: 16px 24px;
-	font-weight: 500;
-	transition: background-position 0.5s, color 0.5s;
-	border: 1px solid #999999;
-	outline: none;
-	cursor: pointer;
- }
- 
- .btn-login:hover {
-	background-position: right bottom;
-	border: 1px solid #999999;
-	color: #fafafa;
- }
+.btn-success:hover {
+   background-position: right bottom;
+   border: 1px solid #999999;
+   color: #000;
+}
+
+.btn-login {
+   background: linear-gradient(to left, #000 50%, #fafafa 50%);
+   background-size: 200% 100%;
+   background-position: left bottom;
+   color: #000;
+   font-size: 16px;
+   padding: 12px 16px;
+   font-weight: 500;
+   transition: background-position 0.5s, color 0.5s;
+   border: 1px solid #999999;
+   outline: none;
+   cursor: pointer;
+}
+
+.btn-login:hover {
+   background-position: right bottom;
+   border: 1px solid #999999;
+   color: #fafafa;
+}
+
+.copy {
+   font-size: 14px;
+   margin-bottom: 8px;
+}
 
 @media screen and (max-width: 767px) {
-	#auth #auth-left {
-		padding: 24px;
-	}
+   .logo-apps-form {
+      width: 15rem;
+   }
+
+   .auth-border {
+      margin: 0 24px 32px 24px;
+   }
+
+   .ornament {
+      display: none;
+   }
 }
+
 @media screen and (max-width: 576px) {
-	#auth #auth-left {
-		padding: 24px;
-	}
+   #auth #auth-left {
+      padding: 24px;
+   }
 }
