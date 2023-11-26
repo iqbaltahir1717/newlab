@@ -8,6 +8,7 @@ class Dashboard extends CI_Controller {
 		$this->load->model('m_unit_gallery_category');
 		$this->load->model('m_project');
 		$this->load->model('m_news');
+		$this->load->model('m_widget');
 
         // check session data
 		if (!$this->session->userdata('user_id')) {
@@ -24,10 +25,6 @@ class Dashboard extends CI_Controller {
 		// DATA
 		$data['setting'] = getSetting();
 		$data['title']   = 'Dashboard';
-		$data['unit']  = $this->m_unit->widget();
-		$data['gallery']  = $this->m_unit_gallery->widget();
-		$data['project']  = $this->m_project->widget();
-		$data['news']  = $this->m_news->widget();
 
 		// TEMPLATE
 		$view         = "dashboard/index";

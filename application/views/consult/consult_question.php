@@ -219,7 +219,7 @@
 
                                                                     <div class="form-group">
                                                                         <label for=""><b>Multiple <span style="color:red">*</span></b></label>
-                                                                        <select class="form-select" name="consult_question_multi" required style="width:100%">
+                                                                        <select class="select2 form-select" name="consult_question_multi" required style="width:100%">
                                                                             <option value="">-Pilih Multiple-</option>
                                                                             <option <?php if ($key->consult_question_multi == 'Y') echo 'selected'; ?> value="Y">Y</option>
                                                                             <option <?php if ($key->consult_question_multi == 'N') echo 'selected'; ?> value="N">N</option>

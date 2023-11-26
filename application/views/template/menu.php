@@ -34,8 +34,8 @@
                                     <span>Consultation</span>
                                 </a>
                                 <ul class="submenu ">
-                                    <li class="submenu-item <?= active_menu('consult_answer'); ?>">
-                                        <a href="<?php echo site_url('consult_answer') ?>">Response</a>
+                                    <li class="submenu-item <?= active_menu('consult_response'); ?>">
+                                        <a href="<?php echo site_url('consult_response') ?>">Response</a>
                                     </li>
                                     <li class="submenu-item <?= active_menu('consult_question'); ?>">
                                         <a href="<?php echo site_url('consult_question') ?>">Kuisioner Manajemen</a>
@@ -48,12 +48,16 @@
                                     <span>Simulation</span>
                                 </a>
                                 <ul class="submenu ">
-                                    <li class="submenu-item <?= active_menu('sim_answer'); ?>">
-                                        <a href="<?php echo site_url('sim_answer') ?>">Response</a>
+                                    <li class="submenu-item <?= active_menu('sim_response'); ?>">
+                                        <a href="<?php echo site_url('sim_response') ?>">Response</a>
                                     </li>
                                     <li class="submenu-item <?= active_menu('sim_question'); ?>">
                                         <a href="<?php echo site_url('sim_question') ?>">Kuisioner Manajemen</a>
                                     </li>
+                                    <li class="submenu-item <?= active_menu('sim_goals'); ?>">
+                                        <a href="<?php echo site_url('sim_goals') ?>">Goals Manajemen</a>
+                                    </li>
+
                                 </ul>
                             </li>
 

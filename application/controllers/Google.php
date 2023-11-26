@@ -34,7 +34,7 @@ class Google extends CI_Controller
                     'user_name' => $data['email'],
                     'user_password' => $data['email'],
                     'user_email' => $data['email'],
-                    'group_id' => 2,
+                    'group_id' => 4,
                     'createtime' => $current_datetime,
                     'user_photo' => '',
                 );
@@ -68,7 +68,7 @@ class Google extends CI_Controller
 
                 redirect('dashboard');
             }
-        } 
+        }
         // }
         // $login_button = '';
         // if (!$this->session->userdata('access_token')) {

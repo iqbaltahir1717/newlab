@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-class M_sim_question extends CI_Model
+class M_consult_response extends CI_Model
 {
 
     function __construct()
@@ -8,23 +8,19 @@ class M_sim_question extends CI_Model
         parent::__construct();
     }
 
-    public function read($limit, $start, $key, $part = '')
+    public function read($limit, $start, $key)
     {
         $this->db->select('*');
-        $this->db->from('tbl_sim_question');
+        $this->db->from('tbl_consult_response a');
+        $this->db->join('tbl_user b', 'a.user_id=b.user_id', 'LEFT');
 
         if ($key != '') {
-            $this->db->like("sim_question_text", $key);
-        }
-
-        if ($part != '') {
-            $this->db->like("sim_question_part", $part);
+            $this->db->like("a.user_id", $key);
         }
 
         if ($limit != "" or $start != "") {
             $this->db->limit($limit, $start);
         }
-        $this->db->order_by('sim_question_part', 'asc');
 
         $query = $this->db->get();
         if ($query->num_rows() > 0) {
@@ -36,25 +32,26 @@ class M_sim_question extends CI_Model
         return null;
     }
 
+    
     public function create($data)
     {
-        $this->db->insert('tbl_sim_question', $data);
+        $this->db->insert('tbl_consult_response', $data);
     }
 
     public function update($data)
     {
-        $this->db->update('tbl_sim_question', $data, array('sim_question_id' => $data['sim_question_id']));
+        $this->db->update('tbl_consult_response', $data, array('consult_response_id' => $data['consult_response_id']));
     }
 
     public function delete($id)
     {
-        $this->db->delete('tbl_sim_question', array('sim_question_id' => $id));
+        $this->db->delete('tbl_consult_response', array('consult_response_id' => $id));
     }
 
     public function get($id)
     {
-        $this->db->where('sim_question_id', $id);
-        $query = $this->db->get('tbl_sim_question', 1);
+        $this->db->where('consult_response_id', $id);
+        $query = $this->db->get('tbl_consult_response', 1);
         return $query->result();
     }
 

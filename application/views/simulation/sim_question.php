@@ -130,7 +130,7 @@
                                                     <td><?php echo ucwords($key->sim_question_type); ?></td>
                                                     <td><?php echo $key->sim_question_part; ?></td>
                                                     <td>
-                                                        <?php if ($key->sim_question_type == 'dropdown') { ?>
+                                                        <?php if ($key->sim_question_type == 'dropdown' and $key->sim_question_text != 'Goals yang ingin dicapai') { ?>
                                                             <a href="<?php echo site_url('sim_q_option/index/' . $key->sim_question_id) ?>" class="btn btn-primary btn-sm" title="Tambah data"><i class="fas fa-eye"></i> </a>
                                                         <?php } else {
                                                             echo '-';
@@ -143,16 +143,18 @@
                                                                 <li>
                                                                     <button type="submit" class="dropdown-item" data-bs-toggle="modal" title="Lihat data" data-bs-target="#FormDetail<?php echo $key->sim_question_id; ?>"><i class="bi bi-eye"></i> Detail</button>
                                                                 </li>
-                                                                <li>
-                                                                    <button type="submit" class="dropdown-item" data-bs-toggle="modal" title="Ubah data" data-bs-target="#FormUbah<?php echo $key->sim_question_id; ?>"><i class="bi bi-pencil-square"></i> Ubah</button>
-                                                                </li>
-                                                                <li>
-                                                                    <?php echo form_open_multipart("sim_question/delete") ?>
-                                                                    <?php echo csrf(); ?>
-                                                                    <button type="submit" class="dropdown-item" title="Delete data"><i class="bi bi-x-lg"></i> Delete</button>
-                                                                    <input type="hidden" class="form-control" name="sim_question_id" required="required" value="<?php echo $key->sim_question_id; ?>">
-                                                                    <?php echo form_close(); ?>
-                                                                </li>
+                                                                <?php if ($key->sim_question_text != 'Goals yang ingin dicapai') { ?>
+                                                                    <li>
+                                                                        <button type="submit" class="dropdown-item" data-bs-toggle="modal" title="Ubah data" data-bs-target="#FormUbah<?php echo $key->sim_question_id; ?>"><i class="bi bi-pencil-square"></i> Ubah</button>
+                                                                    </li>
+                                                                    <li>
+                                                                        <?php echo form_open_multipart("sim_question/delete") ?>
+                                                                        <?php echo csrf(); ?>
+                                                                        <button type="submit" class="dropdown-item" title="Delete data"><i class="bi bi-x-lg"></i> Delete</button>
+                                                                        <input type="hidden" class="form-control" name="sim_question_id" required="required" value="<?php echo $key->sim_question_id; ?>">
+                                                                        <?php echo form_close(); ?>
+                                                                    </li>
+                                                                <?php  } ?>
                                                             </ul>
                                                         </div>
                                                     </td>
@@ -218,7 +220,7 @@
                                                                     <?php echo csrf(); ?>
                                                                     <div class="form-group">
                                                                         <label for=""><b>Part <span style="color:red">*</span></b></label>
-                                                                        <select class="choices form-select" name="sim_question_part" required style="width:100%">
+                                                                        <select class="form-select" name="sim_question_part" required style="width:100%">
                                                                             <option value="">-Pilih Part-</option>
                                                                             <option <?php if ($key->sim_question_part == 'Body') echo 'selected'; ?>>Body</option>
                                                                             <option <?php if ($key->sim_question_part == 'Skin') echo 'selected'; ?>>Skin</option>

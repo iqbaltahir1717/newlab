@@ -16,11 +16,11 @@
             </div>
         </div>
         <!-- Alert -->
-        <?php 
-            if ($this->session->flashdata('alert')) {
-                echo $this->session->flashdata('alert');
-                unset($_SESSION['alert']);
-            } 
+        <?php
+        if ($this->session->flashdata('alert')) {
+            echo $this->session->flashdata('alert');
+            unset($_SESSION['alert']);
+        }
         ?>
     </div>
 
@@ -37,46 +37,55 @@
                         <div class="card-content">
                             <div class="row justify-content-center text-center">
                                 <div class="col-12">
-                                    <?php 
-                                        if($this->session->userdata('user_photo')==""){
-                                            echo '<img class="user-img avatar avatar-sm" style="width: 150px;" src="'.base_url().'upload/user/noimage.png" alt="User profile picture">';
-                                        }else{
-                                            echo '<img class="user-img avatar avatar-sm" style="width: 150px;" src="'.base_url().'upload/user/'.$profile[0]->user_photo.'" alt="User profile picture">';
-                                        }
+                                    <?php
+                                    if ($this->session->userdata('user_photo') == "") {
+                                        echo '<img class="user-img avatar avatar-sm" style="width: 150px;" src="' . base_url() . 'upload/user/noimage.png" alt="User profile picture">';
+                                    } else {
+                                        echo '<img class="user-img avatar avatar-sm" style="width: 150px;" src="' . base_url() . 'upload/user/' . $profile[0]->user_photo . '" alt="User profile picture">';
+                                    }
                                     ?>
                                 </div>
                             </div>
                             <div class="row text-center">
                                 <div class="col-12">
                                     <h5 class="my-2">
-                                        <?php echo $profile[0]->user_fullname;?>
+                                        <?php echo $profile[0]->user_fullname; ?>
                                     </h5>
                                     <hr style="border: 0.5px dashed #d2d6de">
                                 </div>
-                            </div>  
+                            </div>
                             <div class="row text-center">
                                 <div class="col-12">
                                     <strong><i class="bi bi-person-fill"></i> Username</strong>
                                     <p class="text-muted">
-                                        <?php echo $profile[0]->user_name;?>
+                                        <?php echo $profile[0]->user_name; ?>
                                     </p>
                                 </div>
                             </div>
-                                
+
                             <div class="row text-center">
                                 <div class="col-12">
                                     <strong><i class="bi bi-envelope-fill"></i> Email</strong>
                                     <p class="text-muted">
-                                        <?php echo $profile[0]->user_email;?>
+                                        <?php echo $profile[0]->user_email; ?>
                                     </p>
                                 </div>
                             </div>
-                                
+
+                            <div class="row text-center">
+                                <div class="col-12">
+                                    <strong><i class="bi bi-envelope-fill"></i> Gender</strong>
+                                    <p class="text-muted">
+                                        <?php echo $profile[0]->user_gender; ?>
+                                    </p>
+                                </div>
+                            </div>
+
                             <div class="row text-center">
                                 <div class="col-12">
                                     <strong><i class="bi bi-people-fill"></i> Group</strong>
                                     <p class="text-muted">
-                                        <?php echo $profile[0]->group_name;?>
+                                        <?php echo $profile[0]->group_name; ?>
                                     </p>
                                     <hr style="border: 0.5px dashed #d2d6de">
                                 </div>
@@ -100,26 +109,24 @@
                             <div class="row">
                                 <div class="col-12">
                                     <?php
-                                        if($this->session->flashdata('alert')){
-                                            echo $this->session->flashdata('alert');
-                                        }
+                                    if ($this->session->flashdata('alert')) {
+                                        echo $this->session->flashdata('alert');
+                                    }
                                     ?>
                                 </div>
                             </div>
                             <div class="row p-4">
-                                <?php echo form_open_multipart("profile/update")?>
+                                <?php echo form_open_multipart("profile/update") ?>
                                 <form class="form">
                                     <div class="row">
                                         <div class="col-md-4 col-12">
                                             <label for="user_fullname">User Name</label>
                                         </div>
                                         <div class="col-md-8 col-12 form-group">
-                                            <?php echo csrf();?>
-                                            <input type="hidden" id="user_id" class="form-control"
-                                                    name="user_id" placeholder="User Name" value="<?php echo $profile[0]->user_id;?>" required>
-                                            <input type="text" id="user_fullname" class="form-control"
-                                                    name="user_fullname" placeholder="User Name" value="<?php echo $profile[0]->user_fullname;?>" required="required">
-                                            <input type="hidden" class="form-control" name="old_photo" value="<?php echo $profile[0]->user_photo;?>" required>
+                                            <?php echo csrf(); ?>
+                                            <input type="hidden" id="user_id" class="form-control" name="user_id" placeholder="User Name" value="<?php echo $profile[0]->user_id; ?>" required>
+                                            <input type="text" id="user_fullname" class="form-control" name="user_fullname" placeholder="User Name" value="<?php echo $profile[0]->user_fullname; ?>" required="required">
+                                            <input type="hidden" class="form-control" name="old_photo" value="<?php echo $profile[0]->user_photo; ?>" required>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -127,7 +134,19 @@
                                             <label for="user_email">Email</label>
                                         </div>
                                         <div class="col-md-8 col-12">
-                                            <input type="email" class="form-control" placeholder="Email" name="user_email" id="user_email" value="<?php echo $profile[0]->user_email;?>" required>
+                                            <input type="email" class="form-control" placeholder="Email" name="user_email" id="user_email" value="<?php echo $profile[0]->user_email; ?>" required>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-4 col-12">
+                                            <label for="user_group">Gender </label>
+                                        </div>
+                                        <div class="col-md-8 col-12">
+                                            <select class="form-control" id="user_group" name="user_gender" required>
+                                                <option value="">- Select Gender -</option>
+                                                <option <?php if ($profile[0]->user_gender == 'Laki-Laki') echo 'selected'; ?>>Laki-Laki</option>
+                                                <option <?php if ($profile[0]->user_gender == 'Perempuan') echo 'selected'; ?>>Perempuan</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="row mt-2">
@@ -144,7 +163,7 @@
                                             <label for="user_name">Username</label>
                                         </div>
                                         <div class="col-md-8 col-12">
-                                            <input type="text" class="form-control" id="user_name" placeholder="Username" name="user_name" value="<?php echo $profile[0]->user_name;?>" required>
+                                            <input type="text" class="form-control" id="user_name" placeholder="Username" name="user_name" value="<?php echo $profile[0]->user_name; ?>" required>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -153,7 +172,7 @@
                                         </div>
                                         <div class="col-md-8 col-12">
                                             <small style="color:red"><i>*Leave blank if you do not want to update the password</i></small><br>
-                                            <input style="margin-bottom:5px;" type="hidden" class="form-control" name="old_password" value="<?php echo $profile[0]->user_password;?>">
+                                            <input style="margin-bottom:5px;" type="hidden" class="form-control" name="old_password" value="<?php echo $profile[0]->user_password; ?>">
                                             <input style="margin-bottom:5px;" type="text" class="form-control" id="user_password" placeholder="Old Password" name="password">
                                             <input style="margin-bottom:5px;" type="text" class="form-control" placeholder="New Password" name="new_password">
                                             <input style="margin-bottom:5px;" type="text" class="form-control" placeholder="Confirm New Password" name="confirm_password">
@@ -161,7 +180,7 @@
                                     </div>
                                     <div class="col-12 d-flex justify-content-end my-2">
                                         <button type="submit" class="btn btn-primary me-1 mb-1" title="Update Data">Update</button>
-                                        <button type="reset" class="btn btn-light-secondary me-1 mb-1" title="reset">Reset</button>    
+                                        <button type="reset" class="btn btn-light-secondary me-1 mb-1" title="reset">Reset</button>
                                     </div>
                                 </form>
                                 <?php echo form_close(); ?>
@@ -170,6 +189,6 @@
                     </div>
                 </div>
             </div>
-            
+
         </section>
     </div>

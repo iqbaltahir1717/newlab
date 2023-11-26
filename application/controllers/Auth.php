@@ -46,6 +46,7 @@ class Auth extends CI_Controller
 						'user_email'      => $result[0]->user_email,
 						'user_group'      => $result[0]->group_id,
 						'user_createtime' => $result[0]->createtime,
+						'user_gender' => $result[0]->user_gender,
 						'sess_rowpage'    => 10,
 						'IsAuthorized'    => true
 					);

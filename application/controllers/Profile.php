@@ -217,6 +217,7 @@ class Profile extends CI_Controller {
         $data['user_email']    = $this->input->post('user_email');
 
         $data['user_fullname'] = $this->input->post('user_fullname');
+        $data['user_gender']     = $this->input->post('user_gender');
 
         $this->m_user->update($data);
 
@@ -233,6 +234,7 @@ class Profile extends CI_Controller {
             'user_photo'      => $data['user_photo'],
 
             'user_email'      => $data['user_email'],
+            'user_gender'      => $data['user_gender'],
 
         );
 
