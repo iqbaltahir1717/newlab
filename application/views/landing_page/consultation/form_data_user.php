@@ -67,7 +67,7 @@
                                     </div>
                                 </div>
                                 <!-- <a type="submit" class="btn btn-primary btn-sm">Next -></a> -->
-                                <a href="<?= site_url(); ?>consultation/form_successfully" class="btn btn-primary btn-sm">Next -></a>
+                                <a href="<?= site_url(); ?>consultation/form_successfully" class="btn btn-primary btn-sm">Submit -></a>
                             </form>
                         </div>
                     </div>
