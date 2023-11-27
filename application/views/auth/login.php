@@ -48,8 +48,8 @@ $google_client->addScope('profile');
 
                                 <a class="btn btn-login btn-block mb-3" href="<?php echo $google_client->createAuthUrl(); ?>"><i class="fa-brands fa-google"></i> &nbsp; Login with Google</a>
                                 <div class="d-flex" style="gap: 16px;">
-                                    <a class="btn btn-login btn-block mb-3" href="<?= site_url('login/'); ?>">Consultation</a>
-                                    <a class="btn btn-login btn-block mb-3" href="<?= site_url('login/'); ?>">Simulation</a>
+                                    <a class="btn btn-login btn-block mb-3" href="<?= site_url('login/index/consultation'); ?>">Consultation</a>
+                                    <a class="btn btn-login btn-block mb-3" href="<?= site_url('login/index/simulation'); ?>">Simulation</a>
                                 </div>
                                 <p class="text-center" style="color: #A5A5A5;">Or login with</p>
                                 <!-- Input Form -->

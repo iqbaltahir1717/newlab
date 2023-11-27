@@ -16,14 +16,21 @@ class Google extends CI_Controller
         $google_client = new Google_Client();
         $google_client->setClientId('332796968225-407u02j6ftod68mv1fvq0ejlriep0h61.apps.googleusercontent.com'); //masukkan ClientID anda 
         $google_client->setClientSecret('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'); //masukkan Client Secret Key anda
-        $google_client->setRedirectUri('http://localhost/newlab/google'); //Masukkan Redirect Uri anda
+        if (empty($this->uri->segment(3)))
+            $google_client->setRedirectUri('http://localhost/newlab/google'); //Masukkan Redirect Uri anda
+        else
+            $google_client->setRedirectUri('http://localhost/newlab/google/index/' . $this->uri->segment(3)); //Masukkan Redirect Uri anda
         $google_client->addScope('email');
         $google_client->addScope('profile');
         $google_client->createAuthUrl();
         // if ($google_client->createAuthUrl()) {
         if (isset($_GET["code"])) {
+
             $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
+            // print_r($token);
+            // die;
             if (!isset($token["error"])) {
+
                 $google_client->setAccessToken($token['access_token']);
                 $this->session->set_userdata('access_token', $token['access_token']);
                 $google_service = new Google_Service_Oauth2($google_client);
@@ -65,8 +72,12 @@ class Google extends CI_Controller
                 $alertStatus  = 'success';
                 $alertMessage = 'Selamat Datang, ' . $this->session->userdata('user_fullname');
                 getAlert($alertStatus, $alertMessage);
-
-                redirect('dashboard');
+                if ($this->uri->segment(3) == 'consultation')
+                    redirect('consultation');
+                elseif ($this->uri->segment(3) == 'simulation')
+                    redirect('simulation');
+                else
+                    redirect('dashboard');
             }
         }
         // }

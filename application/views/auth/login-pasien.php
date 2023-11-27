@@ -3,7 +3,7 @@ include_once APPPATH . "../vendor/autoload.php";
 $google_client = new Google_Client();
 $google_client->setClientId('332796968225-407u02j6ftod68mv1fvq0ejlriep0h61.apps.googleusercontent.com');
 $google_client->setClientSecret('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');
-$google_client->setRedirectUri('http://localhost/newlab/google');
+$google_client->setRedirectUri('http://localhost/newlab/google/index/' . $this->uri->segment(3));
 $google_client->addScope('email');
 $google_client->addScope('profile');
 ?>
