@@ -15,9 +15,6 @@ class Consultation extends CI_Controller
 	{
 		// DATA
 		$data['setting']             = getSetting();
-		$data['link']                = $this->m_link->read('', '', '');
-		$data['content']             = $this->m_content->get('sejarah');
-		$data['news_category']       = $this->m_news_category->read('', '', '');
 
 		// TEMPLATE
 		$view         = "landing_page/consultation/index";
@@ -29,12 +26,22 @@ class Consultation extends CI_Controller
 	{
 		// DATA
 		$data['setting']             = getSetting();
-		$data['link']                = $this->m_link->read('', '', '');
-		$data['content']             = $this->m_content->get('sejarah');
-		$data['news_category']       = $this->m_news_category->read('', '', '');
+		$data['consult']                = $this->m_link->read('', '', '');
 
 		// TEMPLATE
-		$view         = "landing_page/consultation/form_1";
+		$view         = "landing_page/consultation/form_data_user";
+		$viewCategory = "all";
+		TemplateForm($data, $view, $viewCategory);
+	}
+
+	public function form_successfully()
+	{
+		// DATA
+		$data['setting']             = getSetting();
+		$data['consult']                = $this->m_link->read('', '', '');
+
+		// TEMPLATE
+		$view         = "landing_page/consultation/form_successfully";
 		$viewCategory = "all";
 		TemplateForm($data, $view, $viewCategory);
 	}

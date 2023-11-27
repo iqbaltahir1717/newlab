@@ -113,4 +113,87 @@ header {
 	}
 }
 
+.form-control {
+	border-radius: 0 !important;
+	width: 100%;
+	padding: 24px 24px !important;
+	border: 1px solid #f2f2f2 !important;
+}
+
+.select {
+	border-radius: 0 !important;
+	width: 100%;
+	padding: 16px 16px !important;
+	border: 1px solid #f2f2f2 !important;
+}
+
+.form-control::placeholder {
+	color: $text-secondary-color;
+}
+
+.form-group {
+	label {
+		span {
+			color: red !important;
+		}
+	}
+}
+
+// radiobutton
+.rad-label {
+	display: flex;
+	align-items: center;
+	padding: 14px 16px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.rad-label:hover,
+.rad-label:focus-within {
+	background: hsla(0, 0%, 80%, 0.14);
+}
+
+.rad-input {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+	z-index: -1;
+}
+
+.rad-design {
+	width: 22px;
+	height: 22px;
+	background: linear-gradient(to right bottom, hsl(0, 0%, 26%), hsl(0, 0%, 8%));
+	position: relative;
+}
+
+.rad-design::before {
+	content: "";
+
+	display: inline-block;
+	width: inherit;
+	height: inherit;
+	border-radius: inherit;
+	background: hsl(0, 0%, 90%);
+	transform: scale(1.1);
+	transition: 0.3s;
+}
+
+.rad-input:checked + .rad-design::before {
+	transform: scale(0);
+}
+
+.rad-text {
+	color: hsl(0, 0%, 60%);
+	margin-left: 14px;
+	transition: 0.3s;
+}
+
+.rad-input:checked ~ .rad-text {
+	color: hsl(0, 0%, 40%);
+}
+
 //consultation

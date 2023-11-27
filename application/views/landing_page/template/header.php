@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<title><?php echo $setting[0]->setting_appname . " " . str_replace("-", " ", ucwords($this->uri->segment(1))); ?> </title>
+	<title><?php echo $setting[0]->setting_appname . " - " . str_replace("-", " ", ucwords($this->uri->segment(1))); ?> </title>
 	<!-- Favicons -->
 	<link href="<?php echo base_url(); ?>assets/core-images/<?php echo $setting[0]->setting_logo; ?>" rel="icon">
 

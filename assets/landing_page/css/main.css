@@ -134,4 +134,103 @@ header .navbar {
   background-position: center;
   width: 100%;
 }
+
+.form-control {
+  border-radius: 0 !important;
+  width: 100%;
+  padding: 24px 24px !important;
+  border: 1px solid #f2f2f2 !important;
+}
+
+.select {
+  border-radius: 0 !important;
+  width: 100%;
+  padding: 16px 16px !important;
+  border: 1px solid #f2f2f2 !important;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #a5a5a5;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #a5a5a5;
+}
+
+.form-control::-ms-input-placeholder {
+  color: #a5a5a5;
+}
+
+.form-control::placeholder {
+  color: #a5a5a5;
+}
+
+.form-group label span {
+  color: red !important;
+}
+
+.rad-label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 14px 16px;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.rad-label:hover,
+.rad-label:focus-within {
+  background: rgba(204, 204, 204, 0.14);
+}
+
+.rad-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  z-index: -1;
+}
+
+.rad-design {
+  width: 22px;
+  height: 22px;
+  background: -webkit-gradient(linear, left top, right bottom, from(#424242), to(#141414));
+  background: linear-gradient(to right bottom, #424242, #141414);
+  position: relative;
+}
+
+.rad-design::before {
+  content: "";
+  display: inline-block;
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+  background: #e6e6e6;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.rad-input:checked + .rad-design::before {
+  -webkit-transform: scale(0);
+          transform: scale(0);
+}
+
+.rad-text {
+  color: #999999;
+  margin-left: 14px;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.rad-input:checked ~ .rad-text {
+  color: #666666;
+}
 /*# sourceMappingURL=main.css.map */

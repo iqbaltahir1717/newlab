@@ -21,12 +21,12 @@
                                     <p>This will assist us in understanding your condition and enable us to schedule a consultation with one of our experienced doctors to help improve your well-being.</p>
                                 </div>
                             </div>
-                            <a href="" class="btn btn-primary btn-sm">Get Started</a>
+                            <a href="<?= site_url(); ?>consultation/form_data_user" class="btn btn-primary btn-sm">Get Started</a>
                         </div>
                     </div>
                     <div class="col-lg-5">
                         <img class="hero-image" src="<?= base_url(); ?>/assets/core-images/preview-image/thumbnail-92823.jpg" alt="preview">
-                    </div>
+                    </div>z
                 </div>
             </div>
         </section>
