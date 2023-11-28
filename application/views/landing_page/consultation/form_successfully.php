@@ -6,7 +6,7 @@
                         <div class="d-flex flex-column">
                             <div class="text-heading">
                                 <h3>Quisinoer Submitted</h3>
-                                <p>Hello Nikita. your quisioner have been recorded, feel free consultation with our doctor. Thank you! </p>
+                                <p>Hello <?= $this->session->userdata('user_fullname')?>. your quisioner have been recorded, feel free consultation with our doctor. Thank you! </p>
                             </div>
                             <div class="card-doctor">
                                 <div class="profile">

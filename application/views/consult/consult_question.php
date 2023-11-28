@@ -56,18 +56,21 @@
 
                                             <div class="form-group">
                                                 <label for=""><b>Type <span style="color:red">*</span></b></label>
-                                                <select class="choices form-select" name="consult_question_type" required style="width:100%">
+                                                <select class=" form-select" name="consult_question_type" required style="width:100%">
                                                     <option value="">-Pilih Type-</option>
+                                                    <option value="info">Info</option>
                                                     <option value="text">Text</option>
+                                                    <option value="textarea">Text Area</option>
                                                     <option value="number">Number</option>
                                                     <option value="file">File</option>
                                                     <option value="dropdown">Dropdown</option>
+                                                    <option value="radio">Radio Button</option>
                                                 </select>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for=""><b>Multiple <span style="color:red">*</span></b></label>
-                                                <select class="choices form-select" name="consult_question_multi" required style="width:100%">
+                                                <select class=" form-select" name="consult_question_multi" required style="width:100%">
                                                     <!-- <option value="">-Pilih Multiple-</option> -->
                                                     <option value="N">N</option>
                                                     <option value="Y">Y</option>
@@ -120,7 +123,7 @@
                                                     <td><?php echo ucwords($key->consult_question_type); ?></td>
                                                     <td><?php echo $key->consult_question_multi; ?></td>
                                                     <td>
-                                                        <?php if ($key->consult_question_type == 'dropdown') { ?>
+                                                        <?php if ($key->consult_question_type == 'radio' or $key->consult_question_type == 'dropdown') { ?>
                                                             <a href="<?php echo site_url('consult_q_option/index/' . $key->consult_question_id) ?>" class="btn btn-primary btn-sm" title="Tambah data"><i class="fas fa-eye"></i> </a>
                                                         <?php } else {
                                                             echo '-';
@@ -210,10 +213,13 @@
                                                                         <label for=""><b>Type <span style="color:red">*</span></b></label>
                                                                         <select class="form-select" name="consult_question_type" required style="width:100%">
                                                                             <option value="">-Pilih Type-</option>
+                                                                            <option <?php if ($key->consult_question_type == 'info') echo 'selected'; ?> value="info">Info</option>
                                                                             <option <?php if ($key->consult_question_type == 'text') echo 'selected'; ?> value="text">Text</option>
+                                                                            <option <?php if ($key->consult_question_type == 'textarea') echo 'selected'; ?> value="textarea">Text Area</option>
                                                                             <option <?php if ($key->consult_question_type == 'number') echo 'selected'; ?> value="number">Number</option>
                                                                             <option <?php if ($key->consult_question_type == 'file') echo 'selected'; ?> value="file">File</option>
                                                                             <option <?php if ($key->consult_question_type == 'dropdown') echo 'selected'; ?> value="dropdown">Dropdown</option>
+                                                                            <option <?php if ($key->consult_question_type == 'radio') echo 'selected'; ?> value="radio">Radio Button</option>
                                                                         </select>
                                                                     </div>
 

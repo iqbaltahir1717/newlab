@@ -5,70 +5,78 @@
                     <div class="col-lg-6">
                         <div class="d-flex flex-column">
                             <div class="text-heading">
-                                <span>Welcome to <b>NEWLAB+</b> <b>Nikita</b> 👋</span>
+                                <span>Welcome to <b>NEWLAB+</b> <b><?= $this->session->userdata('user_fullname') ?></b> 👋</span>
                                 <h3>Please fill your profile & preference.</h3>
                             </div>
-                            <form action="">
-                                <div class="row">
-                                    <div class="form-group col-lg-12">
-                                        <label for="">Fullname <span>*</span></label>
-                                        <input type="text" class="form-control form-control-xl" name="user_fullname" placeholder="Enter your fullname" required>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class=" form-group col-lg-12">
-                                        <label for="">Gender <span>*</span></label>
-                                        <div class="row mx-0">
-                                            <label class="rad-label">
-                                                <input type="radio" class="rad-input" name="user_gender" value="Perempuan" checked>
-                                                <div class="rad-design"></div>
-                                                <div class="rad-text">Woman</div>
-                                            </label>
-                                            <label class="rad-label">
-                                                <input type="radio" class="rad-input" name="user_gender" value="Perempuan">
-                                                <div class="rad-design"></div>
-                                                <div class="rad-text">Man</div>
-                                            </label>
+                            <?php echo form_open_multipart("consultation/create") ?>
+                            <?php foreach ($consult_question as $no => $key) {
+                            ?>
+                                <input type="hidden" class="form-control" placeholder="" name="question[]" value="<?= $key->consult_question_text ?> " required="required">
+                                <?php echo csrf(); ?>
+                                <?php if ($key->consult_question_type == 'dropdown') {
+                                ?>
+                                    <div class="row">
+                                        <div class="form-group col-lg-12">
+                                            <label for=""><b><?= $key->consult_question_text ?> <span style="">*</span></b></label>
+                                            <select <?php if ($key->consult_question_multi == 'Y') echo 'multiple'; ?> class="select select2" name="response<?= $no ?>" required style="width:100%">
+                                                <option value="">-Choose <?= $key->consult_question_text ?> -</option>
+                                                <?php
+                                                $option = $this->m_consult_q_option->read('', '', '', $key->consult_question_id);
+                                                if ($option) {
+                                                    foreach ($option as $value) {
+                                                        echo '<option>' . $value->consult_q_option_text . '</option>';
+                                                    }
+                                                } ?>
+                                            </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-lg-12">
-                                        <label for="">Activity Category <span>*</span></label>
-                                        <div class="row mx-0">
-                                            <label class="rad-label">
-                                                <input type="radio" class="rad-input" name="user_activity" value="Indoor" checked>
-                                                <div class="rad-design"></div>
-                                                <div class="rad-text">Indoor</div>
-                                            </label>
-                                            <label class="rad-label">
-                                                <input type="radio" class="rad-input" name="user_activity" value="Outdoor">
-                                                <div class="rad-design"></div>
-                                                <div class="rad-text">Outdoor</div>
-                                            </label>
+
+                                <?php } elseif ($key->consult_question_type == 'radio') { ?>
+                                    <div class="row">
+                                        <div class=" form-group col-lg-12">
+                                            <label for=""><?= $key->consult_question_text ?> <span>*</span></label>
+                                            <div class="row mx-0">
+                                                <?php
+                                                $option = $this->m_consult_q_option->read('', '', '', $key->consult_question_id);
+                                                if ($option) {
+                                                    foreach ($option as $value) {
+                                                ?>
+                                                        <label class="rad-label">
+                                                            <input type="radio" class="rad-input" name="response<?= $no ?>" value="<?= $value->consult_q_option_text ?>">
+                                                            <div class="rad-design"></div>
+                                                            <div class="rad-text"><?= $value->consult_q_option_text ?></div>
+                                                        </label>
+                                                <?php   }
+                                                } ?>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-lg-12">
-                                        <label for="">Choose Your Problem <span>*</span></label>
-                                        <select class="select select2" name="user_problem" id="user_problem">
-                                            <option value="">- Choose Problem -</option>
-                                            <option value="body">Body</option>
-                                            <option value="skin">Skin</option>
-                                            <option value="teeth">Teeth</option>
-                                        </select>
+
+                                <?php } elseif ($key->consult_question_type == 'textarea') { ?>
+                                    <div class="row">
+                                        <div class="form-group col-lg-12">
+                                            <label for=""><?= $key->consult_question_text ?> <span>*</span></label>
+                                            <textarea name="response<?= $no ?>" cols="20" rows="5" class="form-control" placeholder="Enter your <?= $key->consult_question_text ?>"></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-lg-12">
-                                        <label for="">Specific Problem <span>*</span></label>
-                                        <textarea name="user_problem_specific" id="user_problem_specific" cols="20" rows="5" class="form-control" placeholder="Enter your problem"></textarea>
+
+
+                                <?php } else { ?>
+                                    <div class="row">
+                                        <div class="form-group col-lg-12">
+                                            <label for=""><?= $key->consult_question_text ?> <span>*</span></label>
+                                            <input type="text" class="form-control form-control-xl" name="response<?= $no ?>" placeholder="Enter your <?= $key->consult_question_text ?> " required>
+                                        </div>
                                     </div>
-                                </div>
-                                <!-- <a type="submit" class="btn btn-primary btn-sm">Next -></a> -->
-                                <a href="<?= site_url(); ?>consultation/form_successfully" class="btn btn-primary btn-sm">Submit -></a>
-                            </form>
+                                <?php } ?>
+                            <?php } ?>
+
+
+                            <button type="submit" class="btn btn-primary btn-sm" title="Tambah data"> Submit -></button>
+                            <!-- <a type="submit" class="btn btn-primary btn-sm">Submit -></a> -->
+                            <!-- <a href="<?= site_url(); ?>consultation/form_successfully" class="btn btn-primary btn-sm">Submit -></a> -->
+                            <?php echo form_close(); ?>
+
                         </div>
                     </div>
                     <div class="col-lg-5">

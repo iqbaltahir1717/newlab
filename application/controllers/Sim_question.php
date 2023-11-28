@@ -35,7 +35,20 @@ class Sim_question extends CI_Controller
     {
         csrfValidate();
 
-        $data['sim_question_id']   = '';
+        if (!empty($_FILES['sim_question_image']['name'])) {
+            $config['upload_path']   = './upload/question';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['max_size'] = '50000000000000';
+            $config['file_name'] =  'question-' . date('YmdHis') . "-" . rand(1000, 9999);
+
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('sim_question_image')) {
+                $uploadData = $this->upload->data();
+                $filename = $uploadData['file_name'];
+                $data['sim_question_image'] = $filename;
+            }
+        }
+
         $data['sim_question_text'] = $this->input->post('sim_question_text');
         $data['sim_question_type'] = $this->input->post('sim_question_type');
         $data['sim_question_multi'] = $this->input->post('sim_question_multi');
@@ -61,6 +74,20 @@ class Sim_question extends CI_Controller
     {
         csrfValidate();
         // POST
+
+        if (!empty($_FILES['sim_question_image']['name'])) {
+            $config['upload_path']   = './upload/question';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['max_size'] = '50000000000000';
+            $config['file_name'] =  'question-' . date('YmdHis') . "-" . rand(1000, 9999);
+
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('sim_question_image')) {
+                $uploadData = $this->upload->data();
+                $filename = $uploadData['file_name'];
+                $data['sim_question_image'] = $filename;
+            }
+        }
 
         $data['sim_question_id']   = $this->input->post('sim_question_id');
         $data['sim_question_text'] = $this->input->post('sim_question_text');

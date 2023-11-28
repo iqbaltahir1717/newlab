@@ -46,15 +46,21 @@
                                             <i data-feather="x"></i>
                                         </button>
                                     </div>
-                                    <?php echo form_open("sim_q_option/create") ?>
+                                    <?php echo form_open_multipart("sim_q_option/create") ?>
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="form-group">
-                                                <label for="gallery_name">Text<span style="color:red">*</span></label>
+                                                <label for="gallery_name">Text <?php if ($sim_question[0]->sim_question_type == 'radio') echo '<span style="font-size: 12px; color:red;">Pilih Salah Satu Inputan</span>'; ?> </label>
                                                 <?php echo csrf(); ?>
-                                                <input type="text" class="form-control" placeholder="simation questions Text" name="sim_q_option_text" required="required">
+                                                <input type="text" class="form-control" placeholder="simation questions Text" name="sim_q_option_text">
                                                 <input type="hidden" class="form-control" placeholder="simation questions Text" name="sim_question_id" value="<?= $this->uri->segment(3); ?>">
                                             </div>
+                                            <?php if ($sim_question[0]->sim_question_type == 'radio') { ?>
+                                                <div class="form-group">
+                                                    <label for="gallery_name">File <span style="font-size: 12px; color:red;">Pilih Salah Satu Inputan</span></label>
+                                                    <input type="file" class="form-control" placeholder="simation questions Text" name="sim_q_option_text">
+                                                </div>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -110,7 +116,7 @@
                                                                     <?php echo form_open_multipart("sim_q_option/delete") ?>
                                                                     <?php echo csrf(); ?>
                                                                     <button type="submit" class="dropdown-item" title="Delete data"><i class="bi bi-x-lg"></i> Delete</button>
-                                                                    <input type="hidden" class="form-control" name="sim_q_option_id" required="required" value="<?php echo $key->sim_q_option_id; ?>">
+                                                                    <input type="hidden" class="form-control" name="sim_q_option_id" value="<?php echo $key->sim_q_option_id; ?>">
                                                                     <input type="hidden" class="form-control" placeholder="simation questions Text" name="sim_question_id" value="<?= $this->uri->segment(3); ?>">
                                                                     <?php echo form_close(); ?>
                                                                 </li>
@@ -121,7 +127,7 @@
 
                                                 <!-- Modal Detail sim_q_option -->
                                                 <div class="modal fade text-start" id="FormDetail<?php echo $key->sim_q_option_id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                                    <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header bg-info">
                                                                 <h4 class="modal-title" id="myModalLabel33">Form simation questions Details</h4>
@@ -133,8 +139,13 @@
                                                                 <div class="modal-body">
                                                                     <div class="row">
                                                                         <div class="form-group">
-                                                                            <b>Text :</b> <br>
-                                                                            <?php echo $key->sim_q_option_text; ?>
+
+                                                                            <?php
+                                                                            if (file_exists('./upload/option/' . $key->sim_q_option_text))
+                                                                                echo '<b>File :</b> <br><a href="' . base_url('upload/option/' . $key->sim_q_option_text) . '" target="_blank" rel="noopener noreferrer">- ' . $key->sim_q_option_text . '</a>';
+                                                                            else
+                                                                                echo '<b>Text :</b> <br>' . $key->sim_q_option_text;
+                                                                            ?>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -159,16 +170,24 @@
                                                                     <i data-feather="x"></i>
                                                                 </button>
                                                             </div>
-                                                            <?php echo form_open("sim_q_option/update"); ?>
+                                                            <?php echo form_open_multipart("sim_q_option/update"); ?>
                                                             <div class="modal-body">
                                                                 <div class="row">
                                                                     <?php echo csrf(); ?>
-                                                                    <div class="form-group">
-                                                                        <label for="gallery_name">Text<span style="color:red">*</span></label>
-                                                                        <input type="text" class="form-control" placeholder="simation questions Text" name="sim_q_option_text" required="required" value="<?= $key->sim_q_option_text; ?>">
-                                                                        <input type="hidden" class="form-control" placeholder="simation questions Text" name="sim_question_id" value="<?= $this->uri->segment(3); ?>">
-                                                                        <input type="hidden" class="form-control" placeholder="simation questions Text" name="sim_q_option_id" value="<?= $key->sim_q_option_id; ?>">
-                                                                    </div>
+                                                                    <input type="hidden" class="form-control" placeholder="simation questions Text" name="sim_question_id" value="<?= $this->uri->segment(3); ?>">
+                                                                    <input type="hidden" class="form-control" placeholder="simation questions Text" name="sim_q_option_id" value="<?= $key->sim_q_option_id; ?>">
+                                                                    <?php
+                                                                    if (!file_exists('./upload/option/' . $key->sim_q_option_text)) { ?>
+                                                                        <div class="form-group">
+                                                                            <label for="gallery_name">Text <?php if ($sim_question[0]->sim_question_type == 'radio') echo '<span style="font-size: 12px; color:red;">Pilih Salah Satu Inputan</span>'; ?> </label>
+                                                                            <input type="text" class="form-control" placeholder="simation questions Text" name="sim_q_option_text" value="<?= $key->sim_q_option_text; ?>">
+                                                                        </div>
+                                                                    <?php } else { ?>
+                                                                        <div class="form-group">
+                                                                            <label for="gallery_name">File <span style="font-size: 12px; color:red;">Pilih Salah Satu Inputan</span></label>
+                                                                            <input type="file" class="form-control" placeholder="simation questions Text" name="sim_q_option_text">
+                                                                        </div>
+                                                                    <?php } ?>
                                                                 </div>
                                                             </div>
 

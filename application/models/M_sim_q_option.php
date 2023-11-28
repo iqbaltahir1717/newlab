@@ -18,7 +18,7 @@ class M_sim_q_option extends CI_Model
         }
 
         if ($sim_question != '') {
-            $this->db->like("sim_question_id", $sim_question);
+            $this->db->where("sim_question_id", $sim_question);
         }
 
         if ($limit != "" or $start != "") {

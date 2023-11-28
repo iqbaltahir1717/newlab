@@ -50,7 +50,7 @@
                                         <div class="row">
                                             <div class="form-group">
                                                 <label for=""><b>Part <span style="color:red">*</span></b></label>
-                                                <select class="choices form-select" name="sim_question_part" required style="width:100%">
+                                                <select required class=" form-select" name="sim_question_part" required style="width:100%">
                                                     <option value="">-Pilih Part-</option>
                                                     <option>Body</option>
                                                     <option>Skin</option>
@@ -65,19 +65,27 @@
                                             </div>
 
                                             <div class="form-group">
+                                                <label for="gallery_name">Image (Optional)</label>
+                                                <input type="file" class="form-control" placeholder="simulation questions Text" name="sim_question_image">
+                                            </div>
+
+                                            <div class="form-group">
                                                 <label for=""><b>Type <span style="color:red">*</span></b></label>
-                                                <select class="choices form-select" name="sim_question_type" required style="width:100%">
+                                                <select class=" form-select" name="sim_question_type" required style="width:100%">
                                                     <option value="">-Pilih Type-</option>
+                                                    <option value="info">Info</option>
                                                     <option value="text">Text</option>
+                                                    <option value="textarea">Text Area</option>
                                                     <option value="number">Number</option>
                                                     <option value="file">File</option>
                                                     <option value="dropdown">Dropdown</option>
+                                                    <option value="radio">Radio Button</option>
                                                 </select>
                                             </div>
 
                                             <div class="form-group">
                                                 <label for=""><b>Multiple <span style="color:red">*</span></b></label>
-                                                <select class="choices form-select" name="sim_question_multi" required style="width:100%">
+                                                <select class=" form-select" name="sim_question_multi" required style="width:100%">
                                                     <!-- <option value="">-Pilih Multiple-</option> -->
                                                     <option value="N">N</option>
                                                     <option value="Y">Y</option>
@@ -130,7 +138,7 @@
                                                     <td><?php echo ucwords($key->sim_question_type); ?></td>
                                                     <td><?php echo $key->sim_question_part; ?></td>
                                                     <td>
-                                                        <?php if ($key->sim_question_type == 'dropdown' and $key->sim_question_text != 'Goals yang ingin dicapai') { ?>
+                                                        <?php if (($key->sim_question_type == 'radio' or $key->sim_question_type == 'dropdown') and $key->sim_question_text != 'Goals yang ingin dicapai') { ?>
                                                             <a href="<?php echo site_url('sim_q_option/index/' . $key->sim_question_id) ?>" class="btn btn-primary btn-sm" title="Tambah data"><i class="fas fa-eye"></i> </a>
                                                         <?php } else {
                                                             echo '-';
@@ -234,14 +242,23 @@
                                                                         <input type="hidden" class="form-control" name="sim_question_id" required="required" value="<?php echo $key->sim_question_id; ?>">
                                                                         <input type="hidden" class="form-control" name="aaaaa" required="required" value="<?php echo $key->sim_question_id; ?>">
                                                                     </div>
+
+                                                                    <div class="form-group">
+                                                                        <label for="gallery_name">Image (Optional)</label>
+                                                                        <input type="file" class="form-control" placeholder="simulation questions Text" name="sim_question_image">
+                                                                    </div>
+
                                                                     <div class="form-group">
                                                                         <label for=""><b>Type <span style="color:red">*</span></b></label>
                                                                         <select class="form-select" name="sim_question_type" required style="width:100%">
                                                                             <option value="">-Pilih Type-</option>
+                                                                            <option <?php if ($key->sim_question_type == 'info') echo 'selected'; ?> value="info">Info</option>
                                                                             <option <?php if ($key->sim_question_type == 'text') echo 'selected'; ?> value="text">Text</option>
+                                                                            <option <?php if ($key->sim_question_type == 'textarea') echo 'selected'; ?> value="textarea">Text Area</option>
                                                                             <option <?php if ($key->sim_question_type == 'number') echo 'selected'; ?> value="number">Number</option>
                                                                             <option <?php if ($key->sim_question_type == 'file') echo 'selected'; ?> value="file">File</option>
                                                                             <option <?php if ($key->sim_question_type == 'dropdown') echo 'selected'; ?> value="dropdown">Dropdown</option>
+                                                                            <option <?php if ($key->sim_question_type == 'radio') echo 'selected'; ?> value="radio">Radio Button</option>
                                                                         </select>
                                                                     </div>
 

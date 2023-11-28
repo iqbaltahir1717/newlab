@@ -6,6 +6,7 @@ class sim_q_option extends CI_Controller
     {
         parent::__construct();
         $this->load->model('m_sim_q_option');
+        $this->load->model('m_sim_question');
         $this->load->library('upload');
         if (!($this->session->userdata('user_id'))) {
             // ALERT
@@ -23,6 +24,7 @@ class sim_q_option extends CI_Controller
         $data['setting']       = getSetting();
         $data['title']         = 'Selected Answer';
         $data['sim_q_option'] = $this->m_sim_q_option->read('', '', '', $this->uri->segment(3));
+        $data['sim_question'] = $this->m_sim_question->get($this->uri->segment(3));
 
         // TEMPLATE
         $view         = "simulation/sim_q_option";
@@ -35,8 +37,22 @@ class sim_q_option extends CI_Controller
     {
         csrfValidate();
 
-        $data['sim_q_option_id']   = '';
-        $data['sim_q_option_text'] = $this->input->post('sim_q_option_text');
+        if (!empty($_FILES['sim_q_option_text']['name'])) {
+            $config['upload_path']   = './upload/option';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['max_size'] = '50000000000000';
+            $config['file_name'] =  'option-' . date('YmdHis') . "-" . rand(1000, 9999);
+
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('sim_q_option_text')) {
+                $uploadData = $this->upload->data();
+                $filename = $uploadData['file_name'];
+                $data['sim_q_option_text'] = $filename;
+            }
+        } else {
+            $data['sim_q_option_text'] = $this->input->post('sim_q_option_text');
+        }
+
         $data['sim_question_id'] = $this->input->post('sim_question_id');
         $this->m_sim_q_option->create($data);
 
@@ -57,9 +73,23 @@ class sim_q_option extends CI_Controller
     {
         csrfValidate();
         // POST
+        if (!empty($_FILES['sim_q_option_text']['name'])) {
+            $config['upload_path']   = './upload/option';
+            $config['allowed_types'] = 'jpg|jpeg|png|gif';
+            $config['max_size'] = '50000000000000';
+            $config['file_name'] =  'option-' . date('YmdHis') . "-" . rand(1000, 9999);
+
+            $this->upload->initialize($config);
+            if ($this->upload->do_upload('sim_q_option_text')) {
+                $uploadData = $this->upload->data();
+                $filename = $uploadData['file_name'];
+                $data['sim_q_option_text'] = $filename;
+            }
+        } elseif (!empty($this->input->post('sim_q_option_text'))) {
+            $data['sim_q_option_text'] = $this->input->post('sim_q_option_text');
+        }
 
         $data['sim_q_option_id']   = $this->input->post('sim_q_option_id');
-        $data['sim_q_option_text'] = $this->input->post('sim_q_option_text');
         $data['sim_question_id'] = $this->input->post('sim_question_id');
 
         $this->m_sim_q_option->update($data);

@@ -17,7 +17,7 @@ class Login extends CI_Controller
 			$alertStatus  = 'success';
 			$alertMessage = 'Selamat Datang, ' . $this->session->userdata('user_fullname');
 			getAlert($alertStatus, $alertMessage);
-			redirect('dashboard');
+			redirect('consultation');
 		} else {
 			// DATA
 			$data['setting'] = getSetting();
