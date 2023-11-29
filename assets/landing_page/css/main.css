@@ -91,6 +91,11 @@ header .navbar {
   gap: 24px;
 }
 
+.consultation .content .col-lg-6 .flex-column .btn-group,
+.consultation .content .col-lg-5 .flex-column .btn-group {
+  gap: 24px;
+}
+
 .consultation .content .col-lg-6 .flex-column .btn-primary,
 .consultation .content .col-lg-5 .flex-column .btn-primary {
   width: -webkit-fit-content;

@@ -19,7 +19,7 @@
                                         <div class="form-group col-lg-12">
                                             <label for=""><b><?= $key->consult_question_text ?> <span style="">*</span></b></label>
                                             <select <?php if ($key->consult_question_multi == 'Y') echo 'multiple'; ?> class="select select2" name="response<?= $no ?>" required style="width:100%">
-                                                <option value="">-Choose <?= $key->consult_question_text ?> -</option>
+                                                <option value="">-Pilih <?= $key->consult_question_text ?> -</option>
                                                 <?php
                                                 $option = $this->m_consult_q_option->read('', '', '', $key->consult_question_id);
                                                 if ($option) {
@@ -34,7 +34,7 @@
                                 <?php } elseif ($key->consult_question_type == 'radio') { ?>
                                     <div class="row">
                                         <div class=" form-group col-lg-12">
-                                            <label for=""><?= $key->consult_question_text ?> <span>*</span></label>
+                                            <label for=""><b><?= $key->consult_question_text ?> <span>*</span></b></label>
                                             <div class="row mx-0">
                                                 <?php
                                                 $option = $this->m_consult_q_option->read('', '', '', $key->consult_question_id);
@@ -55,8 +55,8 @@
                                 <?php } elseif ($key->consult_question_type == 'textarea') { ?>
                                     <div class="row">
                                         <div class="form-group col-lg-12">
-                                            <label for=""><?= $key->consult_question_text ?> <span>*</span></label>
-                                            <textarea name="response<?= $no ?>" cols="20" rows="5" class="form-control" placeholder="Enter your <?= $key->consult_question_text ?>"></textarea>
+                                            <label for=""><b><?= $key->consult_question_text ?> <span>*</span></b></label>
+                                            <textarea name="response<?= $no ?>" cols="20" rows="5" class="form-control" placeholder="<?= $key->consult_question_text ?>"></textarea>
                                         </div>
                                     </div>
 
@@ -64,8 +64,8 @@
                                 <?php } else { ?>
                                     <div class="row">
                                         <div class="form-group col-lg-12">
-                                            <label for=""><?= $key->consult_question_text ?> <span>*</span></label>
-                                            <input type="text" class="form-control form-control-xl" name="response<?= $no ?>" placeholder="Enter your <?= $key->consult_question_text ?> " required>
+                                            <label for=""><b><?= $key->consult_question_text ?> <span>*</span></b></label>
+                                            <input type="text" class="form-control form-control-xl" name="response<?= $no ?>" placeholder="Masukkan <?= $key->consult_question_text ?> " required>
                                         </div>
                                     </div>
                                 <?php } ?>

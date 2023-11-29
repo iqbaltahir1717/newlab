@@ -6,15 +6,7 @@
                         <div class="d-flex flex-column">
                             <div class="text-heading">
                                 <h3>Quisinoer Submitted</h3>
-                                <p>Hello <?= $this->session->userdata('user_fullname') ?>. We've received your questionnaire, Feel free to embark on a journey towards better health by consultation with our experienced doctors. <a href="">
-                                        <u>Edit Quisinoer</u>
-                                    </a></p>
-                            </div>
-                            <div class="d-flex btn-group">
-
-                                <a href="" class="btn btn-secondary">
-                                    Log Out
-                                </a>
+                                <p>Hello Nikita. your quisioner have been recorded, feel free consultation with our doctor. Thank you! </p>
                             </div>
                             <div class="card-doctor">
                                 <div class="profile">
@@ -25,7 +17,7 @@
                                     </div>
                                 </div>
                                 <div class="card-button">
-                                    <a href="#" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> &nbsp; Start Consultation</a>
+                                    <a href="#" class="btn btn-primary"><i class="fa-brands fa-whatsapp"></i> &nbsp; Chat Now</a>
                                     <a href="https://newlab.id" class="btn btn-secondary">Back Home</a>
                                 </div>
                             </div>

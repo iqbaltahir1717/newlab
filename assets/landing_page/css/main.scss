@@ -89,6 +89,9 @@ header {
 			margin-bottom: 32px;
 			.flex-column {
 				gap: 24px;
+				.btn-group {
+					gap: 24px;
+				}
 				.btn-primary {
 					width: fit-content;
 					padding: 12px 24px;

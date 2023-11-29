@@ -50,7 +50,9 @@ $google_client->addScope('profile');
 
                         <a class="btn btn-login btn-block mb-3" href="<?php echo $google_client->createAuthUrl(); ?>"><i class="fa-brands fa-google"></i> &nbsp; Login with Google</a>
 
-                        <a class="btn btn-login btn-block mb-3" href="<?= site_url(); ?>consultation">Form</a>
+                        <a class="btn btn-login btn-block mb-3" href="<?= site_url(); ?>consultation">Form Consultation</a>
+                        <a class="btn btn-login btn-block mb-3" href="<?= site_url(); ?>simulation">Form Simulation</a>
+
                     </div>
                 </div>
                 <!-- footer form login -->

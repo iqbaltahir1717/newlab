@@ -5,7 +5,7 @@
                     <div class="col-lg-6">
                         <div class="d-flex flex-column">
                             <div class="text-heading">
-                                <span>Welcome to <b>NEWLAB+</b> Consultation</span>
+                                <span>Welcome to <b>NEWLAB+</b> Simulation</span>
                                 <h3>Please choose a topic and provide detailed information by answering a few questions.</h3>
                             </div>
                             <p>
