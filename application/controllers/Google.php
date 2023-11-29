@@ -73,7 +73,7 @@ class Google extends CI_Controller
                 $alertMessage = 'Selamat Datang, ' . $this->session->userdata('user_fullname');
                 getAlert($alertStatus, $alertMessage);
                 if ($this->uri->segment(3) == 'consultation')
-                    redirect('consultation');
+                    redirect('consultation/form_successfully');
                 elseif ($this->uri->segment(3) == 'simulation')
                     redirect('simulation');
                 else
@@ -94,11 +94,11 @@ class Google extends CI_Controller
         //     echo "Login success";
         // }
     }
-    public function logout()
-    {
-        $this->session->unset_userdata('access_token');
+    // public function logout()
+    // {
+    //     $this->session->unset_userdata('access_token');
 
-        $this->session->unset_userdata('user_data');
-        echo "Logout berhasil";
-    }
+    //     $this->session->unset_userdata('user_data');
+    //     echo "Logout berhasil";
+    // }
 }

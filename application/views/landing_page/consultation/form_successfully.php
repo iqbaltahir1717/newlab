@@ -12,7 +12,7 @@
                             </div>
                             <div class="d-flex btn-group">
 
-                                <a href="" class="btn btn-secondary">
+                                <a href="<?= base_url('auth/logout'); ?>" class="btn btn-secondary">
                                     Log Out
                                 </a>
                             </div>
