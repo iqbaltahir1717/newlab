@@ -32,7 +32,7 @@ class M_consult_response extends CI_Model
         return null;
     }
 
-    
+
     public function create($data)
     {
         $this->db->insert('tbl_consult_response', $data);
@@ -51,6 +51,13 @@ class M_consult_response extends CI_Model
     public function get($id)
     {
         $this->db->where('consult_response_id', $id);
+        $query = $this->db->get('tbl_consult_response', 1);
+        return $query->result();
+    }
+
+    public function get_response($id)
+    {
+        $this->db->where('user_id', $id);
         $query = $this->db->get('tbl_consult_response', 1);
         return $query->result();
     }

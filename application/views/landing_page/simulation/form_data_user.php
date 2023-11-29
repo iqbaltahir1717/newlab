@@ -5,7 +5,7 @@
                     <div class="col-lg-6">
                         <div class="d-flex flex-column">
                             <div class="text-heading">
-                                <span>Welcome to <b>NEWLAB+</b> <b>Nikita</b> 👋</span>
+                                <span>Welcome to <b>NEWLAB+</b> <b><?= $this->session->userdata('user_fullname') ?></b> 👋</span>
                                 <h3>Please fill your profile & preference.</h3>
                             </div>
                             <form action="">
@@ -60,14 +60,8 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="form-group col-lg-12">
-                                        <label for="">Specific Problem <span>*</span></label>
-                                        <textarea name="user_problem_specific" id="user_problem_specific" cols="20" rows="5" class="form-control" placeholder="Enter your problem"></textarea>
-                                    </div>
-                                </div>
                                 <!-- <a type="submit" class="btn btn-primary btn-sm">Next -></a> -->
-                                <a href="<?= site_url(); ?>consultation/form_successfully" class="btn btn-primary btn-sm">Submit -></a>
+                                <a href="<?= site_url(); ?>simulation/form_simulation" class="btn btn-primary btn-sm">Next -></a>
                             </form>
                         </div>
                     </div>

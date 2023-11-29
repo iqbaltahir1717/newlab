@@ -9,6 +9,7 @@ class Simulation extends CI_Controller
 		$this->load->model('m_content');
 		$this->load->model('m_link');
 		$this->load->model('m_news_category');
+		$this->load->model('m_consult_question');
 	}
 
 	public function index()
@@ -26,7 +27,8 @@ class Simulation extends CI_Controller
 	{
 		// DATA
 		$data['setting']             = getSetting();
-		$data['consult']                = $this->m_link->read('', '', '');
+		$data['consult_question'] = $this->m_consult_question->read('', '', '');
+
 
 		// TEMPLATE
 		$view         = "landing_page/simulation/form_data_user";
@@ -41,7 +43,7 @@ class Simulation extends CI_Controller
 		$data['consult']                = $this->m_link->read('', '', '');
 
 		// TEMPLATE
-		$view         = "landing_page/simulation/form_data_user";
+		$view         = "landing_page/simulation/form_simulation";
 		$viewCategory = "all";
 		TemplateForm($data, $view, $viewCategory);
 	}

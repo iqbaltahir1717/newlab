@@ -6,12 +6,10 @@ class Consultation extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('m_content');
-		$this->load->model('m_link');
-		$this->load->model('m_news_category');
 		$this->load->model('m_consult_response');
 		$this->load->model('m_consult_question');
 		$this->load->model('m_consult_q_option');
+		$this->load->model('m_user');
 
 		if (!$this->session->userdata('user_id')) {
 			// ALERT
@@ -37,7 +35,6 @@ class Consultation extends CI_Controller
 	{
 		// DATA
 		$data['setting']             = getSetting();
-		$data['consult']                = $this->m_link->read('', '', '');
 		$data['consult_question'] = $this->m_consult_question->read('', '', '');
 
 		// TEMPLATE
@@ -79,7 +76,8 @@ class Consultation extends CI_Controller
 	{
 		// DATA
 		$data['setting']             = getSetting();
-		$data['consult']                = $this->m_link->read('', '', '');
+		$data['dokter']                = $this->m_user->get_doctor();
+		$data['response']                = $this->m_consult_response->get_response($this->session->userdata('user_id'));
 
 		// TEMPLATE
 		$view         = "landing_page/consultation/form_successfully";

@@ -21,7 +21,7 @@
                                     <p>This will assist us in understanding your condition and enable us to schedule a consultation with one of our experienced doctors to help improve your well-being.</p>
                                 </div>
                             </div>
-                            <a href="<?= site_url(); ?>consultation/form_data_user" class="btn btn-primary btn-sm">Get Started</a>
+                            <a href="<?= site_url(); ?>simulation/form_data_user" class="btn btn-primary btn-sm">Get Started</a>
                         </div>
                     </div>
                     <div class="col-lg-5">
