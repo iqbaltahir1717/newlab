@@ -24,8 +24,9 @@ class Dashboard extends CI_Controller
 
 	public function index()
 	{
-
 		// print_r($this->session->userdata('user_group'));die;
+		if ($this->session->userdata('user_group') == 4)
+			redirect('login');
 		// DATA
 		$data['setting'] = getSetting();
 		$data['title']   = 'Dashboard';

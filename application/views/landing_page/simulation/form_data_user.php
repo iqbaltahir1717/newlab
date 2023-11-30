@@ -53,7 +53,7 @@
                             <div class="row">
                                 <div class="form-group col-lg-12">
                                     <label for="">Choose Your Problem <span>*</span></label>
-                                    <select class="select select2" name="problems_experienced" id="user_problem">
+                                    <select required class="select select2" name="problems_experienced" id="user_problem">
                                         <option value="">- Choose Problem -</option>
                                         <option value="Body">Body</option>
                                         <option value="Skin">Skin</option>
