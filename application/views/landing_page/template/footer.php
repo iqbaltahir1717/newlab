@@ -1,24 +1,22 @@
         <style>
+            @media (max-width: 542px) {
 
-            @media (max-width: 542px){
+                .footer-top {
 
-            	  .footer-top{
+                    .footer-info {
 
-            	      .footer-info{
+                        display: flex;
 
-            	          display:flex;
+                        justify-content: center;
 
-            	          justify-content: center;
+                    }
 
-            	      }
-
-            	  }
+                }
 
             }
-
         </style>
 
-        
+
 
         <footer id="footer">
 
@@ -48,15 +46,15 @@
 
                                 <li><a href="<?php echo site_url('page/siteplan'); ?>/#siteplan4">Facilities</a></li>
 
-                                <?php if($news_category) { ?>
+                                <?php if ($news_category) { ?>
 
-                                <li><a href="<?php echo site_url('page/information/'.$news_category[0]->news_category_id . '/1')?>"><?= $news_category[0]->news_category_name ?></a></li>
+                                    <li><a href="<?php echo site_url('page/information/' . $news_category[0]->news_category_id . '/1') ?>"><?= $news_category[0]->news_category_name ?></a></li>
 
-                                <?php } else {?>
+                                <?php } else { ?>
 
                                     <li><a href="#">Not Found News Category</a></li>
 
-                            <?php } ?>
+                                <?php } ?>
 
                             </ul>
 
@@ -80,19 +78,25 @@
 
                             <ul>
 
-                                <li style="display:flex; align-items: start"><a href="mailto:<?php echo $setting[0]->setting_email;?>" class="arrowup d-flex"style="align-items: start"><p style="min-width:50px;">Email</p>:<p><?php echo $setting[0]->setting_email;?></p>
+                                <li style="display:flex; align-items: start"><a href="mailto:<?php echo $setting[0]->setting_email; ?>" class="arrowup d-flex" style="align-items: start">
+                                        <p style="min-width:50px;">Email</p>:<p><?php echo $setting[0]->setting_email; ?></p>
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 17 17" fill="none">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 17 17" fill="none">
 
-                                        <path d="M3.15015 13.8501L13.6501 3.3501M13.6501 3.3501L5.77515 3.3501M13.6501 3.3501V11.2251" stroke="#5C5F66" stroke-width="1.575" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M3.15015 13.8501L13.6501 3.3501M13.6501 3.3501L5.77515 3.3501M13.6501 3.3501V11.2251" stroke="#5C5F66" stroke-width="1.575" stroke-linecap="round" stroke-linejoin="round" />
 
-                                    </svg></a>
+                                        </svg>
+                                    </a>
 
                                 </li>
 
-                                <li style="display:flex; align-items: start"><p style="min-width:60px;">Telp</p>:&nbsp;&nbsp;<p> +<?php echo $setting[0]->setting_phone;?></p></li>
+                                <li style="display:flex; align-items: start">
+                                    <p style="min-width:60px;">Telp</p>:&nbsp;&nbsp;<p> +<?php echo $setting[0]->setting_phone; ?></p>
+                                </li>
 
-                                <li style="display:flex; align-items: start"><p style="min-width:60px;">Address</p>:&nbsp;&nbsp;<p> <?php echo $setting[0]->setting_address;?></p></li>
+                                <li style="display:flex; align-items: start">
+                                    <p style="min-width:60px;">Address</p>:&nbsp;&nbsp;<p> <?php echo $setting[0]->setting_address; ?></p>
+                                </li>
 
                             </ul>
 
@@ -118,11 +122,11 @@
 
                                 <div class="social-links d-flex">
 
-                                    <a href="https://<?php echo $setting[0]->setting_facebook;?>" class="facebook" target="_blank" aria-label="facebook"><i class='bx bxl-facebook-circle'></i></a>
+                                    <a href="https://<?php echo $setting[0]->setting_facebook; ?>" class="facebook" target="_blank" aria-label="facebook"><i class='bx bxl-facebook-circle'></i></a>
 
-                                    <a href="https://<?php echo $setting[0]->setting_instagram;?>" class="instagram" target="_blank" aria-label="instagram"><i class='bx bxl-instagram' ></i></a>
+                                    <a href="https://<?php echo $setting[0]->setting_instagram; ?>" class="instagram" target="_blank" aria-label="instagram"><i class='bx bxl-instagram'></i></a>
 
-                                    <a href="http://<?php echo $setting[0]->setting_youtube;?>" class="twitter" target="_blank" aria-label="twitter"><i class='bx bxl-youtube'></i></a>
+                                    <a href="http://<?php echo $setting[0]->setting_youtube; ?>" class="twitter" target="_blank" aria-label="twitter"><i class='bx bxl-youtube'></i></a>
 
                                 </div>
 
@@ -130,25 +134,25 @@
 
                             <div class="col-md-3 baris-4">
 
-                                <p class="text-nowrap"><a href="<?= site_url();?>page/<?= $content[1]->content_menu; ?>" style="color:#5C5F66">Privacy Policy</a></p>
+                                <p class="text-nowrap"><a href="<?= site_url(); ?>page/<?= $content[1]->content_menu; ?>" style="color:#5C5F66">Privacy Policy</a></p>
 
-                            </div>  
+                            </div>
 
                             <div class="col-md-2 baris-6">
 
-                                <p class="text-nowrap"><a href="<?= site_url();?>page/<?= $content[0]->content_menu; ?>" style="color:#5C5F66">Term & Condition</a></p>
+                                <p class="text-nowrap"><a href="<?= site_url(); ?>page/<?= $content[0]->content_menu; ?>" style="color:#5C5F66">Term & Condition</a></p>
 
-                            </div>  
+                            </div>
 
                         </div>
 
-                    </div>              
+                    </div>
 
                     <div class="col-md-3 align-items-center">
 
                         <div class="copyright align-items-center text-center mt-4">
 
-                            &copy; 2023  Gramercy All Rights Reserved
+                            &copy; 2023 Gramercy All Rights Reserved
 
                         </div>
 
@@ -170,46 +174,52 @@
 
         <!-- JS Files -->
 
-		<script src="<?php echo base_url()?>assets/landing_page/vendor/jquery/jquery.min.js"></script>
+        <script src="<?php echo base_url() ?>assets/landing_page/vendor/jquery/jquery.min.js"></script>
 
-		<script src="<?php echo base_url()?>assets/landing_page/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-		<script src="<?php echo base_url()?>assets/landing_page/vendor/jquery.easing/jquery.easing.min.js"></script>
 
-		<script src="<?php echo base_url()?>assets/landing_page/vendor/php-email-form/validate.js"></script>
+        <script src="<?php echo base_url() ?>assets/landing_page/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-		<script src="<?php echo base_url()?>assets/landing_page/vendor/owl.carousel/owl.carousel.min.js"></script>
+        <script src="<?php echo base_url() ?>assets/landing_page/vendor/jquery.easing/jquery.easing.min.js"></script>
 
-		<script src="<?php echo base_url()?>assets/landing_page/vendor/venobox/venobox.min.js"></script>
+        <script src="<?php echo base_url() ?>assets/landing_page/vendor/php-email-form/validate.js"></script>
 
-		<script src="<?php echo base_url()?>assets/landing_page/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+        <script src="<?php echo base_url() ?>assets/landing_page/vendor/owl.carousel/owl.carousel.min.js"></script>
 
-		<script src="<?php echo base_url()?>assets/landing_page/vendor/aos/aos.js"></script>
+        <script src="<?php echo base_url() ?>assets/landing_page/vendor/venobox/venobox.min.js"></script>
 
-        <script src="<?php echo base_url()?>assets/landing_page/vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="<?php echo base_url() ?>assets/landing_page/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 
-		<!-- Main JS File -->
+        <script src="<?php echo base_url() ?>assets/landing_page/vendor/aos/aos.js"></script>
 
-		<script src="<?php echo base_url()?>assets/landing_page/js/main.js"></script>
+        <script src="<?php echo base_url() ?>assets/landing_page/vendor/glightbox/js/glightbox.min.js"></script>
 
-		<script language="JavaScript" type="text/javascript">
+        <!-- Select2 -->
+        <script src="<?php echo base_url(); ?>assets/extensions/choices.js/public/assets/scripts/choices.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-            $(document).ready(function(){
+
+        <!-- Main JS File -->
+
+        <script src="<?php echo base_url() ?>assets/landing_page/js/main.js"></script>
+
+        <script language="JavaScript" type="text/javascript">
+            $(document).ready(function() {
 
                 $('.carousel').carousel({
 
                     interval: 5000
 
-                })
+                });
 
-            });    
+                $('.select2').select2();
 
-		</script>
+            });
+        </script>
 
 
 
         <script>
-
             var lightbox = GLightbox();
 
             lightbox.on('open', (target) => {
@@ -230,7 +240,10 @@
 
             });
 
-            lightboxVideo.on('slide_changed', ({ prev, current }) => {
+            lightboxVideo.on('slide_changed', ({
+                prev,
+                current
+            }) => {
 
                 console.log('Prev slide', prev);
 
@@ -238,7 +251,12 @@
 
 
 
-                const { slideIndex, slideNode, slideConfig, player } = current;
+                const {
+                    slideIndex,
+                    slideNode,
+                    slideConfig,
+                    player
+                } = current;
 
 
 
@@ -291,11 +309,8 @@
                 selector: '.glightbox4'
 
             });
-
-
-
         </script>
 
-	</body>
+        </body>
 
-</html>
+        </html>

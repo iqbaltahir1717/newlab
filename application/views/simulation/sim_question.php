@@ -45,7 +45,7 @@
                                             <i data-feather="x"></i>
                                         </button>
                                     </div>
-                                    <?php echo form_open("sim_question/create") ?>
+                                    <?php echo form_open_multipart("sim_question/create") ?>
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="form-group">
@@ -221,7 +221,7 @@
                                                                     <i data-feather="x"></i>
                                                                 </button>
                                                             </div>
-                                                            <?php echo form_open("sim_question/update"); ?>
+                                                            <?php echo form_open_multipart("sim_question/update"); ?>
                                                             <div class="modal-body">
                                                                 <div class="row">
 
@@ -232,7 +232,7 @@
                                                                             <option value="">-Pilih Part-</option>
                                                                             <option <?php if ($key->sim_question_part == 'Body') echo 'selected'; ?>>Body</option>
                                                                             <option <?php if ($key->sim_question_part == 'Skin') echo 'selected'; ?>>Skin</option>
-                                                                            <option> <?php if ($key->sim_question_part == 'Teeth') echo 'selected'; ?>Teeth</option>
+                                                                            <option <?php if ($key->sim_question_part == 'Teeth') echo 'selected'; ?>>Teeth</option>
                                                                         </select>
                                                                     </div>
 

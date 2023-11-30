@@ -25,9 +25,15 @@
 	<link href="<?php echo base_url() ?>assets/landing_page/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
 	<link href="<?php echo base_url() ?>assets/landing_page/vendor/font-awesome/all.min.css" rel="stylesheet">
 
+
 	<!-- CSS -->
 	<link href="<?php echo base_url() ?>assets/landing_page/css/min.style.css" rel="stylesheet">
 	<link href="<?php echo base_url() ?>assets/landing_page/css/main.css" rel="stylesheet">
+
+	<!-- select2 -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/extensions/choices.js/public/assets/styles/choices.css">
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 	<style type="text/css">
 		#map-canvas {
