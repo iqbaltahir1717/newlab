@@ -40,6 +40,9 @@
                         <div class="col-12">
                             <b>Product Name :</b><br> <?php echo $product[0]->product_name; ?><br><br>
                             <b>Product Description:</b><br> <?php echo $product[0]->product_description; ?>
+                            <b>Link Shopee:</b><br> <?php if ($product[0]->product_shopee_link) {
+                                                        echo '<a target="_blank" href="' . $product[0]->product_shopee_link . '" title="Tambah data">link</a>';
+                                                    } else echo '<i>~No Data~</i>'; ?><br>
                             <b>Product Cover:</b><br> <a href="<?php echo base_url(); ?>upload/product/<?php echo $product[0]->product_cover; ?>" target="_blank"><?php echo $product[0]->product_cover; ?></a>
                         </div>
                     </div>

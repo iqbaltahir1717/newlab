@@ -45,6 +45,7 @@
                                             <th width="5%">No.</th>
                                             <th width="35%">Name</th>
                                             <th>Description</th>
+                                            <th>Shopee Link</th>
                                             <th width="20%">Updatetime</th>
                                             <th width="10%">Summary</th>
                                             <th width="5%">Aksi</th>
@@ -60,7 +61,15 @@
                                                 <tr>
                                                     <td><?php echo $no; ?></td>
                                                     <td><a href="<?= base_url('upload/product/' . $key->product_cover) ?>" target="_blank" rel="noopener noreferrer"><img style="border-radius: 12px;" src="<?= base_url('upload/product/' . $key->product_cover) ?>" width="64" alt=""></a> &nbsp; <?php echo $key->product_name; ?></td>
-                                                    <td><?php if($key->product_description) {echo substr(strip_tags($key->product_description), 0, 30);} else echo '<i>~No Data~</i>'; ?></td>
+                                                    <td><?php if ($key->product_description) {
+                                                            echo substr(strip_tags($key->product_description), 0, 30);
+                                                        } else echo '<i>~No Data~</i>'; ?></td>
+                                                    <td>
+                                                        <?php if ($key->product_shopee_link) {
+                                                            echo '<a target="_blank" href="' . $key->product_shopee_link . '" title="Tambah data">link</a>';
+                                                        } else echo '<i>~No Data~</i>'; ?>
+
+                                                    </td>
                                                     <td><?php echo $key->updatetime; ?></td>
                                                     <td style="text-align: center;">
                                                         <a href="<?php echo site_url('product_service/index/' . $key->product_id) ?>" class="btn btn-primary btn-sm" title="Tambah data"><i class="fas fa-eye"></i> </a>

@@ -60,6 +60,11 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for=""><b>Link Shopee <span style="color:red">*</span></b></label>
+                                    <input type="text" class="form-control" placeholder="Link Shopee" name="product_shopee_link" required="required" value="<?php echo $product[0]->product_shopee_link; ?>">
+                                </div>
+
+                                <div class="form-group">
                                     <label for=""><b>Status <span style="color:red">*</span></b></label>
                                     <select class="choices form-select" name="product_status" required style="width:100%">
                                         <option value="">-Pilih Status-</option>

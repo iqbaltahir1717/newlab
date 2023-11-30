@@ -97,6 +97,7 @@ class product extends CI_Controller
         $data['product_name'] = $this->input->post('product_name');
         $data['product_description'] = $this->input->post('product_description');
         $data['product_status'] = $this->input->post('product_status');
+        $data['product_shopee_link'] = $this->input->post('product_shopee_link');
         $data['updatetime']         = date('Y-m-d H:i:s');
         $data['createtime']         = date('Y-m-d H:i:s');
         $this->m_product->create($data);
@@ -144,6 +145,7 @@ class product extends CI_Controller
         $data['product_name'] = $this->input->post('product_name');
         $data['product_description'] = $this->input->post('product_description');
         $data['product_status'] = $this->input->post('product_status');
+        $data['product_shopee_link'] = $this->input->post('product_shopee_link');
         $data['updatetime']         = date('Y-m-d H:i:s');
         $this->m_product->update($data);
 
