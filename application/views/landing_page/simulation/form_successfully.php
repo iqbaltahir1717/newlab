@@ -45,11 +45,11 @@
                                                             <div class="card-header" id="headingOne">
                                                                 <h5 class="mb-0">
                                                                     <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<?= $key->product_id . $s->product_service_id ?>" aria-expanded="true" aria-controls="collapse<?= $key->product_id . $s->product_service_id ?>">
-                                                                        <?= $key->product_name . ' - ' . $s->product_service_name; ?>
+                                                                        <?= $s->product_service_name; ?>
                                                                     </button>
                                                                 </h5>
                                                             </div>
-                                                            <div id="collapse<?= $key->product_id . $s->product_service_id ?>" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                                            <div id="collapse<?= $key->product_id . $s->product_service_id ?>" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                                                                 <div class="card-body">
                                                                     <?= $s->product_service_description; ?>
                                                                 </div>

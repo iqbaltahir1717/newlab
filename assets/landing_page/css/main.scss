@@ -203,6 +203,14 @@ header {
 	}
 }
 
+.select2-container--default .select2-selection--multiple {
+	border-radius: 0 !important;
+	width: 100%;
+	padding: 12px 24px !important;
+	height: auto;
+	border: 1px solid #e0e0e0 !important;
+}
+
 .simulation {
 	padding: 0 !important;
 	.container {

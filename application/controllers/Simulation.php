@@ -41,8 +41,6 @@ class Simulation extends CI_Controller
 		// DATA
 		$data['setting']             = getSetting();
 
-
-
 		// TEMPLATE
 		$view         = "landing_page/simulation/form_data_user";
 		$viewCategory = "all";
@@ -52,7 +50,6 @@ class Simulation extends CI_Controller
 	public function create()
 	{
 		csrfValidate();
-
 		$data['sim_response_name']   = $this->input->post('sim_response_name');
 		$data['sim_response_gender']   = $this->input->post('sim_response_gender');
 		$data['daily_activity']   = $this->input->post('daily_activity');

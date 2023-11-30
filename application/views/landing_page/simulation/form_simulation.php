@@ -21,9 +21,14 @@
 
                                 <div class="row">
                                     <div class="form-group col-lg-12">
-                                        <label for=""><b><?= $key->sim_question_text ?> <span style="">*</span></b></label>
+                                        <?php if ($key->sim_question_multi == 'Y') { ?>
+                                            <label for=""><b><?= $key->sim_question_text ?> <span class="hint">(bisa centang lebih dari 1)​</span> <span style="">*</span></b></label>
+                                        <?php } else { ?>
+                                            <label for=""><b><?= $key->sim_question_text ?> <span class="hint">(pilih salah satu)​​</span> <span style="">*</span></b></label>
+                                        <?php } ?>
                                         <?php if ($key->sim_question_multi == 'Y') { ?>
                                             <select multiple class="select select2" name="response<?= $no ?>[]" required style="width:100%">
+
                                                 <?php
                                                 if ($sim_goals) {
                                                     foreach ($sim_goals as $value) {

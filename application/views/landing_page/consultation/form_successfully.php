@@ -6,7 +6,7 @@
                         <div class="d-flex flex-column">
                             <div class="text-heading">
                                 <h3>Quisinoer Submitted</h3>
-                                <p>Hello <?= $this->session->userdata('user_fullname') ?>. We've received your questionnaire, Feel free to embark on a journey towards better health by consultation with our experienced doctors. <a href="">
+                                <p>Hello <?= $this->session->userdata('user_fullname') ?>. We've received your questionnaire, Feel free to embark on a journey towards better health by consultation with our experienced doctors. <a href="<?= site_url(); ?>consultation/form_data_user">
                                         <u>Edit Quisioner</u>
                                     </a></p>
                             </div>

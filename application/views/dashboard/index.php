@@ -104,7 +104,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6 col-md-6">
+                    <!-- <div class="col-12 col-lg-6 col-md-6">
                         <div class="card">
                             <div class="card-body px-4 py-4-5">
                                 <div class="row  align-items-center">
@@ -131,7 +131,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="p-3">
