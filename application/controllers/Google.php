@@ -19,7 +19,7 @@ class Google extends CI_Controller
         if (empty($this->uri->segment(3)))
             $google_client->setRedirectUri(base_url('google')); //Masukkan Redirect Uri anda
         else
-            $google_client->setRedirectUri(base_url('google/' . $this->uri->segment(3))); //Masukkan Redirect Uri anda
+            $google_client->setRedirectUri(base_url('google/index/' . $this->uri->segment(3))); //Masukkan Redirect Uri anda
         $google_client->addScope('email');
         $google_client->addScope('profile');
         $google_client->createAuthUrl();
