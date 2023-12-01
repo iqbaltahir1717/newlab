@@ -17,9 +17,9 @@ class Google extends CI_Controller
         $google_client->setClientId('332796968225-407u02j6ftod68mv1fvq0ejlriep0h61.apps.googleusercontent.com'); //masukkan ClientID anda 
         $google_client->setClientSecret('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'); //masukkan Client Secret Key anda
         if (empty($this->uri->segment(3)))
-            $google_client->setRedirectUri(base_url('newlab/google')); //Masukkan Redirect Uri anda
+            $google_client->setRedirectUri(base_url('google')); //Masukkan Redirect Uri anda
         else
-            $google_client->setRedirectUri(base_url('newlab/google/' . $this->uri->segment(3))); //Masukkan Redirect Uri anda
+            $google_client->setRedirectUri(base_url('google/' . $this->uri->segment(3))); //Masukkan Redirect Uri anda
         $google_client->addScope('email');
         $google_client->addScope('profile');
         $google_client->createAuthUrl();
