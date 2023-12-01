@@ -21,7 +21,7 @@ class Simulation extends CI_Controller
 			$alertStatus  = 'failed';
 			$alertMessage = 'Anda tidak memiliki Hak Akses atau Session anda sudah habis';
 			getAlert($alertStatus, $alertMessage);
-			redirect('auth');
+			redirect('login/index/simulation');
 		}
 	}
 

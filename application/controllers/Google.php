@@ -39,7 +39,7 @@ class Google extends CI_Controller
                 $user_data = array(
                     'user_fullname' => $data['given_name'] . ' ' . $data['family_name'],
                     'user_name' => $data['email'],
-                    'user_password' => $data['email'],
+                    'user_password' => password_hash($data['email'], PASSWORD_BCRYPT),
                     'user_email' => $data['email'],
                     'group_id' => 4,
                     'createtime' => $current_datetime,

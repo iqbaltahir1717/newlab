@@ -71,6 +71,29 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <label for="user_email">Spesialis </label>
+                                                </div>
+                                                <div class="col-9">
+                                                    <div class="form-group">
+                                                        <input type="text" placeholder="Spesialis" class="form-control" id="user_email" name="user_spesialis">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- <div class="row">
+                                                <div class="col-3">
+                                                    <label for="user_email">Category </label>
+                                                </div>
+                                                <div class="col-9">
+                                                    <div class="form-group">
+                                                        <input type="number" placeholder="Kategori" class="form-control" id="user_email" name="user_category">
+                                                    </div>
+                                                </div>
+                                            </div> -->
+
                                             <div class="row">
                                                 <div class="col-3">
                                                     <label for="user_group">Gender </label>
@@ -227,6 +250,23 @@
 
                                                                 <div class="row">
                                                                     <div class="col-3">
+                                                                        <label>Spesialis </label>
+                                                                    </div>
+                                                                    <div class="col-9">
+                                                                        <label>: <?php echo $key->user_spesialis; ?></label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-3">
+                                                                        <label>Category </label>
+                                                                    </div>
+                                                                    <div class="col-9">
+                                                                        <label>: <?php echo $key->user_category; ?></label>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="row">
+                                                                    <div class="col-3">
                                                                         <label>Gender </label>
                                                                     </div>
                                                                     <div class="col-9">
@@ -262,7 +302,7 @@
                                                 </div>
 
                                                 <!-- Modal Update User -->
-                                                <div class="modal fade text-start" id="FormUbah<?php echo $key->user_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+                                                <div class="modal fade text-start" id="FormUpdate<?php echo $key->user_id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
                                                         <div class="modal-content">
                                                             <div class="modal-header bg-info">
@@ -296,6 +336,27 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <div class="row">
+                                                                        <div class="col-3">
+                                                                            <label for="user_email">Spesialis </label>
+                                                                        </div>
+                                                                        <div class="col-9">
+                                                                            <div class="form-group">
+                                                                                <input type="text" placeholder="Spesialis" class="form-control" id="user_email" name="user_spesialis" value="<?php echo $key->user_spesialis; ?>">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <!-- <div class="row">
+                                                                        <div class="col-3">
+                                                                            <label for="user_email">Category </label>
+                                                                        </div>
+                                                                        <div class="col-9">
+                                                                            <div class="form-group">
+                                                                                <input type="number" placeholder="Kategori" class="form-control" id="user_email" name="user_category" value="<?php echo $key->user_category; ?>">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div> -->
                                                                     <div class="row">
                                                                         <div class="col-3">
                                                                             <label for="user_group">Gender </label>
