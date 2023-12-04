@@ -152,8 +152,10 @@ class Simulation extends CI_Controller
 		// DATA
 		$data['setting']             = getSetting();
 		$data['sim_response'] = $this->m_sim_response->get(decrypt_url($this->uri->segment(3)));
+		// $data['sim_question'] = $this->m_sim_question->read('', '', '', $data['sim_response'][0]->problems_experienced);
 		$data['product_rekomendation'] = [];
-
+		$data['image_picker'] = '';
+		$data['part_of_body'] = '';
 		$rekomendasi = [];
 		$arr = unserialize($data['sim_response'][0]->sim_response_text);
 
@@ -169,6 +171,14 @@ class Simulation extends CI_Controller
 						}
 					}
 				}
+				// check image
+				if (!empty($value['r']) and file_exists('./upload/simulation/' . $value['r']))
+					$data['image_picker'] = Imagecolorpicker(explode('.', $value['r'])[1], './upload/simulation/' . $value['r']);
+
+				if (!empty($value['q']) and str_replace(' ', '', $value['q']) == str_replace(' ', '', 'Which part of the body has issues?'))
+					$data['part_of_body'] = $value['r'];
+				else if ($data['sim_response'][0]->problems_experienced == 'Teeth')
+					$data['part_of_body'] = 'Teeth';
 			}
 		}
 
@@ -182,7 +192,7 @@ class Simulation extends CI_Controller
 		}
 
 		// echo '<pre>';
-		// print_r($data['product_rekomendation']);
+		// print_r($data['part_of_body']);
 		// echo '</pre>';
 		// die;
 

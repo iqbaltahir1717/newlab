@@ -8,6 +8,18 @@ class Auth extends CI_Controller
 		$this->load->model('m_user');
 	}
 
+	public function imagecolorpicker($extension, $image)
+	{
+		if ($extension == 'png')
+			$image = imagecreatefrompng($image);
+		else
+			$image = imagecreatefromjpeg($image);
+		$thumb = imagecreatetruecolor(1, 1);
+		imagecopyresampled($thumb, $image, 0, 0, 0, 0, 1, 1, imagesx($image), imagesy($image));
+		$mainColor = strtoupper(dechex(imagecolorat($thumb, 0, 0)));
+		echo $mainColor;
+	}
+
 
 	public function index()
 	{
