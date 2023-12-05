@@ -151,7 +151,7 @@
                                 <div class="row">
                                     <div class="form-group col-lg-12">
                                         <label for=""><b><?= $key->sim_question_text ?> <span>*</span></b></label>
-                                        <input type="<?= $key->sim_question_type ?>" class="form-control form-control-xl" style="height:auto !important; padding:12px !important" name="response<?= $no ?>" placeholder="Enter <?= $key->sim_question_text ?> " required>
+                                        <input id="input_ruler" type="<?= $key->sim_question_type ?>" class="form-control form-control-xl" style="height:auto !important; padding:12px !important" name="response<?= $no ?>" placeholder="Enter <?= $key->sim_question_text ?> " required>
                                     </div>
                                 </div>
                             <?php } ?>
@@ -184,6 +184,7 @@
         if (problem == 'Skin' || problem == 'Teeth') {
             $('#multiple').hide();
             $('#submit').hide();
+            $('#input_ruler').hide();
         }
 
         // alert(problem);
@@ -207,6 +208,7 @@
                 $('#card-color').show();
                 $('#multiple').show();
                 $('#submit').show();
+                $('#input_ruler').show();
                 console.log(problem);
                 // console.log($('#response1').val().toLowerCase().replace(/\s/g, ''));
                 if (problem == 'Teeth')
