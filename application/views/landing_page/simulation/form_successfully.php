@@ -33,14 +33,14 @@
                         <?php
                         } ?>
 
-                        <?php if (!empty($sim_response) and $sim_response[0]->problems_experienced == 'Skin' and  ($part_of_body == 'face' or str_replace(' ', '', strtolower($part_of_body)) == 'bodyskin' or str_replace(' ', '', strtolower($part_of_body)) == 'foldareas')) { ?>
+                        <?php if (!empty($sim_response) and $sim_response[0]->problems_experienced == 'Skin' and  (str_replace(' ', '', strtolower($part_of_body)) == 'face' or str_replace(' ', '', strtolower($part_of_body)) == 'bodyskin' or str_replace(' ', '', strtolower($part_of_body)) == 'foldareas')) { ?>
                             <div class="row">
                                 <div class="form-group col-lg-12">
                                     <label for=""><b>Color Skin References (Regular) ?</b></label>
                                     <br><img width="500" src="<?= base_url('upload/question/skin.png') ?>">
                                 </div>
                             </div>
-                        <?php } else if (!empty($sim_response) and $sim_response[0]->problems_experienced == 'Skin' and $part_of_body == 'lips') { ?>
+                        <?php } else if (!empty($sim_response) and $sim_response[0]->problems_experienced == 'Skin' and str_replace(' ', '', strtolower($part_of_body)) == 'lips') { ?>
                             <div class="row">
                                 <div class="form-group col-lg-12">
                                     <label for=""><b>Color Lips References (Regular) ?</b></label>

@@ -21,12 +21,12 @@
                                     <label for="">Gender <span>*</span></label>
                                     <div class="row mx-0">
                                         <label class="rad-label">
-                                            <input type="radio" class="rad-input" name="sim_response_gender" value="Woman">
+                                            <input required type="radio" class="rad-input" name="sim_response_gender" value="Woman">
                                             <div class="rad-design"></div>
                                             <div class="rad-text">Woman</div>
                                         </label>
                                         <label class="rad-label">
-                                            <input type="radio" class="rad-input" name="sim_response_gender" value="Man">
+                                            <input required type="radio" class="rad-input" name="sim_response_gender" value="Man">
                                             <div class="rad-design"></div>
                                             <div class="rad-text">Man</div>
                                         </label>
@@ -38,12 +38,12 @@
                                     <label for="">Activity Category <span>*</span></label>
                                     <div class="row mx-0">
                                         <label class="rad-label">
-                                            <input type="radio" class="rad-input" name="daily_activity" value="Indoor">
+                                            <input required type="radio" class="rad-input" name="daily_activity" value="Indoor">
                                             <div class="rad-design"></div>
                                             <div class="rad-text">Indoor</div>
                                         </label>
                                         <label class="rad-label">
-                                            <input type="radio" class="rad-input" name="daily_activity" value="Outdoor">
+                                            <input required type="radio" class="rad-input" name="daily_activity" value="Outdoor">
                                             <div class="rad-design"></div>
                                             <div class="rad-text">Outdoor</div>
                                         </label>
