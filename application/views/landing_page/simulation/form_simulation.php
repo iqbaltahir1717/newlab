@@ -37,7 +37,7 @@
                                                 } ?>
                                             </select>
                                         <?php } else { ?>
-                                            <select class="select" name="response<?= $no ?>" required style="width:100%">
+                                            <select id="response<?= $no ?>" class="select" name="response<?= $no ?>" required style="width:100%">
                                                 <option value="">-Choose <?= $key->sim_question_text ?>-</option>;
                                                 <?php
                                                 $option = $this->m_sim_q_option->read('', '', '', $key->sim_question_id);
@@ -95,112 +95,67 @@
                                         ?>
                                     </div>
                                 </div>
+                            <?php } elseif ($key->sim_question_type == 'file') { ?>
+                                <div class="row">
+                                    <div class="form-group col-lg-10">
+                                        <label for=""><b><?= $key->sim_question_text ?> <span>*</span></b></label>
+                                        <input id="fileupload" accept=".jpeg, .png, .jpg" type="file" class="form-control form-control-xl" style="height:auto !important; padding:12px !important" name="response<?= $no ?>" placeholder="Enter <?= $key->sim_question_text ?> " required>
+                                        <span style="color:red"><i>Please choose a picture with close up to the object for achieve a more accurate color scan.</i></span> <a target="__blank" href="<?= base_url(); ?>upload/question/<?php if ($sim_response[0]->problems_experienced  == "Skin") echo "lip example photos.png";
+                                                                                                                                                                                                                                        else echo "teeth example photos.png" ?>"><u><br>check example here</u></a>
+                                    </div>
+                                    <div class="form-group col-lg-2">
+                                        <label for=""><b>Scan Color</b></label>
+                                        <button onclick="uploadFile();" class="btn btn-primary btn-sm" title="Tambah data"> *</button>
+                                    </div>
+                                </div>
+
+
+                                <div class="card-product-item" id="card-color">
+                                    <div class="d-flex">
+                                        <div class="card-detail col-lg px-0">
+                                            <center>
+                                                <h3><?= ucwords('This is the dominant color of the image your uploaded')  ?></h3>
+                                                <div id="color" class="my-3" style="width:70px; height: 70px; border-radius:50%; border: 3px solid #000;">
+                                                </div>
+                                            </center>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <center>
+                                    <div class="row" id="ruler-skin">
+                                        <div class="form-group col-lg-12">
+                                            <label for=""><b>Color Skin References (Regular) ?</b></label>
+                                            <br><img width="500" src="<?= base_url('upload/question/skin.png') ?>">
+                                        </div>
+                                    </div>
+
+                                    <div class="row" id="ruler-lips">
+                                        <div class="form-group col-lg-12">
+                                            <label for=""><b>Color Lips References (Regular) ?</b></label>
+                                            <br><img width="100%" src="<?= base_url('upload/question/libs.png') ?>">
+                                        </div>
+                                    </div>
+
+                                    <div class="row" id="ruler-teeth">
+                                        <div class="form-group col-lg-12">
+                                            <label for=""><b>How bright do you want your teeth (Regular) ?</b></label>
+                                            <br><img width="500" src="<?= base_url('upload/question/teeth.png') ?>">
+                                        </div>
+                                    </div>
+                                </center>
+
                             <?php } else { ?>
                                 <div class="row">
                                     <div class="form-group col-lg-12">
                                         <label for=""><b><?= $key->sim_question_text ?> <span>*</span></b></label>
-                                        <input accept=".jpeg, .png, .jpg" type="<?= $key->sim_question_type ?>" class="form-control form-control-xl" style="height:auto !important; padding:12px !important" name="response<?= $no ?>" placeholder="Enter <?= $key->sim_question_text ?> " required>
-                                        <span style="color:red"><i>Please choose a picture with close up to the object for achieve a more accurate color scan.</i></span> <a target="__blank" href="<?= base_url(); ?>upload/question/<?php if ($sim_response[0]->problems_experienced  == "Skin") echo "lip example photos.png";
-                                                                                                                                                                                                                                        else echo "teeth example photos.png" ?>"><u><br>check example here</u></a>
+                                        <input type="<?= $key->sim_question_type ?>" class="form-control form-control-xl" style="height:auto !important; padding:12px !important" name="response<?= $no ?>" placeholder="Enter <?= $key->sim_question_text ?> " required>
                                     </div>
                                 </div>
                             <?php } ?>
                         <?php } ?>
 
-
-                        <!-- <div class="row">
-                                <div class="form-group col-lg-12">
-                                    <label for="">Berat Badan (kg) <span>*</span></label>
-                                    <input type="number" class="form-control form-control-xl" name="response" placeholder="Value Berat Badan (kg)" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-lg-12">
-                                    <label for="">Tinggi Badan (cm) <span>*</span></label>
-                                    <input type="number" class="form-control form-control-xl" name="response" placeholder="Value Tinggi Badan (cm)" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-lg-12">
-                                    <label for="">Lingkar Perut (cm) <span>*</span></label>
-                                    <input type="number" class="form-control form-control-xl" name="response" placeholder="Value Lingkar Perut (cm)" required>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-lg-12">
-                                    <label for="">Specific Problem <span>*</span></label>
-                                    <textarea name="user_problem_specific" id="user_problem_specific" cols="20" rows="5" class="form-control" placeholder="Enter your problem"></textarea>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class=" form-group col-lg-12">
-                                    <label for="">Bentuk Badan Yang Mendekati <span>*</span></label>
-                                    <div class="row mx-0">
-                                        <label class="rad-label">
-                                            <input type="radio" class="rad-input" name="user_gender" value="Perempuan" checked>
-                                            <div class="rad-design"></div>
-                                            <div class="rad-text"><img src="<?= base_url(); ?>upload/option/option-20231128111542-6632.png" alt="" width="94"></div>
-                                        </label>
-                                        <label class="rad-label">
-                                            <input type="radio" class="rad-input" name="user_gender" value="Perempuan" checked>
-                                            <div class="rad-design"></div>
-                                            <div class="rad-text"><img src="<?= base_url(); ?>upload/option/option-20231128111910-9325.png" alt="" width="94"></div>
-                                        </label>
-                                        <label class="rad-label">
-                                            <input type="radio" class="rad-input" name="user_gender" value="Perempuan" checked>
-                                            <div class="rad-design"></div>
-                                            <div class="rad-text"><img src="<?= base_url(); ?>upload/option/option-20231128111917-1805.png" alt="" width="94"></div>
-                                        </label>
-                                        <label class="rad-label">
-                                            <input type="radio" class="rad-input" name="user_gender" value="Perempuan" checked>
-                                            <div class="rad-design"></div>
-                                            <div class="rad-text"><img src="<?= base_url(); ?>upload/option/option-20231128111922-4874.png" alt="" width="94"></div>
-                                        </label>
-                                        <label class="rad-label">
-                                            <input type="radio" class="rad-input" name="user_gender" value="Perempuan" checked>
-                                            <div class="rad-design"></div>
-                                            <div class="rad-text"><img src="<?= base_url(); ?>upload/option/option-20231128111927-8575.png" alt="" width="94"></div>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-lg-12">
-                                    <label for="">Apakah kamu menjaga pola makan dan hidup sehat? <span>*</span></label>
-                                    <select class="select select2" name="user_problem" id="user_problem">
-                                        <option value="">- Choose Here -</option>
-                                        <option value="body">Body</option>
-                                        <option value="skin">Skin</option>
-                                        <option value="teeth">Teeth</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-lg-12">
-                                    <label for="">Pilih target turunnya berat badan​ <span>*</span></label>
-                                    <select class="select select2" name="user_problem" id="user_problem">
-                                        <option value="">- Choose Here -</option>
-                                        <option value="body">Body</option>
-                                        <option value="skin">Skin</option>
-                                        <option value="teeth">Teeth</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-lg-12">
-                                    <label for="">Target yang ingin kamu capai? <span class="hint">?(bisa centang lebih dari 1)​</span> <span>*</span></label>
-                                    <select class="select select2" name="user_problem" id="user_problem">
-                                        <option value="">- Choose Here -</option>
-                                        <option value="body">Body</option>
-                                        <option value="skin">Skin</option>
-                                        <option value="teeth">Teeth</option>
-                                    </select>
-                                </div>
-                            </div> -->
-
-
                         <button type="submit" class="btn btn-primary btn-sm" title="Tambah data"> Next -></button>
-                        <!-- <a href="<?= site_url(); ?>simulation/form_successfully" class="btn btn-primary btn-sm">Next -></a> -->
                         <?php echo form_close(); ?>
                     </div>
                 </div>
@@ -210,18 +165,46 @@
 </main><!-- End #main -->
 
 <script src="<?php echo base_url() ?>assets/landing_page/vendor/jquery/jquery.min.js"></script>
-
-<!-- Select2 -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-
-<!-- Main JS File -->
-
 <script src="<?php echo base_url() ?>assets/landing_page/js/main.js"></script>
 
 <script language="JavaScript" type="text/javascript">
     $(document).ready(function() {
         $('.select2').select2();
+        $('#card-color').hide();
+        $('#ruler-skin').hide();
+        $('#ruler-lips').hide();
+        $('#ruler-teeth').hide();
 
+        // alert(problem);
     });
+</script>
+
+<script>
+    var problem = '<?= $sim_response[0]->problems_experienced ?>';
+    async function uploadFile() {
+        let formData = new FormData();
+        formData.append("file", fileupload.files[0]);
+
+        $.ajax({
+            url: '<?= base_url('simulation/upload_image') ?>',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(html) {
+                $('#color').css('background-color', '#' + html);
+                $('#card-color').show();
+                // $('#ruler-skin').show();
+                console.log($('#response1').val().toLowerCase().replace(/\s/g, ''));
+                console.log(problem);
+                if (problem == 'Teeth')
+                    $('#ruler-teeth').show();
+                else if ($('#response1').val().toLowerCase().replace(/\s/g, '') == 'face' || $('#response1').val().toLowerCase().replace(/\s/g, '') == 'bodyskin' || $('#response1').val().toLowerCase().replace(/\s/g, '') == 'foldareas')
+                    $('#ruler-skin').show();
+                else if ($('#response1').val().toLowerCase().replace(/\s/g, '') == 'lips')
+                    $('#ruler-lips').show();
+            }
+        });
+    }
 </script>

@@ -87,6 +87,19 @@ class Simulation extends CI_Controller
 		TemplateForm($data, $view, $viewCategory);
 	}
 
+	public function upload_image()
+	{
+		$filename = $_FILES['file']['name'];
+		$ext = pathinfo($filename, PATHINFO_EXTENSION);
+		$location = "upload/scan_image/" . $filename;
+		if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
+			$color = Imagecolorpicker($ext, $location);
+			echo $color;
+		} else {
+			echo 'Failure';
+		}
+	}
+
 	public function create_simulation()
 	{
 		csrfValidate();
