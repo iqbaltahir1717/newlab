@@ -18,17 +18,11 @@
                             <?php echo csrf(); ?>
                             <?php if ($key->sim_question_type == 'dropdown') {
                             ?>
-
-                                <div class="row">
-                                    <div class="form-group col-lg-12">
-                                        <?php if ($key->sim_question_multi == 'Y') { ?>
+                                <?php if ($key->sim_question_multi == 'Y') { ?>
+                                    <div class="row" id="multiple">
+                                        <div class="form-group col-lg-12">
                                             <label for=""><b><?= $key->sim_question_text ?> <span class="hint">(Choose one or more)​</span> <span style="">*</span></b></label>
-                                        <?php } else { ?>
-                                            <label for=""><b><?= $key->sim_question_text ?> <span class="hint">(Choose one)​​</span> <span style="">*</span></b></label>
-                                        <?php } ?>
-                                        <?php if ($key->sim_question_multi == 'Y') { ?>
                                             <select multiple class="select select2" name="response<?= $no ?>[]" required style="width:100%">
-
                                                 <?php
                                                 if ($sim_goals) {
                                                     foreach ($sim_goals as $value) {
@@ -36,7 +30,13 @@
                                                     }
                                                 } ?>
                                             </select>
-                                        <?php } else { ?>
+                                        </div>
+                                    </div>
+                                <?php } else { ?>
+                                    <div class="row">
+                                        <div class="form-group col-lg-12">
+                                            <label for=""><b><?= $key->sim_question_text ?> <span class="hint">(Choose one)​​</span> <span style="">*</span></b></label>
+
                                             <select id="response<?= $no ?>" class="select" name="response<?= $no ?>" required style="width:100%">
                                                 <option value="">-Choose <?= $key->sim_question_text ?>-</option>;
                                                 <?php
@@ -47,9 +47,11 @@
                                                     }
                                                 } ?>
                                             </select>
-                                        <?php } ?>
+                                        </div>
                                     </div>
-                                </div>
+
+                                <?php } ?>
+
 
                             <?php } elseif ($key->sim_question_type == 'radio') { ?>
                                 <div class="row">
@@ -155,7 +157,7 @@
                             <?php } ?>
                         <?php } ?>
 
-                        <button type="submit" class="btn btn-primary btn-sm" title="Tambah data"> Next -></button>
+                        <button id="submit" type="submit" class="btn btn-primary btn-sm" title="Tambah data"> Next -></button>
                         <?php echo form_close(); ?>
                     </div>
                 </div>
@@ -170,11 +172,19 @@
 
 <script language="JavaScript" type="text/javascript">
     $(document).ready(function() {
+        var problem = '<?= $sim_response[0]->problems_experienced ?>';
+
         $('.select2').select2();
         $('#card-color').hide();
         $('#ruler-skin').hide();
         $('#ruler-lips').hide();
         $('#ruler-teeth').hide();
+
+
+        if (problem == 'Skin' || problem == 'Teeth') {
+            $('#multiple').hide();
+            $('#submit').hide();
+        }
 
         // alert(problem);
     });
@@ -195,9 +205,10 @@
             success: function(html) {
                 $('#color').css('background-color', '#' + html);
                 $('#card-color').show();
-                // $('#ruler-skin').show();
-                console.log($('#response1').val().toLowerCase().replace(/\s/g, ''));
+                $('#multiple').show();
+                $('#submit').show();
                 console.log(problem);
+                // console.log($('#response1').val().toLowerCase().replace(/\s/g, ''));
                 if (problem == 'Teeth')
                     $('#ruler-teeth').show();
                 else if ($('#response1').val().toLowerCase().replace(/\s/g, '') == 'face' || $('#response1').val().toLowerCase().replace(/\s/g, '') == 'bodyskin' || $('#response1').val().toLowerCase().replace(/\s/g, '') == 'foldareas')
