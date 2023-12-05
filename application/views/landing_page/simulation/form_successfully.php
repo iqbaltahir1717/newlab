@@ -8,7 +8,7 @@
                             <div class="col-lg-7 px-0 align-items-center justify-content-center d-flex flex-column" style="gap: 16px;">
                                 <h3>Quisinoer Submitted <i class="fa-regular fa-circle-check"></i></h3>
                                 <p>Hello <?= $this->session->userdata('user_fullname') ?>. your questionnaire have been recorded, this is our <b>recommendation product for you</b>. Thank you! <a href="<?= base_url('simulation/form_data_user') ?>">
-                                        <u>Edit Here</u>
+                                        <u>Try Again</u>
                                     </a></p>
                                 <div class="d-flex btn-group">
                                     <a href="<?= base_url('auth/logout'); ?>" class="btn btn-secondary">
@@ -34,7 +34,7 @@
                         <?php
                         } ?>
 
-                        <?php if (!empty($sim_response) and $sim_response[0]->problems_experienced == 'Skin' and  ($part_of_body == 'Wajah' or $part_of_body == 'Kulit Tubuh' or $part_of_body == 'Area Lipatan')) { ?>
+                        <?php if (!empty($sim_response) and $sim_response[0]->problems_experienced == 'Skin' and  ($part_of_body == 'Wajah' or str_replace(' ', '', strtolower($part_of_body)) == 'kulittubuh' or str_replace(' ', '', strtolower($part_of_body)) == 'arealipatan')) { ?>
                             <div class="row">
                                 <div class="form-group col-lg-12">
                                     <label for=""><b>How bright do you want your skin to be (Regular) ?</b></label>

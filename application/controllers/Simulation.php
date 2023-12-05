@@ -184,15 +184,15 @@ class Simulation extends CI_Controller
 
 		if ($rekomendasi) {
 			$rekomendasi = array_unique($rekomendasi);
-			for ($i = 0; $i < count($rekomendasi); $i++) {
-				$product = $this->m_product->get($rekomendasi[$i]);
+			foreach ($rekomendasi as $key) {
+				$product = $this->m_product->get($key);
 				if ($product)
 					$data['product_rekomendation'][] = $product[0];
 			}
 		}
 
 		// echo '<pre>';
-		// print_r($data['part_of_body']);
+		// print_r($data['sim_response']);
 		// echo '</pre>';
 		// die;
 
