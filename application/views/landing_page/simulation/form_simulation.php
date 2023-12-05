@@ -100,6 +100,8 @@
                                     <div class="form-group col-lg-12">
                                         <label for=""><b><?= $key->sim_question_text ?> <span>*</span></b></label>
                                         <input accept=".jpeg, .png, .jpg" type="<?= $key->sim_question_type ?>" class="form-control form-control-xl" style="height:auto !important; padding:12px !important" name="response<?= $no ?>" placeholder="Enter <?= $key->sim_question_text ?> " required>
+                                        <span style="color:red"><i>Please choose a picture with close up to the object for achieve a more accurate color scan.</i></span> <a target="__blank" href="<?= base_url(); ?>upload/question/<?php if ($sim_response[0]->problems_experienced  == "Skin") echo "lip example photos.png";
+                                                                                                                                                                                                                                        else echo "teeth example photos.png" ?>"><u><br>check example here</u></a>
                                     </div>
                                 </div>
                             <?php } ?>
