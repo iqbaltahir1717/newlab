@@ -24,7 +24,7 @@
                                     <div class="card-detail col-lg px-0">
                                         <h3><?= ucwords('this is your ' . $part_of_body . ' color')  ?></h3>
                                         <center>
-                                            <div class="" style="width:100px; height: 50px; background-color: #<?= $image_picker ?>;">
+                                            <div class="my-3" style="width:70px; height: 70px; border-radius:50%; border: 3px solid #000; background-color: #<?= $image_picker ?>;">
                                             </div>
                                         </center>
                                     </div>
