@@ -37,15 +37,15 @@
                         <?php if (!empty($sim_response) and $sim_response[0]->problems_experienced == 'Skin' and  ($part_of_body == 'Wajah' or str_replace(' ', '', strtolower($part_of_body)) == 'kulittubuh' or str_replace(' ', '', strtolower($part_of_body)) == 'arealipatan')) { ?>
                             <div class="row">
                                 <div class="form-group col-lg-12">
-                                    <label for=""><b>How bright do you want your skin to be (Regular) ?</b></label>
+                                    <label for=""><b>Color Skin References (Regular) ?</b></label>
                                     <br><img width="500" src="<?= base_url('upload/question/skin.png') ?>">
                                 </div>
                             </div>
                         <?php } else if (!empty($sim_response) and $sim_response[0]->problems_experienced == 'Skin' and $part_of_body == 'Bibir') { ?>
                             <div class="row">
                                 <div class="form-group col-lg-12">
-                                    <label for=""><b>How bright do you want your libs (Regular) ?</b></label>
-                                    <br><img width="500" src="<?= base_url('upload/question/libs.png') ?>">
+                                    <label for=""><b>Color Lips References (Regular) ?</b></label>
+                                    <br><img width="100%" src="<?= base_url('upload/question/libs.png') ?>">
                                 </div>
                             </div>
                         <?php } else if (!empty($sim_response) and $sim_response[0]->problems_experienced == 'Teeth') { ?>
@@ -67,9 +67,12 @@
                                             <div class="card-detail col-lg px-0">
                                                 <h3><?= $key->product_name ?></h3>
                                                 <p><?= $key->product_description ?></p>
-                                                <button class="btn btn-secondary mb-3" type="button" data-toggle="collapse" data-target="#collapse<?= $key->product_id ?>" aria-expanded="false" aria-controls="collapse<?= $key->product_id ?>">
-                                                    See Product Details
-                                                </button>
+                                                <?php $summery = $this->m_product_service->read('', '', '', $key->product_id);
+                                                if ($summery) { ?>
+                                                    <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapse<?= $key->product_id ?>" aria-expanded="false" aria-controls="collapse<?= $key->product_id ?>">
+                                                        See Product Details
+                                                    </button>
+                                                <?php } else "" ?>
                                                 <a class="btn btn-primary" href="<?= $key->product_shopee_link ?>" target="__blank">
                                                     Buy Now ->
                                                 </a>
