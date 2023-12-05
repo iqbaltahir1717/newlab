@@ -105,7 +105,7 @@
                                     </div>
                                     <div class="form-group col-lg-2">
                                         <label for=""><b>Scan Color</b></label>
-                                        <button onclick="uploadFile();" class="btn btn-primary btn-sm" title="Tambah data"> *</button>
+                                        <a onclick="uploadFile();" class="btn btn-primary btn-sm" title="Tambah data"> *</a>
                                     </div>
                                 </div>
 
