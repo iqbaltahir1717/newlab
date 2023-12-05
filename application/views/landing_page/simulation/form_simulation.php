@@ -1,4 +1,4 @@
-<main id="main" style="background-color: #EEEEEE;">
+<main id="main" style="background-color: #EEEEEE; min-height:100vh">
     <section id="greetings" class="simulation">
         <div class="container px-0">
             <div class="d-flex flex-wrap content justify-content-center">
@@ -22,9 +22,9 @@
                                 <div class="row">
                                     <div class="form-group col-lg-12">
                                         <?php if ($key->sim_question_multi == 'Y') { ?>
-                                            <label for=""><b><?= $key->sim_question_text ?> <span class="hint">(bisa centang lebih dari 1)​</span> <span style="">*</span></b></label>
+                                            <label for=""><b><?= $key->sim_question_text ?> <span class="hint">(Choose one or more)​</span> <span style="">*</span></b></label>
                                         <?php } else { ?>
-                                            <label for=""><b><?= $key->sim_question_text ?> <span class="hint">(pilih salah satu)​​</span> <span style="">*</span></b></label>
+                                            <label for=""><b><?= $key->sim_question_text ?> <span class="hint">(Choose one)​​</span> <span style="">*</span></b></label>
                                         <?php } ?>
                                         <?php if ($key->sim_question_multi == 'Y') { ?>
                                             <select multiple class="select select2" name="response<?= $no ?>[]" required style="width:100%">
@@ -38,7 +38,7 @@
                                             </select>
                                         <?php } else { ?>
                                             <select class="select" name="response<?= $no ?>" required style="width:100%">
-                                                <option value="">-Pilih <?= $key->sim_question_text ?>-</option>;
+                                                <option value="">-Choose <?= $key->sim_question_text ?>-</option>;
                                                 <?php
                                                 $option = $this->m_sim_q_option->read('', '', '', $key->sim_question_id);
                                                 if ($option) {
@@ -99,7 +99,7 @@
                                 <div class="row">
                                     <div class="form-group col-lg-12">
                                         <label for=""><b><?= $key->sim_question_text ?> <span>*</span></b></label>
-                                        <input accept=".jpeg, .png, .jpg" type="<?= $key->sim_question_type ?>" class="form-control form-control-xl" name="response<?= $no ?>" placeholder="Masukkan <?= $key->sim_question_text ?> " required>
+                                        <input accept=".jpeg, .png, .jpg" type="<?= $key->sim_question_type ?>" class="form-control form-control-xl" style="height:auto !important; padding:12px !important" name="response<?= $no ?>" placeholder="Enter <?= $key->sim_question_text ?> " required>
                                     </div>
                                 </div>
                             <?php } ?>

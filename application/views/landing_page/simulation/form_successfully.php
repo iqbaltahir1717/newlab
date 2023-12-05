@@ -7,8 +7,8 @@
                         <div class="text-heading row align-items-center">
                             <div class="col-lg-7 px-0 align-items-center justify-content-center d-flex flex-column" style="gap: 16px;">
                                 <h3>Quisinoer Submitted <i class="fa-regular fa-circle-check"></i></h3>
-                                <p>Hello <?= $this->session->userdata('user_fullname') ?>.your quisioner have been recorded, this our <b>recomendation product for you</b>. Thank you! <a href="<?= base_url('simulation/form_data_user') ?>">
-                                        <u>Try Again Quisioner</u>
+                                <p>Hello <?= $this->session->userdata('user_fullname') ?>. your questionnaire have been recorded, this is our <b>recommendation product for you</b>. Thank you! <a href="<?= base_url('simulation/form_data_user') ?>">
+                                        <u>Edit Here</u>
                                     </a></p>
                                 <div class="d-flex btn-group">
                                     <a href="<?= base_url('auth/logout'); ?>" class="btn btn-secondary">
@@ -67,9 +67,12 @@
                                             <div class="card-detail col-lg px-0">
                                                 <h3><?= $key->product_name ?></h3>
                                                 <p><?= $key->product_description ?></p>
-                                                <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse<?= $key->product_id ?>" aria-expanded="false" aria-controls="collapse<?= $key->product_id ?>">
+                                                <button class="btn btn-secondary mb-3" type="button" data-toggle="collapse" data-target="#collapse<?= $key->product_id ?>" aria-expanded="false" aria-controls="collapse<?= $key->product_id ?>">
                                                     See Product Details
                                                 </button>
+                                                <a class="btn btn-primary" href="<?= $key->product_shopee_link ?>" target="__blank">
+                                                    Buy Now ->
+                                                </a>
                                             </div>
                                         </div>
 

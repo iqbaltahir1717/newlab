@@ -571,4 +571,8 @@ header .navbar {
 .card-doctor .card-button .btn {
   width: 100% !important;
 }
+
+#shadow-host-companion {
+  display: none !important;
+}
 /*# sourceMappingURL=main.css.map */

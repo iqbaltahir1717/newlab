@@ -8,9 +8,6 @@
                                 <span>Welcome to <b>NEWLAB+</b> Consultation</span>
                                 <h3>Please choose a topic and provide detailed information by answering a few questions.</h3>
                             </div>
-                            <p>
-                                This will assist us in understanding your condition and enable us to schedule a consultation with one of our experienced doctors to help improve your well-being.
-                            </p>
                             <div class="list">
                                 <div class="d-flex list-item">
                                     <img src="<?= base_url(); ?>/assets/core-images/icon-pack/icon-form.svg">

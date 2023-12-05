@@ -8,17 +8,14 @@
                                 <span>Welcome to <b>NEWLAB+</b> Simulation</span>
                                 <h3>Please choose a topic and provide detailed information by answering a few questions.</h3>
                             </div>
-                            <p>
-                                This will assist us in understanding your condition and enable us to schedule a consultation with one of our experienced doctors to help improve your well-being.
-                            </p>
                             <div class="list">
                                 <div class="d-flex list-item">
                                     <img src="<?= base_url(); ?>/assets/core-images/icon-pack/icon-form.svg">
-                                    <p>Answer the question, just take for 2 minutes, and you can consultation for your problem</p>
+                                    <p>Answer the question, just take for 2 minutes, and you can see recommendation product from us</p>
                                 </div>
                                 <div class="d-flex list-item">
                                     <img src="<?= base_url(); ?>/assets/core-images/icon-pack/icon-health.svg">
-                                    <p>This will assist us in understanding your condition and enable us to schedule a consultation with one of our experienced doctors to help improve your well-being.</p>
+                                    <p>Please fill the questionnaire to help us determined your conditions and improve your well being.</p>
                                 </div>
                             </div>
                             <a href="<?= site_url(); ?>simulation/form_data_user" class="btn btn-primary btn-sm">Get Started</a>
