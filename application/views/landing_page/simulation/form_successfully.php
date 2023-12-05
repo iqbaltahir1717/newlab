@@ -17,44 +17,6 @@
                                 </div>
                             </div>
                         </div>
-                        <?php if ($image_picker) {
-                        ?>
-                            <div class="card-product-item">
-                                <div class="d-flex">
-                                    <div class="card-detail col-lg px-0">
-                                        <h3><?= ucwords('this is your ' . $part_of_body . ' color')  ?></h3>
-                                        <center>
-                                            <div class="my-3" style="width:70px; height: 70px; border-radius:50%; border: 3px solid #000; background-color: #<?= $image_picker ?>;">
-                                            </div>
-                                        </center>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php
-                        } ?>
-
-                        <?php if (!empty($sim_response) and $sim_response[0]->problems_experienced == 'Skin' and  (str_replace(' ', '', strtolower($part_of_body)) == 'face' or str_replace(' ', '', strtolower($part_of_body)) == 'bodyskin' or str_replace(' ', '', strtolower($part_of_body)) == 'foldareas')) { ?>
-                            <div class="row">
-                                <div class="form-group col-lg-12">
-                                    <label for=""><b>Color Skin References (Regular) ?</b></label>
-                                    <br><img width="500" src="<?= base_url('upload/question/skin.png') ?>">
-                                </div>
-                            </div>
-                        <?php } else if (!empty($sim_response) and $sim_response[0]->problems_experienced == 'Skin' and str_replace(' ', '', strtolower($part_of_body)) == 'lips') { ?>
-                            <div class="row">
-                                <div class="form-group col-lg-12">
-                                    <label for=""><b>Color Lips References (Regular) ?</b></label>
-                                    <br><img width="100%" src="<?= base_url('upload/question/libs.png') ?>">
-                                </div>
-                            </div>
-                        <?php } else if (!empty($sim_response) and $sim_response[0]->problems_experienced == 'Teeth') { ?>
-                            <div class="row">
-                                <div class="form-group col-lg-12">
-                                    <label for=""><b>How bright do you want your teeth (Regular) ?</b></label>
-                                    <br><img width="500" src="<?= base_url('upload/question/teeth.png') ?>">
-                                </div>
-                            </div>
-                        <?php } ?>
 
                         <div class="card-product">
                             <?php if ($product_rekomendation) {
