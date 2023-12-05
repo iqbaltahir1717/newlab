@@ -17,7 +17,6 @@
                                 </div>
                             </div>
                         </div>
-                        <br>
                         <?php if ($image_picker) {
                         ?>
                             <div class="card-product-item">
