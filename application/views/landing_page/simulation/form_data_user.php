@@ -55,9 +55,11 @@
                                     <label for="">Choose Your Problem <span>*</span></label>
                                     <select required class="select select2" name="problems_experienced" id="user_problem">
                                         <option value="">- Choose Problem -</option>
-                                        <option value="Body">Body</option>
-                                        <option value="Skin">Skin</option>
-                                        <option value="Teeth">Teeth</option>
+                                        <option value="Skin">Kulit gelap, sensitif, kering dan kusam</option>
+                                        <option value="Skin">Warna bibir gelap</option>
+                                        <option value="Skin">Kulit berminyak dan berjerawat</option>
+                                        <option value="Teeth">Warna gigi kuning</option>
+                                        <option value="Body">Kelebihan berat badan</option>
                                     </select>
                                 </div>
                             </div>
