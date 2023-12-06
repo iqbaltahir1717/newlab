@@ -117,7 +117,7 @@
                                         <div class="card-detail col-lg px-0">
                                             <center>
                                                 <h4><?= ucwords('Here is the result scan color of the image your uploaded') ?></h4>
-                                                <div id="color" class="my-3" style="width:70px; height: 70px; border-radius:50%; border: 3px solid #000;">
+                                                <div id="color" class="my-3" style="width:70px; height: 70px; border-radius:50%;">
                                                 </div>
                                             </center>
                                         </div>
@@ -218,7 +218,7 @@
             contentType: false,
             processData: false,
             success: function(html) {
-                $('#color').css('background-color', '#' + html);
+                $('#color').css('background', 'linear-gradient(176deg, #' + html + ' 31.47%, rgba(245, 227, 223, 0.80) 74.09%, #FFF 113.83%)');
                 $('#card-color').show();
                 $('#multiple').show();
                 $('#submit').show();
