@@ -105,6 +105,7 @@ class Simulation extends CI_Controller
 		csrfValidate();
 
 		$data['sim_response_id']   = decrypt_url($this->input->post('sim_response_id'));
+		$data['sim_response_level'] = $this->input->post('sim_response_level');
 		$data['updatetime']         = date('Y-m-d H:i:s');
 		$arr = array();
 
@@ -144,7 +145,7 @@ class Simulation extends CI_Controller
 				);
 			}
 			// echo '<pre>';
-			// print_r($arr);
+			// print_r($this->input->post('sim_response_level'));
 			// echo '</pre>';
 			// die;
 

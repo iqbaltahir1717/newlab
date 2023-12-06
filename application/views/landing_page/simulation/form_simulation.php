@@ -98,51 +98,63 @@
                                     </div>
                                 </div>
                             <?php } elseif ($key->sim_question_type == 'file') { ?>
-                                <div class="row">
+                                <div class="row align-items-end">
                                     <div class="form-group col-lg-10">
                                         <label for=""><b><?= $key->sim_question_text ?> <span>*</span></b></label>
                                         <input id="fileupload" accept=".jpeg, .png, .jpg" type="file" class="form-control form-control-xl" style="height:auto !important; padding:12px !important" name="response<?= $no ?>" placeholder="Enter <?= $key->sim_question_text ?> " required>
+                                    </div>
+                                    <div class="form-group col-lg-2">
+                                        <a onclick="uploadFile();" class="btn btn-primary btn-sm btn-block" style="width:100%; padding: 14.5px" title="Scan"><i class="fa-solid fa-expand"></i></a>
+                                    </div>
+                                    <div class="col-lg-12">
                                         <span style="color:red"><i>Please choose a picture with close up to the object for achieve a more accurate color scan.</i></span> <a target="__blank" href="<?= base_url(); ?>upload/question/<?php if ($sim_response[0]->problems_experienced  == "Skin") echo "lip example photos.png";
                                                                                                                                                                                                                                         else echo "teeth example photos.png" ?>"><u><br>check example here</u></a>
                                     </div>
-                                    <div class="form-group col-lg-2">
-                                        <label for=""><b>Scan Color</b></label>
-                                        <a onclick="uploadFile();" class="btn btn-primary btn-sm" title="Tambah data"> *</a>
-                                    </div>
                                 </div>
-
-
-                                <div class="card-product-item" id="card-color">
-                                    <div class="d-flex">
+                                <div class="card-product-item mt-4" id="card-color">
+                                    <hr>
+                                    <div class="d-flex mt-4">
                                         <div class="card-detail col-lg px-0">
                                             <center>
-                                                <h3><?= ucwords('This is the dominant color of the image your uploaded')  ?></h3>
+                                                <h4><?= ucwords('Here is the result scan color of the image your uploaded') ?></h4>
                                                 <div id="color" class="my-3" style="width:70px; height: 70px; border-radius:50%; border: 3px solid #000;">
                                                 </div>
                                             </center>
                                         </div>
                                     </div>
                                 </div>
-
                                 <center>
+
+                                    <div class="row" id="level-bright">
+                                        <div class="form-group col-lg-12">
+                                            <label for=""><b>How bright do you want</b></label>
+                                            <select class="select" name="sim_response_level">
+                                                <option value="">- Choose Level Bright -</option>
+                                                <?php for ($i = 1; $i <= 10; $i++) { ?>
+                                                    <option value="<?= $i; ?>"><?= $i; ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     <div class="row" id="ruler-skin">
                                         <div class="form-group col-lg-12">
-                                            <label for=""><b>Color Skin References (Regular) ?</b></label>
-                                            <br><img width="500" src="<?= base_url('upload/question/skin.png') ?>">
+                                            <label for="">Color Skin References (Regular)</label>
+                                            <br><img width="100%" src="<?= base_url('upload/question/skin.png') ?>">
                                         </div>
                                     </div>
 
                                     <div class="row" id="ruler-lips">
                                         <div class="form-group col-lg-12">
-                                            <label for=""><b>Color Lips References (Regular) ?</b></label>
+                                            <label for="">Color Lips References (Regular)</label>
                                             <br><img width="100%" src="<?= base_url('upload/question/libs.png') ?>">
                                         </div>
                                     </div>
 
                                     <div class="row" id="ruler-teeth">
                                         <div class="form-group col-lg-12">
-                                            <label for=""><b>How bright do you want your teeth (Regular) ?</b></label>
-                                            <br><img width="500" src="<?= base_url('upload/question/teeth.png') ?>">
+                                            <label for="">Color Teeth References (Regular)</label>
+                                            <br><img width="100%" src="<?= base_url('upload/question/teeth.png') ?>">
                                         </div>
                                     </div>
                                 </center>
@@ -157,7 +169,7 @@
                             <?php } ?>
                         <?php } ?>
 
-                        <button id="submit" type="submit" class="btn btn-primary btn-sm" title="Tambah data"> Next -></button>
+                        <button id="submit" type="submit" class="btn btn-primary btn-sm" title="Tambah data"> Submit -></button>
                         <?php echo form_close(); ?>
                     </div>
                 </div>
@@ -179,9 +191,11 @@
         $('#ruler-skin').hide();
         $('#ruler-lips').hide();
         $('#ruler-teeth').hide();
+        $('#level-bright').hide();
 
 
         if (problem == 'Skin' || problem == 'Teeth') {
+
             $('#multiple').hide();
             $('#submit').hide();
             $('#input_ruler').hide();
@@ -209,6 +223,7 @@
                 $('#multiple').show();
                 $('#submit').show();
                 $('#input_ruler').show();
+                $('#level-bright').show();
                 console.log(problem);
                 // console.log($('#response1').val().toLowerCase().replace(/\s/g, ''));
                 if (problem == 'Teeth')
