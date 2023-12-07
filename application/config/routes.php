@@ -53,14 +53,6 @@ $route['default_controller'] = 'auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['cluster'] = 'siteplan/cluster';
-$route['optical'] = 'siteplan/optical';
-
 // front
-$route['page/unit_type'] = 'page/unit_type';
-$route['page/siteplan'] = 'page/siteplan';
-$route['page/project'] = 'page/project';
-$route['developer'] = 'page/developer';
-$route['blog-news'] = 'page/information';
-$route['blog-news/detail'] = 'page/information/detail';
-$route['blog-news/search'] = 'page/information/search';
+$route['login/index/consultation'] = 'consultation/login';
+$route['login/index/simulation'] = 'simulation/login';
