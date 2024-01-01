@@ -8,7 +8,7 @@ class Simulation extends CI_Controller
 		parent::__construct();
 		$this->load->model('m_content');
 		$this->load->model('m_link');
-		$this->load->model('m_news_category');
+		// $this->load->model('m_news_category');
 		$this->load->model('m_sim_response');
 		$this->load->model('m_sim_question');
 		$this->load->model('m_sim_q_option');
@@ -205,10 +205,32 @@ class Simulation extends CI_Controller
 			}
 		}
 
-		// echo '<pre>';
-		// print_r($data['sim_response']);
-		// echo '</pre>';
-		// die;
+		list($r, $g, $b) = sscanf('#' . $data['image_picker'], "#%02x%02x%02x");
+
+		$arr_body = ['#FDEED6', '#F0D2A2', '#E3BB7B', '#DCA96D', '#D79D6A', '#C88652', '#B5774D', '#A35C34', '#794835', '#70513C'];
+		for ($i = 0; $i < count($arr_body); $i++) {
+			list($r_c, $g_c, $b_c) = sscanf($arr_body[$i], "#%02x%02x%02x");
+
+			$p_r[] = $r_c . '-' . $g_c . '-' . $b_c;
+			$p[] = 100 - round(sqrt(pow($r_c - $r, 2) + pow($g_c - $g, 2) + pow($b_c - $b, 2)) / 239.46 * 100, 2);
+		}
+
+		echo '<pre>';
+		print_r($data['image_picker']);
+		echo '</pre>';
+
+		echo '<pre>';
+		print_r($r . '-' . $g . '-' . $b);
+		echo '</pre>';
+
+		echo '<pre>';
+		print_r($p_r);
+		echo '</pre>';
+
+		echo '<pre>';
+		print_r($p);
+		echo '</pre>';
+		die;
 
 		// TEMPLATE
 		$view         = "landing_page/simulation/form_successfully";

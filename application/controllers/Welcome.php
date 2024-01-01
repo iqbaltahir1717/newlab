@@ -8,12 +8,18 @@ class Welcome extends CI_Controller {
 	}
 
 	public function index(){
-		// DATA
-		$data['setting'] = getSetting();
+		$this->load->view('welcome_message');
+	}
 
-		// TEMPLATE
-		$view         = "welcome_message";
-		$viewCategory = "single";
-		renderTemplate($data, $view, $viewCategory);
+	public function process()
+	{
+		// Handle image processing here
+		// Get the coordinates from the POST data
+		// Use these coordinates to crop the image
+
+		$response = "Image processed successfully."; // Replace this with your logic
+
+		echo $response;
 	}
 }
+
