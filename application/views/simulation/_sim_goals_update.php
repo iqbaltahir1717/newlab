@@ -47,7 +47,7 @@
                                         <option value="">-Pilih Part-</option>
                                         <option <?php if ($sim_goals[0]->sim_goals_part == 'Body') echo 'selected'; ?>>Body</option>
                                         <option <?php if ($sim_goals[0]->sim_goals_part == 'Skin') echo 'selected'; ?>>Skin</option>
-                                        <option> <?php if ($sim_goals[0]->sim_goals_part == 'Teeth') echo 'selected'; ?>Teeth</option>
+                                        <option <?php if ($sim_goals[0]->sim_goals_part == 'Teeth') echo 'selected'; ?>>Teeth</option>
                                     </select>
                                 </div>
 

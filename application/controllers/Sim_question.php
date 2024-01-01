@@ -7,7 +7,8 @@ class Sim_question extends CI_Controller
         parent::__construct();
         $this->load->model('m_sim_question');
         $this->load->library('upload');
-        if (!($this->session->userdata('user_id'))) {
+         // SESSION
+        if (!$this->session->userdata('user_id') or $this->session->userdata('user_group') != 1 and $this->session->userdata('user_group') != 2) {
             // ALERT
             $alertStatus  = 'failed';
             $alertMessage = 'Anda tidak memiliki Hak Akses atau Session anda sudah habis';

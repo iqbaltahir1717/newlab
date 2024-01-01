@@ -8,7 +8,7 @@ class Auth extends CI_Controller
 		$this->load->model('m_user');
 	}
 
-	public function imagecolorpicker($extension, $image)
+    public function imagecolorpicker($extension, $image)
 	{
 		if ($extension == 'png')
 			$image = imagecreatefrompng($image);
@@ -19,7 +19,6 @@ class Auth extends CI_Controller
 		$mainColor = strtoupper(dechex(imagecolorat($thumb, 0, 0)));
 		echo $mainColor;
 	}
-
 
 	public function index()
 	{
@@ -96,5 +95,18 @@ class Auth extends CI_Controller
 	{
 		$this->session->sess_destroy();
 		redirect('auth');
+	}
+	
+	
+	public function logout_consultation()
+	{
+		$this->session->sess_destroy();
+		redirect('login/index/consultation');
+	}
+	
+	public function logout_simulation()
+	{
+		$this->session->sess_destroy();
+		redirect('login/index/simulation');
 	}
 }

@@ -12,14 +12,14 @@ class Dashboard extends CI_Controller
 		$this->load->model('m_news');
 		$this->load->model('m_widget');
 
-		// check session data
-		if (!$this->session->userdata('user_id') and $this->session->userdata('user_group') != 4) {
-			// ALERT
-			$alertStatus  = 'failed';
-			$alertMessage = 'Anda tidak memiliki Hak Akses atau Session anda sudah habis';
-			getAlert($alertStatus, $alertMessage);
-			redirect('auth');
-		}
+		// SESSION
+        if (!$this->session->userdata('user_id') or $this->session->userdata('user_group') != 1 and $this->session->userdata('user_group') != 2) {
+            // ALERT
+            $alertStatus  = 'failed';
+            $alertMessage = 'Anda tidak memiliki Hak Akses atau Session anda sudah habis';
+            getAlert($alertStatus, $alertMessage);
+            redirect('auth');
+        }
 	}
 
 	public function index()

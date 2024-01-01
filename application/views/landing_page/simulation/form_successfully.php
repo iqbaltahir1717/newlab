@@ -11,13 +11,12 @@
                                         <u>Try Again</u>
                                     </a></p>
                                 <div class="d-flex btn-group">
-                                    <a href="<?= base_url('auth/logout'); ?>" class="btn btn-secondary">
+                                    <a href="<?= base_url('auth/logout_simulation'); ?>" class="btn btn-secondary">
                                         Log Out
                                     </a>
                                 </div>
                             </div>
                         </div>
-
                         <div class="card-product">
                             <?php if ($product_rekomendation) {
                                 foreach ($product_rekomendation as $key) {

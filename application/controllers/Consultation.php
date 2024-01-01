@@ -11,12 +11,13 @@ class Consultation extends CI_Controller
 		$this->load->model('m_consult_q_option');
 		$this->load->model('m_user');
 
-		if (!$this->session->userdata('user_id')) {
+		// SESSION
+        if (!($this->session->userdata('user_id'))) {
 			// ALERT
 			$alertStatus  = 'failed';
 			$alertMessage = 'Anda tidak memiliki Hak Akses atau Session anda sudah habis';
 			getAlert($alertStatus, $alertMessage);
-			redirect('login/index/consultation');
+			redirect('login/index/simulation');
 		}
 	}
 

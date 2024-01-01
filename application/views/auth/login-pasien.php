@@ -30,7 +30,7 @@ $google_client->addScope('profile');
                     <div id="auth-left" class="auth-border">
                         <div class="row align-items-center text-center">
                             <div class="col-12 mb-4">
-                                <img src="<?php echo base_url() ?>assets/core-images/newlab-consultation.png" class="logo-apps-form" alt="Logo aplikasi">
+                                <img src="<?php echo base_url() ?>assets/core-images/newlab-<?php if($this->uri->segment(3) == 'consultation') echo 'consultation'; else echo 'simulation'; ?>.png" class="logo-apps-form" alt="Logo aplikasi">
                             </div>
                             <div class="col-12 mb-3">
                                 <p class="auth-subtitle mb-3">LOGIN FIRST FOR CONTINUE</p>

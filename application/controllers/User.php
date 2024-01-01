@@ -9,7 +9,7 @@ class User extends CI_Controller
         $this->load->model('m_user');
         $this->load->model('m_group');
 
-        // SESSION
+         // SESSION
         if (!$this->session->userdata('user_id') or $this->session->userdata('user_group') != 1 and $this->session->userdata('user_group') != 2) {
             // ALERT
             $alertStatus  = 'failed';

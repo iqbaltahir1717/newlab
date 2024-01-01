@@ -107,8 +107,7 @@
                                         <a onclick="uploadFile();" class="btn btn-primary btn-sm btn-block" style="width:100%; padding: 14.5px" title="Scan"><i class="fa-solid fa-expand"></i></a>
                                     </div>
                                     <div class="col-lg-12">
-                                        <span style="color:red"><i>Please choose a picture with close up to the object for achieve a more accurate color scan.</i></span> <a target="__blank" href="<?= base_url(); ?>upload/question/<?php if ($sim_response[0]->problems_experienced  == "Skin") echo "lip example photos.png";
-                                                                                                                                                                                                                                        else echo "teeth example photos.png" ?>"><u><br>check example here</u></a>
+                                        <span style="color:red"><i>Please choose a picture with close up to the object for achieve a more accurate color scan.</i></span> <a target="__blank" href="<?= base_url(); ?>upload/question/<?php if ($sim_response[0]->problems_experienced  == "Skin") echo "lip example photos.png"; else echo "teeth example photos.png" ?>"><u><br>check example here</u></a>
                                     </div>
                                 </div>
                                 <div class="card-product-item mt-4" id="card-color">
@@ -124,19 +123,19 @@
                                     </div>
                                 </div>
                                 <center>
-
+                                    
                                     <div class="row" id="level-bright">
-                                        <div class="form-group col-lg-12">
+                                        <div class="form-group col-lg-12" >
                                             <label for=""><b>How bright do you want</b></label>
                                             <select class="select" name="sim_response_level">
                                                 <option value="">- Choose Level Bright -</option>
-                                                <?php for ($i = 1; $i <= 10; $i++) { ?>
+                                                <?php for($i=1;$i<=10; $i++){ ?>
                                                     <option value="<?= $i; ?>"><?= $i; ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
                                     </div>
-
+                                    
                                     <div class="row" id="ruler-skin">
                                         <div class="form-group col-lg-12">
                                             <label for="">Color Skin References (Regular)</label>
@@ -168,6 +167,11 @@
                                 </div>
                             <?php } ?>
                         <?php } ?>
+                        
+                        <div id="loading-spinner" style="display: none" class="text-center my-3">
+                          <!-- Your loading spinner HTML/CSS goes here -->
+                          <b>Scan on process, please wait ...</b>
+                        </div>
 
                         <button id="submit" type="submit" class="btn btn-primary btn-sm" title="Tambah data"> Submit -></button>
                         <?php echo form_close(); ?>
@@ -195,7 +199,7 @@
 
 
         if (problem == 'Skin' || problem == 'Teeth') {
-
+            
             $('#multiple').hide();
             $('#submit').hide();
             $('#input_ruler').hide();
@@ -206,33 +210,47 @@
 </script>
 
 <script>
-    var problem = '<?= $sim_response[0]->problems_experienced ?>';
-    async function uploadFile() {
-        let formData = new FormData();
-        formData.append("file", fileupload.files[0]);
+var problem = '<?= $sim_response[0]->problems_experienced ?>';
 
-        $.ajax({
-            url: '<?= base_url('simulation/upload_image') ?>',
-            type: 'POST',
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function(html) {
-                $('#color').css('background', 'linear-gradient(176deg, #' + html + ' 31.47%, rgba(245, 227, 223, 0.80) 74.09%, #FFF 113.83%)');
-                $('#card-color').show();
-                $('#multiple').show();
-                $('#submit').show();
-                $('#input_ruler').show();
-                $('#level-bright').show();
-                console.log(problem);
-                // console.log($('#response1').val().toLowerCase().replace(/\s/g, ''));
-                if (problem == 'Teeth')
-                    $('#ruler-teeth').show();
-                else if ($('#response1').val().toLowerCase().replace(/\s/g, '') == 'face' || $('#response1').val().toLowerCase().replace(/\s/g, '') == 'bodyskin' || $('#response1').val().toLowerCase().replace(/\s/g, '') == 'foldareas')
-                    $('#ruler-skin').show();
-                else if ($('#response1').val().toLowerCase().replace(/\s/g, '') == 'lips')
-                    $('#ruler-lips').show();
+async function uploadFile() {
+    // Show the loading spinner before making the AJAX call
+    $('#loading-spinner').show();
+
+    let formData = new FormData();
+    formData.append("file", fileupload.files[0]);
+
+    $.ajax({
+        url: '<?= base_url('simulation/upload_image') ?>',
+        type: 'POST',
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(html) {
+            // Hide the loading spinner in the success callback
+            $('#loading-spinner').hide();
+
+            $('#color').css('background', '#' +html);
+            $('#card-color').show();
+            $('#multiple').show();
+            $('#submit').show();
+            $('#input_ruler').show();
+            $('#level-bright').show();
+            console.log(problem);
+
+            if (problem == 'Teeth') {
+                $('#ruler-teeth').show();
+            } else if ($('#response1').val().toLowerCase().replace(/\s/g, '') == 'face' || $('#response1').val().toLowerCase().replace(/\s/g, '') == 'bodyskin' || $('#response1').val().toLowerCase().replace(/\s/g, '') == 'foldareas') {
+                $('#ruler-skin').show();
+            } else if ($('#response1').val().toLowerCase().replace(/\s/g, '') == 'lips') {
+                $('#ruler-lips').show();
             }
-        });
-    }
+        },
+        error: function() {
+            // Hide the loading spinner in case of an error
+            $('#loading-spinner').hide();
+            // Handle the error as needed
+            alert('Error uploading image');
+        }
+    });
+}
 </script>

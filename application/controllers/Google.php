@@ -30,7 +30,6 @@ class Google extends CI_Controller
             // print_r($token);
             // die;
             if (!isset($token["error"])) {
-
                 $google_client->setAccessToken($token['access_token']);
                 $this->session->set_userdata('access_token', $token['access_token']);
                 $google_service = new Google_Service_Oauth2($google_client);

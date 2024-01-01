@@ -58,9 +58,7 @@ class M_consult_response extends CI_Model
     public function get_response($id)
     {
         $this->db->where('user_id', $id);
-        $this->db->order_by('updatetime', 'desc'); // Assuming 'created_at' is your timestamp column
-        $this->db->limit(1);
-        $query = $this->db->get('tbl_consult_response');
+        $query = $this->db->get('tbl_consult_response', 1);
         return $query->result();
     }
 

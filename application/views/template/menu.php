@@ -78,6 +78,7 @@
                                     <span>User</span>
                                 </a>
                             </li>
+                            <!--
                             <li class="sidebar-item  has-sub">
                                 <a href="#" class='sidebar-link'>
                                     <i class="fas fa-clinic-medical"></i>
@@ -91,7 +92,7 @@
                                         <a href="<?php echo site_url('content/page/term_condition') ?>">Term & Condition</a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> -->
                             <li class="sidebar-item <?= active_menu('setting'); ?>">
                                 <a href="<?php echo site_url('setting') ?>" class='sidebar-link'>
                                     <i class="bi bi-gear-fill"></i>

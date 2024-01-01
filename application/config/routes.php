@@ -54,5 +54,5 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 // front
-$route['login/index/consultation'] = 'consultation/login';
-$route['login/index/simulation'] = 'simulation/login';
+// $route['login/index/consultation'] = 'login/';
+// $route['login/index/simulation'] = 'login/';
