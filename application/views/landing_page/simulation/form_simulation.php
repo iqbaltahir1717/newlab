@@ -1,3 +1,63 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/dropzone/dist/dropzone.css" />
+<link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet" />
+<script src="https://unpkg.com/dropzone"></script>
+<script src="https://unpkg.com/cropperjs"></script>
+
+<style>
+    .image_area {
+        position: relative;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+    }
+
+    .preview {
+        overflow: hidden;
+        width: 160px;
+        height: 160px;
+        margin: 10px;
+        border: 1px solid red;
+    }
+
+    .modal-lg {
+        max-width: 1000px !important;
+    }
+
+    .overlay {
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.5);
+        overflow: hidden;
+        height: 0;
+        transition: .5s ease;
+        width: 100%;
+    }
+
+    .image_area:hover .overlay {
+        height: 50%;
+        cursor: pointer;
+    }
+
+    .text {
+        color: #333;
+        font-size: 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+</style>
+
 <main id="main" style="background-color: #EEEEEE; min-height:100vh">
     <section id="greetings" class="simulation">
         <div class="container px-0">
@@ -88,7 +148,7 @@
                                     </div>
                                 </div>
                             <?php } elseif ($key->sim_question_type == 'info') { ?>
-                                 <div class="row">
+                                <div class="row">
                                     <div class="form-group col-lg-12">
                                         <label for=""><b><?= $key->sim_question_text ?> <span>*</span></b></label>
                                         <?php
@@ -141,14 +201,14 @@
                                             <br><img width="100%" src="<?= base_url('upload/question/teeth.png') ?>">
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="form-group col-lg-12">
                                             <a onclick="uploadFile();" class="btn btn-primary btn-sm btn-block" style="width:100%; padding: 14.5px" title="Scan"><i class="fa-solid fa-expand"></i> SCAN NOW</a>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </center>
 
-                                <div class="card-product-item mt-4" id="card-color">
+                                <!-- <div class="card-product-item mt-4" id="card-color">
                                     <hr>
                                     <div class="d-flex mt-4">
                                         <div class="card-detail col-lg px-0">
@@ -159,7 +219,7 @@
                                             </center>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
                             <?php } else { ?>
                                 <div class="row">
@@ -176,8 +236,44 @@
                             <b>Scan on process, please wait ...</b>
                         </div>
 
-                        <button id="submit" type="submit" class="btn btn-primary btn-sm" title="Tambah data"> Submit -></button>
+                        <div class="row">
+                            <div class="form-group col-lg-12">
+                                <button class="btn btn-primary btn-sm btn-block" style="width:100%; padding: 14.5px" title="Scan"><i class="fa-solid fa-expand"></i> SCAN NOW</button>
+                            </div>
+                        </div>
+
+                        <!-- <button id="submit" type="submit" class="btn btn-primary btn-sm" title="Tambah data"> Submit -></button> -->
                         <?php echo form_close(); ?>
+
+                        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel">Crop Image Before Upload</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="img-container">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <img src="" id="sample_image" />
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="preview"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button onclick="uploadFile()" type="button" class="btn btn-primary" id="crop">Crop</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -185,9 +281,75 @@
     </section>
 </main><!-- End #main -->
 
-<script src="<?php echo base_url() ?>assets/landing_page/vendor/jquery/jquery.min.js"></script>
+<!-- <script src="<?php echo base_url() ?>assets/landing_page/vendor/jquery/jquery.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="<?php echo base_url() ?>assets/landing_page/js/main.js"></script>
+
+<script>
+    $(document).ready(function() {
+        var $modal = $('#modal');
+        var image = document.getElementById('sample_image');
+
+        $('#fileupload').change(function(event) {
+            var files = event.target.files;
+
+            $modal.modal('show');
+            var done = function(url) {
+                image.src = url;
+                $modal.modal('show');
+            };
+
+            if (files && files.length > 0) {
+                reader = new FileReader();
+                reader.onload = function(event) {
+                    done(reader.result);
+                };
+                reader.readAsDataURL(files[0]);
+            }
+        });
+
+        $modal.on('shown.bs.modal', function() {
+            cropper = new Cropper(image, {
+                aspectRatio: 1,
+                viewMode: 2,
+                preview: '.preview'
+            });
+        }).on('hidden.bs.modal', function() {
+            cropper.destroy();
+            cropper = null;
+        });
+
+        $("#crop").click(function() {
+            canvas = cropper.getCroppedCanvas({
+                width: 400,
+                height: 400,
+            });
+
+            canvas.toBlob(function(blob) {
+                var reader = new FileReader();
+                reader.readAsDataURL(blob);
+                reader.onloadend = function() {
+                    var base64data = reader.result;
+                    console.log(base64data);
+                    $.ajax({
+                        url: "<?= base_url('simulation/crop_image/' . decrypt_url($this->uri->segment(3))) ?>",
+                        method: "POST",
+                        data: {
+                            image: base64data
+                        },
+                        success: function(data) {
+                            console.log(data);
+                            $modal.modal('hide');
+                            $('#uploaded_image').attr('src', data);
+                            //alert("success upload image");
+                        }
+                    });
+                }
+            });
+        });
+
+    });
+</script>
 
 <script language="JavaScript" type="text/javascript">
     $(document).ready(function() {
@@ -223,7 +385,7 @@
         formData.append("file", fileupload.files[0]);
 
         $.ajax({
-            url: '<?= base_url('simulation/upload_image') ?>',
+            url: '<?= base_url('simulation/upload_image/' . decrypt_url($this->uri->segment(3))) ?>',
             type: 'POST',
             data: formData,
             contentType: false,
@@ -232,21 +394,21 @@
                 // Hide the loading spinner in the success callback
                 $('#loading-spinner').hide();
 
-                $('#color').css('background', '#' + html);
-                $('#card-color').show();
-                $('#multiple').show();
-                $('#submit').show();
+                // $('#color').css('background', '#' + html);
+                // $('#card-color').show();
+                // $('#multiple').show();
+                // $('#submit').show();
                 // $('#input_ruler').show();
                 // $('#level-bright').show();
-                console.log(problem);
+                // console.log(problem);
 
-                if (problem == 'Teeth') {
-                    $('#ruler-teeth').show();
-                } else if ($('#response1').val().toLowerCase().replace(/\s/g, '') == 'face' || $('#response1').val().toLowerCase().replace(/\s/g, '') == 'bodyskin' || $('#response1').val().toLowerCase().replace(/\s/g, '') == 'foldareas') {
-                    $('#ruler-skin').show();
-                } else if ($('#response1').val().toLowerCase().replace(/\s/g, '') == 'lips') {
-                    $('#ruler-lips').show();
-                }
+                // if (problem == 'Teeth') {
+                //     $('#ruler-teeth').show();
+                // } else if ($('#response1').val().toLowerCase().replace(/\s/g, '') == 'face' || $('#response1').val().toLowerCase().replace(/\s/g, '') == 'bodyskin' || $('#response1').val().toLowerCase().replace(/\s/g, '') == 'foldareas') {
+                //     $('#ruler-skin').show();
+                // } else if ($('#response1').val().toLowerCase().replace(/\s/g, '') == 'lips') {
+                //     $('#ruler-lips').show();
+                // }
             },
             error: function() {
                 // Hide the loading spinner in case of an error

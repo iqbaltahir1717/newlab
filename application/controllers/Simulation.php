@@ -91,13 +91,56 @@ class Simulation extends CI_Controller
 	{
 		$filename = $_FILES['file']['name'];
 		$ext = pathinfo($filename, PATHINFO_EXTENSION);
-		$location = "upload/scan_image/" . $filename;
-		if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
-			$color = Imagecolorpicker($ext, $location);
-			echo $color;
-		} else {
-			echo 'Failure';
-		}
+		$location = "upload/upload_image/" . $filename;
+		move_uploaded_file($_FILES['file']['tmp_name'], $location);
+
+		// if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
+		// 	$color = Imagecolorpicker($ext, $location);
+		// 	echo $color;
+		// } else {
+		// 	echo 'Failure';
+		// }
+
+		// $rand = rand(111111111, 999999999);
+		// $ch = curl_init();
+		// curl_setopt($ch, CURLOPT_URL, 'https://api.remove.bg/v1.0/removebg');
+		// curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		// curl_setopt($ch, CURLOPT_POST, 1);
+		// $post = array(
+		// 	'image_file' => fopen($location, 'r'),
+		// 	// 'image_url' => 'https://cdns.klimg.com/resized/1200x600/p/photonews/foto-cantik-menawan-cewek-ini-ternyata--576164.jpg',
+		// 	'size' => 'auto'
+		// );
+		// curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+		// $headers = array();
+		// $headers[] = 'X-Api-Key: hk4gPcAkLyPLne9FpMqgPt6R';
+		// curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		// $result = curl_exec($ch);
+		// curl_close($ch);
+		// $fp = fopen($rand . '.png', "wb");
+		// fwrite($fp, $result);
+		// fclose($fp);
+
+		$data['sim_response_id']   = $this->uri->segment(3);
+		$data['sim_image_upload'] = $filename;
+		$data['updatetime']         = date('Y-m-d H:i:s');
+		$this->m_sim_response->update($data);
+	}
+
+	public function crop_image()
+	{
+		$datas = $_POST["image"];
+		$image_array_1 = explode(";", $datas);
+		$image_array_2 = explode(",", $image_array_1[1]);
+		$datas = base64_decode($image_array_2[1]);
+		$filename = time() . '.png';
+		$imageName = 'upload/crop_image/' . $filename;
+		file_put_contents($imageName, $datas);
+
+		$data['sim_response_id']   = $this->uri->segment(3);
+		$data['sim_image_crop'] = $filename;
+		$data['updatetime']         = date('Y-m-d H:i:s');
+		$this->m_sim_response->update($data);
 	}
 
 	public function create_simulation()
@@ -205,32 +248,32 @@ class Simulation extends CI_Controller
 			}
 		}
 
-		list($r, $g, $b) = sscanf('#' . $data['image_picker'], "#%02x%02x%02x");
+		// list($r, $g, $b) = sscanf('#' . $data['image_picker'], "#%02x%02x%02x");
 
-		$arr_body = ['#FDEED6', '#F0D2A2', '#E3BB7B', '#DCA96D', '#D79D6A', '#C88652', '#B5774D', '#A35C34', '#794835', '#70513C'];
-		for ($i = 0; $i < count($arr_body); $i++) {
-			list($r_c, $g_c, $b_c) = sscanf($arr_body[$i], "#%02x%02x%02x");
+		// $arr_body = ['#FDEED6', '#F0D2A2', '#E3BB7B', '#DCA96D', '#D79D6A', '#C88652', '#B5774D', '#A35C34', '#794835', '#70513C'];
+		// for ($i = 0; $i < count($arr_body); $i++) {
+		// 	list($r_c, $g_c, $b_c) = sscanf($arr_body[$i], "#%02x%02x%02x");
 
-			$p_r[] = $r_c . '-' . $g_c . '-' . $b_c;
-			$p[] = 100 - round(sqrt(pow($r_c - $r, 2) + pow($g_c - $g, 2) + pow($b_c - $b, 2)) / 239.46 * 100, 2);
-		}
+		// 	$p_r[] = $r_c . '-' . $g_c . '-' . $b_c;
+		// 	$p[] = 100 - round(sqrt(pow($r_c - $r, 2) + pow($g_c - $g, 2) + pow($b_c - $b, 2)) / 239.46 * 100, 2);
+		// }
 
-		echo '<pre>';
-		print_r($data['image_picker']);
-		echo '</pre>';
+		// echo '<pre>';
+		// print_r($data['image_picker']);
+		// echo '</pre>';
 
-		echo '<pre>';
-		print_r($r . '-' . $g . '-' . $b);
-		echo '</pre>';
+		// echo '<pre>';
+		// print_r($r . '-' . $g . '-' . $b);
+		// echo '</pre>';
 
-		echo '<pre>';
-		print_r($p_r);
-		echo '</pre>';
+		// echo '<pre>';
+		// print_r($p_r);
+		// echo '</pre>';
 
-		echo '<pre>';
-		print_r($p);
-		echo '</pre>';
-		die;
+		// echo '<pre>';
+		// print_r($p);
+		// echo '</pre>';
+		// die;
 
 		// TEMPLATE
 		$view         = "landing_page/simulation/form_successfully";
