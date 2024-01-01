@@ -88,7 +88,7 @@
                                     </div>
                                 </div>
                             <?php } elseif ($key->sim_question_type == 'info') { ?>
-                                <div class="row">
+                                 <div class="row">
                                     <div class="form-group col-lg-12">
                                         <label for=""><b><?= $key->sim_question_text ?> <span>*</span></b></label>
                                         <?php
