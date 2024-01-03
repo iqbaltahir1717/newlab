@@ -32,13 +32,13 @@
                             <div class="col-md-6">
                                 After <br>
                                 <span>Vibrance</span>
-                                <input type="range" value="0" min="-1" max="1" step="0.025" style="width: 200px;" onchange="setVibrance(this.value)" /><br>
+                                <input type="range" value="<?= $set_image->vibrance ?>" min="-1" max="1" step="0.025" style="width: 200px;" onchange="setVibrance(this.value)" /><br>
                                 <span>Saturation</span>
-                                <input type="range" value="0" min="-1" max="1" step="0.025" style="width: 200px;" onchange="setSaturation(this.value)" /><br>
+                                <input type="range" value="<?= $set_image->saturation ?>" min="-1" max="1" step="0.025" style="width: 200px;" onchange="setSaturation(this.value)" /><br>
                                 <span>Brightness</span>
-                                <input type="range" value="0" min="-0.2" max="0.2" step="0.01" style="width: 200px;" onchange="setBrightness(this.value)" /><br>
+                                <input type="range" value="<?= $set_image->brightness ?>" min="-0.2" max="0.2" step="0.01" style="width: 200px;" onchange="setBrightness(this.value)" /><br>
                                 <span>Contrast</span>
-                                <input type="range" value="0" min="0" max="0.3" step="0.01" style="width: 200px;" onchange="setContrast(this.value)" />
+                                <input type="range" value="<?= $set_image->contrast ?>" min="0" max="0.3" step="0.01" style="width: 200px;" onchange="setContrast(this.value)" />
                                 <canvas id="canvas" width="500" height="600"></canvas>
                             </div>
                             <br>
@@ -119,18 +119,18 @@
 
     fabric.Image.fromURL("<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>", function(img) {
         img.filters.push(new fabric.Image.filters.Vibrance({
-            vibrance: 0
+            vibrance: <?= $set_image->vibrance ?>
         }));
         img.filters.push(new fabric.Image.filters.Saturation({
-            saturation: 0
+            saturation: <?= $set_image->saturation ?>
         }));
 
         img.filters.push(new fabric.Image.filters.Brightness({
-            brightness: 0
+            brightness: <?= $set_image->brightness ?>
         }));
 
         img.filters.push(new fabric.Image.filters.Contrast({
-            contrast: 0
+            contrast: <?= $set_image->contrast ?>
         }));
 
         console.log(fabric.Image.filters);
@@ -243,9 +243,4 @@
         fabric.Image.filters.Vibrance.fromObject = fabric.Image.filters.BaseFilter.fromObject;
 
     })(typeof exports !== 'undefined' ? exports : this);
-
-    setVibrance(0);
-    setSaturation(0);
-    setBrightness(0);
-    setContrast(0);
 </script>

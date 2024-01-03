@@ -259,6 +259,8 @@ class Simulation extends CI_Controller
 		}
 
 		$data['level'] = array_keys($p, max($p))[0];
+		if ($data['sim_response'][0]->problems_experienced == 'Skin')
+			$data['set_image'] = (object) $this->check_skin(($data['level'] + 1) . '_' . $data['sim_response'][0]->sim_response_level);
 
 		// echo '<pre>';
 		// print_r($data['image_picker']);
@@ -279,7 +281,7 @@ class Simulation extends CI_Controller
 		// echo '</pre>';
 
 		// echo '<pre>';
-		// print_r($p);
+		// print_r($data['set_image']);
 		// echo '</pre>';
 		// die;
 
@@ -289,69 +291,162 @@ class Simulation extends CI_Controller
 		TemplateForm($data, $view, $viewCategory);
 	}
 
-	function check_setting($value)
+	function check_skin($value)
 	{
 		$arr = array(
-			'skin_1_1' => array(
+			'1_1' => array(
+				'vibrance' => 1,
+				'saturation' => 1,
+				'brightness' => 0,
+				'contrast' => 0.3,
+			),
+			'1_2' => array(
 				'vibrance' => 0.5,
 				'saturation' => 0.5,
 				'brightness' => 0.5,
 				'contrast' => 0.5,
 			),
-			'skin_1_2' => array(
+			'1_3' => array(
 				'vibrance' => 0.5,
 				'saturation' => 0.5,
 				'brightness' => 0.5,
 				'contrast' => 0.5,
 			),
-			'skin_1_3' => array(
+			'1_4' => array(
 				'vibrance' => 0.5,
 				'saturation' => 0.5,
 				'brightness' => 0.5,
 				'contrast' => 0.5,
 			),
-			'skin_1_4' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
-			),
-			'skin_1_5' => array(
+			'1_5' => array(
 				'vibrance' => 0.5,
 				'saturation' => 0.5,
 				'brightness' => 0.5,
 				'contrast' => 0.5,
 			),
 
-			'skin_2_1' => array(
+			'2_1' => array(
 				'vibrance' => 0.5,
 				'saturation' => 0.5,
 				'brightness' => 0.5,
 				'contrast' => 0.5,
 			),
-			'skin_2_2' => array(
+			'2_2' => array(
+				'vibrance' => 0,
+				'saturation' => 0,
+				'brightness' => 0,
+				'contrast' => 0,
+			),
+			'2_3' => array(
 				'vibrance' => 0.5,
 				'saturation' => 0.5,
 				'brightness' => 0.5,
 				'contrast' => 0.5,
 			),
-			'skin_2_3' => array(
+			'2_4' => array(
 				'vibrance' => 0.5,
 				'saturation' => 0.5,
 				'brightness' => 0.5,
 				'contrast' => 0.5,
 			),
-			'skin_2_4' => array(
+			'2_5' => array(
 				'vibrance' => 0.5,
 				'saturation' => 0.5,
 				'brightness' => 0.5,
 				'contrast' => 0.5,
 			),
-			'skin_2_5' => array(
+
+			'3_1' => array(
 				'vibrance' => 0.5,
 				'saturation' => 0.5,
 				'brightness' => 0.5,
 				'contrast' => 0.5,
+			),
+			'3_2' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+			'3_3' => array(
+				'vibrance' => 0,
+				'saturation' => 0,
+				'brightness' => 0,
+				'contrast' => 0,
+			),
+			'3_4' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+			'3_5' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+
+			'4_1' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+			'4_2' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+			'4_3' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+			'4_4' => array(
+				'vibrance' => 0,
+				'saturation' => 0,
+				'brightness' => 0,
+				'contrast' => 0,
+			),
+			'4_5' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+
+			'5_1' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+			'5_2' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+			'5_3' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+			'5_4' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+			'5_5' => array(
+				'vibrance' => 0,
+				'saturation' => 0,
+				'brightness' => 0,
+				'contrast' => 0,
 			),
 		);
 		return $arr[$value];
