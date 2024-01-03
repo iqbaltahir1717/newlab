@@ -94,12 +94,12 @@ class Simulation extends CI_Controller
 		$location = "upload/upload_image/" . $filename;
 		move_uploaded_file($_FILES['file']['tmp_name'], $location);
 
-		if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
-			$color = Imagecolorpicker($ext, $location);
-			echo $color;
-		} else {
-			echo 'Failure';
-		}
+		// if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
+		// 	$color = Imagecolorpicker($ext, $location);
+		// 	echo $color;
+		// } else {
+		// 	echo 'Failure';
+		// }
 
 		$rand = rand(111111111, 999999999);
 		$ch = curl_init();
@@ -261,11 +261,15 @@ class Simulation extends CI_Controller
 		}
 
 		$data['level'] = array_keys($p, max($p))[0];
-		if ($data['sim_response'][0]->problems_experienced == 'Skin')
-			$data['set_image'] = (object) $this->check_skin(($data['level'] + 1) . '_' . $data['sim_response'][0]->sim_response_level);
+		if ($data['sim_response'][0]->problems_experienced == 'Skin') {
+			$lev_check = round(($data['level'] + 1) / 2);
+
+			$lev_res = round($data['sim_response'][0]->sim_response_level / 2);
+			$data['set_image'] = (object) $this->check_skin($lev_check . '_' . $lev_res);
+		}
 
 		// echo '<pre>';
-		// print_r($data['image_picker']);
+		// print_r($lev_check);
 		// echo '</pre>';
 
 		// $p = [1, 2, 3, 4, 5];
@@ -303,35 +307,35 @@ class Simulation extends CI_Controller
 				'contrast' => 0,
 			),
 			'1_2' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => 0.4,
+				'saturation' => 0.3,
+				'brightness' => 0,
+				'contrast' => 0,
 			),
 			'1_3' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => 0.6,
+				'saturation' => 0.475,
+				'brightness' => -0.03,
+				'contrast' => 0,
 			),
 			'1_4' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => 1,
+				'saturation' => 0.575,
+				'brightness' => -0.08,
+				'contrast' => 0,
 			),
 			'1_5' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => 1,
+				'saturation' => 0.675,
+				'brightness' => -0.09,
+				'contrast' => 0,
 			),
 
 			'2_1' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => -0.4,
+				'saturation' => 0,
+				'brightness' => 0.09,
+				'contrast' => 0.06,
 			),
 			'2_2' => array(
 				'vibrance' => 0,
@@ -340,35 +344,35 @@ class Simulation extends CI_Controller
 				'contrast' => 0,
 			),
 			'2_3' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => 0,
+				'saturation' => 0.275,
+				'brightness' => 0,
+				'contrast' => 0,
 			),
 			'2_4' => array(
-				'vibrance' => 0.5,
+				'vibrance' => 0.275,
 				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'brightness' => -0.03,
+				'contrast' => 0,
 			),
 			'2_5' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => 0.300,
+				'saturation' => 0.7,
+				'brightness' => -0.09,
+				'contrast' => 0,
 			),
 
 			'3_1' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => -0.725,
+				'saturation' => -0.25,
+				'brightness' => 0.01,
+				'contrast' => 0.23,
 			),
 			'3_2' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => -0.125,
+				'saturation' => -0.05,
+				'brightness' => 0.01,
+				'contrast' => 0.2,
 			),
 			'3_3' => array(
 				'vibrance' => 0,
@@ -377,35 +381,35 @@ class Simulation extends CI_Controller
 				'contrast' => 0,
 			),
 			'3_4' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => 0.025,
+				'saturation' => 0.25,
+				'brightness' => -0.07,
+				'contrast' => 0,
 			),
 			'3_5' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => 0.075,
+				'saturation' => 0.525,
+				'brightness' => -0.11,
+				'contrast' => 0,
 			),
 
 			'4_1' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => -0.425,
+				'saturation' => -0.45,
+				'brightness' => 0.12,
+				'contrast' => 0.22,
 			),
 			'4_2' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => -0.225,
+				'saturation' => -0.35,
+				'brightness' => 0.12,
+				'contrast' => 0.22,
 			),
 			'4_3' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => -0.075,
+				'saturation' => -0.125,
+				'brightness' => 0.09,
+				'contrast' => 0.22,
 			),
 			'4_4' => array(
 				'vibrance' => 0,
@@ -414,35 +418,35 @@ class Simulation extends CI_Controller
 				'contrast' => 0,
 			),
 			'4_5' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => 0.35,
+				'saturation' => 0.4,
+				'brightness' => 0,
+				'contrast' => 0,
 			),
 
 			'5_1' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => 0.8,
+				'saturation' => -0.1,
+				'brightness' => 0.19,
+				'contrast' => 0.21,
 			),
 			'5_2' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => 0.8,
+				'saturation' => 0.05,
+				'brightness' => 0.19,
+				'contrast' => 0.17,
 			),
 			'5_3' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => 0.8,
+				'saturation' => 0.4,
+				'brightness' => 0.18,
+				'contrast' => 0,
 			),
 			'5_4' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.5,
-				'brightness' => 0.5,
-				'contrast' => 0.5,
+				'vibrance' => 0.525,
+				'saturation' => 0.825,
+				'brightness' => 0.11,
+				'contrast' => 0,
 			),
 			'5_5' => array(
 				'vibrance' => 0,
