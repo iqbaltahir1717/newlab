@@ -135,6 +135,7 @@
 
         console.log(fabric.Image.filters);
 
+
         img.applyFilters();
         img.scaleToWidth(400)
         img.set({
@@ -178,6 +179,7 @@
         img.applyFilters();
         canvas.renderAll();
     }
+
 
     //start vibrance filter code
     (function(global) {
@@ -246,6 +248,5 @@
 
     setVibrance(0);
     setSaturation(0);
-    setBrightness(0);
-    setContrast(0);
+    setBrightness(0.5);
 </script>

@@ -229,8 +229,8 @@ class Simulation extends CI_Controller
 					}
 				}
 				// check image
-				if (!empty($value['r']) and file_exists('./upload/simulation/' . $value['r']))
-					$data['image_picker'] = Imagecolorpicker(explode('.', $value['r'])[1], './upload/simulation/' . $value['r']);
+				if (!empty($data['sim_response'][0]->sim_image_crop) and file_exists('./upload/crop_image/' . $data['sim_response'][0]->sim_image_crop))
+					$data['image_picker'] = Imagecolorpicker(explode('.', $data['sim_response'][0]->sim_image_crop)[1], './upload/crop_image/' . $data['sim_response'][0]->sim_image_crop);
 
 				if (!empty($value['q']) and str_replace(' ', '', $value['q']) == str_replace(' ', '', 'Which part of the body has issues?'))
 					$data['part_of_body'] = $value['r'];
@@ -248,18 +248,26 @@ class Simulation extends CI_Controller
 			}
 		}
 
-		// list($r, $g, $b) = sscanf('#' . $data['image_picker'], "#%02x%02x%02x");
+		list($r, $g, $b) = sscanf('#' . $data['image_picker'], "#%02x%02x%02x");
 
-		// $arr_body = ['#FDEED6', '#F0D2A2', '#E3BB7B', '#DCA96D', '#D79D6A', '#C88652', '#B5774D', '#A35C34', '#794835', '#70513C'];
-		// for ($i = 0; $i < count($arr_body); $i++) {
-		// 	list($r_c, $g_c, $b_c) = sscanf($arr_body[$i], "#%02x%02x%02x");
+		$arr_body = ['#FDEED6', '#F0D2A2', '#E3BB7B', '#DCA96D', '#D79D6A', '#C88652', '#B5774D', '#A35C34', '#794835', '#70513C'];
+		for ($i = 0; $i < count($arr_body); $i++) {
+			list($r_c, $g_c, $b_c) = sscanf($arr_body[$i], "#%02x%02x%02x");
 
-		// 	$p_r[] = $r_c . '-' . $g_c . '-' . $b_c;
-		// 	$p[] = 100 - round(sqrt(pow($r_c - $r, 2) + pow($g_c - $g, 2) + pow($b_c - $b, 2)) / 239.46 * 100, 2);
-		// }
+			$p_r[] = $r_c . '-' . $g_c . '-' . $b_c;
+			$p[] = 100 - round(sqrt(pow($r_c - $r, 2) + pow($g_c - $g, 2) + pow($b_c - $b, 2)) / 239.46 * 100, 2);
+		}
+
+		$data['level'] = array_keys($p, max($p))[0];
 
 		// echo '<pre>';
 		// print_r($data['image_picker']);
+		// echo '</pre>';
+
+		// $p = [1, 2, 3, 4, 5];
+
+		// echo '<pre>';
+		// print_r(array_keys($p, max($p))[0]);
 		// echo '</pre>';
 
 		// echo '<pre>';
@@ -279,5 +287,73 @@ class Simulation extends CI_Controller
 		$view         = "landing_page/simulation/form_successfully";
 		$viewCategory = "all";
 		TemplateForm($data, $view, $viewCategory);
+	}
+
+	function check_setting($value)
+	{
+		$arr = array(
+			'skin_1_1' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+			'skin_1_2' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+			'skin_1_3' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+			'skin_1_4' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+			'skin_1_5' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+
+			'skin_2_1' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+			'skin_2_2' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+			'skin_2_3' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+			'skin_2_4' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+			'skin_2_5' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.5,
+				'brightness' => 0.5,
+				'contrast' => 0.5,
+			),
+		);
+		return $arr[$value];
 	}
 }
