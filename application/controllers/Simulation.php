@@ -94,35 +94,37 @@ class Simulation extends CI_Controller
 		$location = "upload/upload_image/" . $filename;
 		move_uploaded_file($_FILES['file']['tmp_name'], $location);
 
-		// if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
-		// 	$color = Imagecolorpicker($ext, $location);
-		// 	echo $color;
-		// } else {
-		// 	echo 'Failure';
-		// }
+		if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
+			$color = Imagecolorpicker($ext, $location);
+			echo $color;
+		} else {
+			echo 'Failure';
+		}
 
-		// $rand = rand(111111111, 999999999);
-		// $ch = curl_init();
-		// curl_setopt($ch, CURLOPT_URL, 'https://api.remove.bg/v1.0/removebg');
-		// curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		// curl_setopt($ch, CURLOPT_POST, 1);
-		// $post = array(
-		// 	'image_file' => fopen($location, 'r'),
-		// 	// 'image_url' => 'https://cdns.klimg.com/resized/1200x600/p/photonews/foto-cantik-menawan-cewek-ini-ternyata--576164.jpg',
-		// 	'size' => 'auto'
-		// );
-		// curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-		// $headers = array();
-		// $headers[] = 'X-Api-Key: hk4gPcAkLyPLne9FpMqgPt6R';
-		// curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-		// $result = curl_exec($ch);
-		// curl_close($ch);
-		// $fp = fopen($rand . '.png', "wb");
-		// fwrite($fp, $result);
-		// fclose($fp);
+		$rand = rand(111111111, 999999999);
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'https://api.remove.bg/v1.0/removebg');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		$post = array(
+			// 'image_file' => fopen($location, 'r'),
+			'image_url' => base_url($location),
+			'size' => 'auto'
+		);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+		$headers = array();
+		$headers[] = 'X-Api-Key: hk4gPcAkLyPLne9FpMqgPt6R';
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		$result = curl_exec($ch);
+		curl_close($ch);
+		$rb_name = 'rb_image_' . $rand . '.png';
+		$fp = fopen('upload/rb_image/' . $rb_name, "wb");
+		fwrite($fp, $result);
+		fclose($fp);
 
 		$data['sim_response_id']   = $this->uri->segment(3);
 		$data['sim_image_upload'] = $filename;
+		$data['sim_image_rb'] = $rb_name;
 		$data['updatetime']         = date('Y-m-d H:i:s');
 		$this->m_sim_response->update($data);
 	}
@@ -295,10 +297,10 @@ class Simulation extends CI_Controller
 	{
 		$arr = array(
 			'1_1' => array(
-				'vibrance' => 1,
-				'saturation' => 1,
+				'vibrance' => 0,
+				'saturation' => 0,
 				'brightness' => 0,
-				'contrast' => 0.3,
+				'contrast' => 0,
 			),
 			'1_2' => array(
 				'vibrance' => 0.5,
