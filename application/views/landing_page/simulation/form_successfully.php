@@ -1,4 +1,3 @@
-
 <main id="main">
     <section id="greetings" class="consultation">
         <div class="container">
@@ -18,7 +17,7 @@
                                 </div>
                             </div>
                         </div>
-                        <img src="<?= base_url('upload/question/skin.png'); ?>" alt="" srcset="">
+                        <img src="<?= base_url('upload/question/' . strtolower($sim_response[0]->problems_experienced) . '.png'); ?>" alt="" srcset="">
                         <p>Check Level Skin Number : <?= $level + 1 ?></p>
                         <p>Choice Level Skin Number : <?= $sim_response[0]->sim_response_level ?></p>
                         <div class="row">
@@ -119,8 +118,9 @@
         // height: 533
     });
 
-    fabric.Image.fromURL("<?= base_url('upload/rb_image/' . $sim_response[0]->sim_image_rb); ?>", function(img) {
-        // fabric.Image.fromURL("<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>", function(img) {
+    // fabric.Image.fromURL("<?= base_url('upload/rb_image/' . $sim_response[0]->sim_image_rb); ?>", function(img) {
+    // fabric.Image.fromURL("<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>", function(img) {
+    fabric.Image.fromURL("<?= base_url('upload/crop_image/' . $sim_response[0]->sim_image_crop); ?>", function(img) {
         img.filters.push(new fabric.Image.filters.Vibrance({
             vibrance: <?= $set_image->vibrance ?>
         }));
