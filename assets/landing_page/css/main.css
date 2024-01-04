@@ -70,6 +70,7 @@ header .navbar {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-bottom: 0px;
 }
 
 .consultation .content {
@@ -360,10 +361,9 @@ header .navbar {
 .simulation .content .col-md-10 .flex-column .text-heading h3,
 .simulation .content .col-sm-12 .flex-column .text-heading h3 {
   font-weight: 700;
-  font-size: 24px;
+  font-size: 28px;
   color: #000;
   line-height: 30px;
-  text-align: center;
 }
 
 .simulation .content .col-lg-7 .flex-column p,
@@ -574,5 +574,34 @@ header .navbar {
 
 #shadow-host-companion {
   display: none !important;
+}
+
+.simulation .image-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.simulation .image-container .overlays {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(-89deg, #fff 2.66%, rgba(255, 255, 255, 0) 108.69%);
+}
+
+.simulation .image-container img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.form-simulation {
+  padding: 24px;
+  background-color: #fff;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  -webkit-box-shadow: 9px 9px 18px 0px rgba(121, 121, 121, 0.1), -9px -9px 18px 0px rgba(170, 170, 170, 0.05);
+          box-shadow: 9px 9px 18px 0px rgba(121, 121, 121, 0.1), -9px -9px 18px 0px rgba(170, 170, 170, 0.05);
 }
 /*# sourceMappingURL=main.css.map */
