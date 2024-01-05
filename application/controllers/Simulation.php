@@ -78,8 +78,12 @@ class Simulation extends CI_Controller
 		$data['setting']             = getSetting();
 
 		$data['sim_response'] = $this->m_sim_response->get(decrypt_url($this->uri->segment(3)));
-		$data['sim_question'] = $this->m_sim_question->read('', '', '', $data['sim_response'][0]->problems_experienced);
-		$data['sim_goals'] = $this->m_sim_goals->read('', '', '', $data['sim_response'][0]->problems_experienced);
+		$part = $data['sim_response'][0]->problems_experienced;
+		if ($data['sim_response'][0]->problems_experienced == 'Lips')
+			$part = 'Skin';
+		$data['sim_question'] = $this->m_sim_question->read('', '', '', $part);
+		$data['sim_goals'] = $this->m_sim_goals->read('', '', '', $part);
+
 
 		// TEMPLATE
 		$view         = "landing_page/simulation/form_simulation";
@@ -255,7 +259,7 @@ class Simulation extends CI_Controller
 		if ($data['sim_response'][0]->problems_experienced == 'Skin')
 			$arr_body = ['#FDEED6', '#F0D2A2', '#E3BB7B', '#DCA96D', '#D79D6A', '#C88652', '#B5774D', '#A35C34', '#794835', '#70513C'];
 		else if ($data['sim_response'][0]->problems_experienced == 'Lips')
-			$arr_body = ['#D05F66', '#D06C71', '#CF7B7D', '#CF8D8D', '#CD9B9A', '#C9A7A6', '#AC8D8A', '#937670', '#7F645D', '#634C44'];
+			$arr_body = ['#D0666B', '#D07275', '#CF8282', '#CF9291', '#CEA4A3', '#BE9D9B', '#A48581', '#7B6159', '#6A524A', '#5C473D'];
 		else
 			$arr_body = ['#EADDCB', '#F8EFDD', '#FAF1E4', '#F2E4C9', '#F1E2C9', '#F0DAB9', '#EFD5B1', '#E7C69D', '#E1B683', '#DDAE77'];
 
@@ -274,11 +278,18 @@ class Simulation extends CI_Controller
 			$data['set_image'] = (object) $this->check_skin($lev_check . '_' . $lev_res);
 		}
 
+		if ($data['sim_response'][0]->problems_experienced == 'Lips') {
+			$lev_check = round(($data['level'] + 1) / 2);
+
+			$lev_res = round($data['sim_response'][0]->sim_response_level / 2);
+			$data['set_image'] = (object) $this->check_lips($lev_check . '_' . $lev_res);
+		}
+
 		// echo '<pre>';
-		// print_r($lev_check);
+		// print_r($arr_body);
 		// echo '</pre>';
 
-		// $p = [1, 2, 3, 4, 5];
+		// // $p = [1, 2, 3, 4, 5];
 
 		// echo '<pre>';
 		// print_r(array_keys($p, max($p))[0]);
@@ -298,7 +309,7 @@ class Simulation extends CI_Controller
 		// die;
 
 		// TEMPLATE
-		$view         = "landing_page/simulation/form_successfully";
+		$view         = "landing_page/simulation/form_successfully_testing";
 		$viewCategory = "all";
 		TemplateForm($data, $view, $viewCategory);
 	}
@@ -453,6 +464,167 @@ class Simulation extends CI_Controller
 				'saturation' => 0.825,
 				'brightness' => 0.11,
 				'contrast' => 0,
+			),
+			'5_5' => array(
+				'vibrance' => 0,
+				'saturation' => 0,
+				'brightness' => 0,
+				'contrast' => 0,
+			),
+		);
+		return $arr[$value];
+	}
+
+	function check_lips($value)
+	{
+		$arr = array(
+			'1_1' => array(
+				'vibrance' => 0,
+				'saturation' => 0,
+				'brightness' => 0,
+				'contrast' => 0,
+			),
+			'1_2' => array(
+				'vibrance' => -0.1,
+				'saturation' => 0.1,
+				'brightness' => 0,
+				'contrast' => 0,
+			),
+			'1_3' => array(
+				'vibrance' => -0.3,
+				'saturation' => -0.3,
+				'brightness' => -0.03,
+				'contrast' => 0,
+			),
+			'1_4' => array(
+				'vibrance' => -0.55,
+				'saturation' => -0.13,
+				'brightness' => -0.08,
+				'contrast' => 0,
+			),
+			'1_5' => array(
+				'vibrance' => -0.825,
+				'saturation' => -0.675,
+				'brightness' => -0.2,
+				'contrast' => 0,
+			),
+
+			'2_1' => array(
+				'vibrance' => 0.4,
+				'saturation' => 0.2,
+				'brightness' => 0.05,
+				'contrast' => 0.05,
+			),
+			'2_2' => array(
+				'vibrance' => 0,
+				'saturation' => 0,
+				'brightness' => 0,
+				'contrast' => 0,
+			),
+			'2_3' => array(
+				'vibrance' => -0.275,
+				'saturation' => -0.275,
+				'brightness' => 0,
+				'contrast' => 0,
+			),
+			'2_4' => array(
+				'vibrance' => -0.55,
+				'saturation' => -0.475,
+				'brightness' => -0.1,
+				'contrast' => 0,
+			),
+			'2_5' => array(
+				'vibrance' => -0.95,
+				'saturation' => -0.475,
+				'brightness' => -0.1,
+				'contrast' => 0,
+			),
+
+			'3_1' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.275,
+				'brightness' => 0.06,
+				'contrast' => 0.05,
+			),
+			'3_2' => array(
+				'vibrance' => 0.2,
+				'saturation' => 0.175,
+				'brightness' => 0.02,
+				'contrast' => 0.02,
+			),
+			'3_3' => array(
+				'vibrance' => 0,
+				'saturation' => 0,
+				'brightness' => 0,
+				'contrast' => 0,
+			),
+			'3_4' => array(
+				'vibrance' => -0.55,
+				'saturation' => -0.475,
+				'brightness' => -0.1,
+				'contrast' => 0,
+			),
+			'3_5' => array(
+				'vibrance' => -0.95,
+				'saturation' => -0.475,
+				'brightness' => -0.1,
+				'contrast' => 0,
+			),
+
+			'4_1' => array(
+				'vibrance' => 0.75,
+				'saturation' => 0.675,
+				'brightness' => 0.08,
+				'contrast' => 0.1,
+			),
+			'4_2' => array(
+				'vibrance' => 0.575,
+				'saturation' => 0.45,
+				'brightness' => 0.08,
+				'contrast' => 0.11,
+			),
+			'4_3' => array(
+				'vibrance' => 0.1,
+				'saturation' => 0.25,
+				'brightness' => 0.0,
+				'contrast' => 0.08,
+			),
+			'4_4' => array(
+				'vibrance' => 0,
+				'saturation' => 0,
+				'brightness' => 0,
+				'contrast' => 0,
+			),
+			'4_5' => array(
+				'vibrance' => -0.8,
+				'saturation' => -0.175,
+				'brightness' => -0.04,
+				'contrast' => 0.08,
+			),
+
+			'5_1' => array(
+				'vibrance' => 0.75,
+				'saturation' => 0.675,
+				'brightness' => 0.08,
+				'contrast' => 0.1,
+			),
+			'5_2' => array(
+				'vibrance' => 0.575,
+				'saturation' => 0.45,
+				'brightness' => 0.08,
+				'contrast' => 0.11,
+			),
+			'5_3' => array(
+				'vibrance' => 0.1,
+				'saturation' => 0.25,
+				'brightness' => 0.0,
+				'contrast' => 0.08,
+			),
+			'5_4' => array(
+				'vibrance' => 0.1,
+				'saturation' => 0.25,
+				'brightness' => 0.0,
+				'contrast' => 0.08,
 			),
 			'5_5' => array(
 				'vibrance' => 0,

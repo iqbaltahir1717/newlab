@@ -4,26 +4,27 @@
 
 <style>
     .loading-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            display: none;
-            opacity: 1;
-            transition: opacity 0.5s ease; /* Add the transition property for fading effect */
-        }
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 1);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        display: none;
+        opacity: 1;
+        transition: opacity 0.5s ease;
+        /* Add the transition property for fading effect */
+    }
 
     .loading-text {
         font-size: 20px;
     }
-    
-     div#comparison {
+
+    div#comparison {
         width: 300px;
         height: 400px;
         max-width: 300px;
@@ -32,8 +33,8 @@
     }
 
     div#comparison figure {
-        
-         background-size: cover;
+
+        background-size: cover;
         background-repeat: no-repeat;
         background-position: left;
         position: relative;
@@ -42,10 +43,10 @@
         height: 400px;
         margin: 0;
     }
-    
-        div#comparison canvas {
-        
-         background-size: cover;
+
+    div#comparison canvas {
+
+        background-size: cover;
         background-repeat: no-repeat;
         background-position: left;
         position: relative;
@@ -61,7 +62,7 @@
     }
 
     div#comparison figure div {
-        background-image: url(<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>);
+        background-image: url(<?= base_url('upload/crop_image/' . $sim_response[0]->sim_image_crop); ?>);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: left;
@@ -130,7 +131,9 @@
     }
 </style>
 <div class="loading-overlay" id="loadingOverlay">
-    <div class="loading-text"><dotlottie-player src="https://lottie.host/37362bd0-6e85-4772-a723-f81d63190f7b/9qSHj7UxJk.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player></div>
+    <div class="loading-text">
+        <dotlottie-player src="https://lottie.host/37362bd0-6e85-4772-a723-f81d63190f7b/9qSHj7UxJk.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player>
+    </div>
 </div>
 <main id="main">
     <section id="greetings" class="consultation">
@@ -144,7 +147,7 @@
                     </div>
                     <div style="padding: 32px 24px; border-radius: 21px; background: #FFF; box-shadow: 9px 9px 18px 0px rgba(121, 121, 121, 0.10), -9px -9px 18px 0px rgba(170, 170, 170, 0.05);" class="text-center">
                         <h4 class="mb-3">Before After Enhance Skin</h4>
-                        <p style="color:#fafafa; padding:8px 16px; background:#000; border-radius:99px; font-size:16px;">System enhance your skin from <b>level <?= $level + 1 ?></b> <i class="fa-solid fa-arrow-right"></i> <b style="color:#F5CC2A">level  <?= $sim_response[0]->sim_response_level ?></b></p>
+                        <p style="color:#fafafa; padding:8px 16px; background:#000; border-radius:99px; font-size:16px;">System enhance your skin from <b>level <?= $level + 1 ?></b> <i class="fa-solid fa-arrow-right"></i> <b style="color:#F5CC2A">level <?= $sim_response[0]->sim_response_level ?></b></p>
                         <div class="row mt-4 mb-4 justify-content-center">
                             <div id="comparison">
                                 <figure>
@@ -154,15 +157,15 @@
                                 <input type="range" min="0" max="100" value="50" id="slider" oninput="moveDivisor()">
                             </div>
                             <div class="col-md-6">
-                               
+
                             </div>
                             <br>
                         </div>
                         <p>Need Consultation ?</p>
                         <div class="btn-group mb-3">
-                                <a href="<?= base_url('consultation'); ?>" class="btn btn-primary">
-                                    Start Consultation  Here
-                                </a>
+                            <a href="<?= base_url('consultation'); ?>" class="btn btn-primary">
+                                Start Consultation Here
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -182,8 +185,8 @@
                         <hr style="border:1px solid #000">
                         <h4>YOUR LEVEL SKIN</h4>
                         <p>The scan result indicates that the brightness level of your skin is at a <span style="padding:4px 12px; color:#fafafa; background:#000; border-radius:99px; font-weight:bold">level <?= $level + 1 ?></span></p>
-                        <img src="<?= base_url('upload/rules/skin/' . $level + 1 . '.jpg'); ?>" alt="" srcset="">
-                        
+                        <img src="<?= base_url('upload/rules/' . strtolower($sim_response[0]->problems_experienced) . '/' . $level + 1 . '.jpg'); ?>" alt="" srcset="">
+
                         <hr style="border:1px solid #000">
                         <h4>RECOMMENDATION PRODUCT FOR YOU</h4>
                         <div class="card-product">
@@ -252,7 +255,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-  AOS.init();
+    AOS.init();
 </script>
 
 <script>
@@ -302,12 +305,12 @@
             contrast: <?= $set_image->contrast ?>
         }));
 
-        img.filters.push(new fabric.Image.filters.BlendColor({
-            color: '#ffffff',
-            opacity: 1
-        }));
+        // img.filters.push(new fabric.Image.filters.BlendColor({
+        //     color: '#ffffff',
+        //     opacity: 1
+        // }));
 
-        img.filters.push(new fabric.Image.filters.BlackWhite());
+        // img.filters.push(new fabric.Image.filters.BlackWhite());
 
         console.log(fabric.Image.filters);
 
@@ -433,16 +436,16 @@
     // Hide the loading overlay with a fade-out effect
     function hideLoadingOverlay() {
         document.getElementById('loadingOverlay').style.opacity = '0';
-        setTimeout(function () {
+        setTimeout(function() {
             document.getElementById('loadingOverlay').style.display = 'none';
         }, 500); // Adjust the duration to match the transition duration
     }
 
-    // Call showLoadingOverlay when the page loads
-    showLoadingOverlay();
+    // // Call showLoadingOverlay when the page loads
+    // showLoadingOverlay();
 
-    // Set a timeout to hide the loading overlay after 5 seconds
-    setTimeout(function () {
-        hideLoadingOverlay();
-    }, 3700);
+    // // Set a timeout to hide the loading overlay after 5 seconds
+    // setTimeout(function() {
+    //     hideLoadingOverlay();
+    // }, 3700);
 </script>
