@@ -78,8 +78,13 @@ class Simulation extends CI_Controller
 		$data['setting']             = getSetting();
 
 		$data['sim_response'] = $this->m_sim_response->get(decrypt_url($this->uri->segment(3)));
-		$data['sim_question'] = $this->m_sim_question->read('', '', '', $data['sim_response'][0]->problems_experienced);
-		$data['sim_goals'] = $this->m_sim_goals->read('', '', '', $data['sim_response'][0]->problems_experienced);
+
+		$part = $data['sim_response'][0]->problems_experienced;
+		if ($data['sim_response'][0]->problems_experienced == 'Lips')
+			$part = 'Skin';
+
+		$data['sim_question'] = $this->m_sim_question->read('', '', '', $part);
+		$data['sim_goals'] = $this->m_sim_goals->read('', '', '', $part);
 
 		// TEMPLATE
 		$view         = "landing_page/simulation/form_simulation";
@@ -252,7 +257,13 @@ class Simulation extends CI_Controller
 
 		list($r, $g, $b) = sscanf('#' . $data['image_picker'], "#%02x%02x%02x");
 
-		$arr_body = ['#FDEED6', '#F0D2A2', '#E3BB7B', '#DCA96D', '#D79D6A', '#C88652', '#B5774D', '#A35C34', '#794835', '#70513C'];
+		if ($data['sim_response'][0]->problems_experienced == 'Skin')
+			$arr_body = ['#FDEED6', '#F0D2A2', '#E3BB7B', '#DCA96D', '#D79D6A', '#C88652', '#B5774D', '#A35C34', '#794835', '#70513C'];
+		else if ($data['sim_response'][0]->problems_experienced == 'Lips')
+			$arr_body = ['#D05F66', '#D06C71', '#CF7B7D', '#CF8D8D', '#CD9B9A', '#C9A7A6', '#AC8D8A', '#937670', '#7F645D', '#634C44'];
+		else
+			$arr_body = ['#EADDCB', '#D06C71', '#CF7B7D', '#CF8D8D', '#CD9B9A', '#C9A7A6', '#AC8D8A', '#937670', '#7F645D', '#634C44'];
+
 		for ($i = 0; $i < count($arr_body); $i++) {
 			list($r_c, $g_c, $b_c) = sscanf($arr_body[$i], "#%02x%02x%02x");
 
@@ -261,12 +272,12 @@ class Simulation extends CI_Controller
 		}
 
 		$data['level'] = array_keys($p, max($p))[0];
-		if ($data['sim_response'][0]->problems_experienced == 'Skin') {
-			$lev_check = round(($data['level'] + 1) / 2);
+		// if ($data['sim_response'][0]->problems_experienced == 'Skin') {
+		$lev_check = round(($data['level'] + 1) / 2);
 
-			$lev_res = round($data['sim_response'][0]->sim_response_level / 2);
-			$data['set_image'] = (object) $this->check_skin($lev_check . '_' . $lev_res);
-		}
+		$lev_res = round($data['sim_response'][0]->sim_response_level / 2);
+		$data['set_image'] = (object) $this->check_skin($lev_check . '_' . $lev_res);
+		// }
 
 		// echo '<pre>';
 		// print_r($lev_check);

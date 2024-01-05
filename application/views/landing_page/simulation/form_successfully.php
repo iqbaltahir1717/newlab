@@ -1,55 +1,196 @@
+<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+<!-- AOS library -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<style>
+    .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            display: none;
+            opacity: 1;
+            transition: opacity 0.5s ease; /* Add the transition property for fading effect */
+        }
+
+    .loading-text {
+        font-size: 20px;
+    }
+    
+     div#comparison {
+        width: 300px;
+        height: 400px;
+        max-width: 300px;
+        max-height: 400px;
+        overflow: hidden;
+    }
+
+    div#comparison figure {
+        
+         background-size: cover;
+        background-repeat: no-repeat;
+        background-position: left;
+        position: relative;
+        font-size: 0;
+        width: 300px;
+        height: 400px;
+        margin: 0;
+    }
+    
+        div#comparison canvas {
+        
+         background-size: cover;
+        background-repeat: no-repeat;
+        background-position: left;
+        position: relative;
+        font-size: 0;
+        width: 300px;
+        height: 400px;
+        margin: 0;
+    }
+
+    div#comparison figure>img {
+        position: relative;
+        width: 100%;
+    }
+
+    div#comparison figure div {
+        background-image: url(<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: left;
+        position: absolute;
+        width: 150px;
+        box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        bottom: 0;
+        height: 400px;
+    }
+
+    input[type=range] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        position: relative;
+        top: -2rem;
+        left: -2%;
+        background-color: rgba(255, 255, 255, 0.1);
+        width: 102%;
+    }
+
+    input[type=range]:focus {
+        outline: none;
+    }
+
+    input[type=range]:active {
+        outline: none;
+    }
+
+    input[type=range]::-moz-range-track {
+        -moz-appearance: none;
+        height: 15px;
+        width: 98%;
+        background-color: rgba(255, 255, 255, 0.1);
+        position: relative;
+        outline: none;
+    }
+
+    input[type=range]::active {
+        border: none;
+        outline: none;
+    }
+
+    input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 15px;
+        background: #fff;
+        border-radius: 0;
+    }
+
+    input[type=range]::-moz-range-thumb {
+        -moz-appearance: none;
+        width: 20px;
+        height: 15px;
+        background: #fff;
+        border-radius: 0;
+    }
+
+    input[type=range]:focus::-webkit-slider-thumb {
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    input[type=range]:focus::-moz-range-thumb {
+        background: rgba(255, 255, 255, 0.5);
+    }
+</style>
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-text"><dotlottie-player src="https://lottie.host/37362bd0-6e85-4772-a723-f81d63190f7b/9qSHj7UxJk.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></dotlottie-player></div>
+</div>
 <main id="main">
     <section id="greetings" class="consultation">
         <div class="container">
-            <div class="d-flex flex-wrap content justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <div class="d-flex flex-column">
-                        <div class="text-heading row align-items-center">
-                            <div class="col-lg-7 px-0 align-items-center justify-content-center d-flex flex-column" style="gap: 16px;">
-                                <h3>Quisinoer Submitted <i class="fa-regular fa-circle-check"></i></h3>
-                                <p>Hello <?= $this->session->userdata('user_fullname') ?>. your questionnaire have been recorded, this is our <b>recommendation product for you</b>. Thank you! <a href="<?= base_url('simulation/form_data_user') ?>">
-                                        <u>Try Again</u>
-                                    </a></p>
-                                <div class="d-flex btn-group">
-                                    <a href="<?= base_url('auth/logout_simulation'); ?>" class="btn btn-secondary">
-                                        Log Out
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <img src="<?= base_url('upload/question/' . strtolower($sim_response[0]->problems_experienced) . '.png'); ?>" alt="" srcset="">
-                        <p>Check Level Skin Number : <?= $level + 1 ?></p>
-                        <p>Choice Level Skin Number : <?= $sim_response[0]->sim_response_level ?></p>
-                        <div class="row">
-                            <div class="col-md-6">
-                                Before
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <img width="400" height="530" src="<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>" alt="" srcset="">
+            <div class="d-flex flex-wrap content align-items-start">
+                <div class="col-lg-5">
+                    <div class="btn-group mb-3">
+                        <a href="<?= base_url('auth/logout_simulation'); ?>" class="btn btn-secondary">
+                            Log Out
+                        </a>
+                    </div>
+                    <div style="padding: 32px 24px; border-radius: 21px; background: #FFF; box-shadow: 9px 9px 18px 0px rgba(121, 121, 121, 0.10), -9px -9px 18px 0px rgba(170, 170, 170, 0.05);" class="text-center">
+                        <h4 class="mb-3">Before After Enhance Skin</h4>
+                        <p style="color:#fafafa; padding:8px 16px; background:#000; border-radius:99px; font-size:16px;">System enhance your skin from <b>level <?= $level + 1 ?></b> <i class="fa-solid fa-arrow-right"></i> <b style="color:#F5CC2A">level  <?= $sim_response[0]->sim_response_level ?></b></p>
+                        <div class="row mt-4 mb-4 justify-content-center">
+                            <div id="comparison">
+                                <figure>
+                                    <canvas id="canvas" width="300px" height="400px"></canvas>
+                                    <div id="divisor"></div>
+                                </figure>
+                                <input type="range" min="0" max="100" value="50" id="slider" oninput="moveDivisor()">
                             </div>
                             <div class="col-md-6">
-                                After <br>
-                                <span>Vibrance</span>
-                                <input type="range" value="<?= $set_image->vibrance ?>" min="-1" max="1" step="0.025" style="width: 200px;" onchange="setVibrance(this.value)" /><br>
-                                <span>Saturation</span>
-                                <input type="range" value="<?= $set_image->saturation ?>" min="-1" max="1" step="0.025" style="width: 200px;" onchange="setSaturation(this.value)" /><br>
-                                <span>Brightness</span>
-                                <input type="range" value="<?= $set_image->brightness ?>" min="-0.2" max="0.2" step="0.01" style="width: 200px;" onchange="setBrightness(this.value)" /><br>
-                                <span>Contrast</span>
-                                <input type="range" value="<?= $set_image->contrast ?>" min="0" max="0.3" step="0.01" style="width: 200px;" onchange="setContrast(this.value)" />
-                                <canvas id="canvas" width="500" height="600"></canvas>
+                               
                             </div>
                             <br>
-
                         </div>
+                        <p>Need Consultation ?</p>
+                        <div class="btn-group mb-3">
+                                <a href="<?= base_url('consultation'); ?>" class="btn btn-primary">
+                                    Start Consultation  Here
+                                </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="d-flex flex-column text-center">
+                        <div class="text-heading row align-items-center">
+                            <div class="col-lg-12 px-0 align-items-center justify-content-center d-flex flex-column" style="gap: 16px;">
+                                <h3>Simulation Complete <i class="fa-regular fa-circle-check"></i></h3>
+                                <h5>This is a result scanning & product recommendation for you</h5>
+                                <p>Hello <?= $this->session->userdata('user_fullname') ?>. your questionnaire have been recorded, this is our <b>recommendation product for you</b>. Thank you! <a href="<?= base_url('simulation/form_data_user') ?>">
+                                        <u>Try Again</u>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        <!-- <p>Check Level Skin Number : <?= $level + 1 ?></p> -->
+                        <hr style="border:1px solid #000">
+                        <h4>YOUR LEVEL SKIN</h4>
+                        <p>The scan result indicates that the brightness level of your skin is at a <span style="padding:4px 12px; color:#fafafa; background:#000; border-radius:99px; font-weight:bold">level <?= $level + 1 ?></span></p>
+                        <img src="<?= base_url('upload/rules/skin/' . $level + 1 . '.jpg'); ?>" alt="" srcset="">
+                        
+                        <hr style="border:1px solid #000">
+                        <h4>RECOMMENDATION PRODUCT FOR YOU</h4>
                         <div class="card-product">
                             <?php if ($product_rekomendation) {
                                 foreach ($product_rekomendation as $key) {
                             ?>
-                                    <div class="card-product-item">
+                                    <div class="card-product-item" data-aos="fade-up">
                                         <div class="d-flex">
                                             <img src="<?= base_url('upload/product/' . $key->product_cover); ?>" alt="preview-product">
                                             <div class="card-detail col-lg px-0">
@@ -108,19 +249,31 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+
+<script>
+    var divisor = document.getElementById("divisor"),
+        slider = document.getElementById("slider");
+
+    function moveDivisor() {
+        divisor.style.width = slider.value + "%";
+    }
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
 <script>
     var canvas = new fabric.Canvas("canvas", {
         backgroundColor: 'white',
         // backgroundImage: "<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>",
-        // width: 400,
-        // height: 533
+        width: 300,
+        height: 400
     });
 
-    // fabric.Image.fromURL("<?= base_url('upload/rb_image/' . $sim_response[0]->sim_image_rb); ?>", function(img) {
-    // fabric.Image.fromURL("<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>", function(img) {
-    fabric.Image.fromURL("<?= base_url('upload/crop_image/' . $sim_response[0]->sim_image_crop); ?>", function(img) {
+    fabric.Image.fromURL("<?= base_url('upload/rb_image/' . $sim_response[0]->sim_image_rb); ?>", function(img) {
+        // fabric.Image.fromURL("<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>", function(img) {
         img.filters.push(new fabric.Image.filters.Vibrance({
             vibrance: <?= $set_image->vibrance ?>
         }));
@@ -139,10 +292,10 @@
         console.log(fabric.Image.filters);
 
         img.applyFilters();
-        img.scaleToWidth(400)
+        img.scaleToWidth(300)
         img.set({
-            left: 20,
-            top: 20
+            left: 0,
+            top: 0
         });
         canvas.add(img)
     }, {
@@ -246,4 +399,30 @@
         fabric.Image.filters.Vibrance.fromObject = fabric.Image.filters.BaseFilter.fromObject;
 
     })(typeof exports !== 'undefined' ? exports : this);
+</script>
+
+<script>
+    // Show the loading overlay
+    function showLoadingOverlay() {
+        document.getElementById('loadingOverlay').style.display = 'flex';
+        // Trigger reflow to apply the transition immediately
+        document.getElementById('loadingOverlay').offsetHeight;
+        document.getElementById('loadingOverlay').style.opacity = '1';
+    }
+
+    // Hide the loading overlay with a fade-out effect
+    function hideLoadingOverlay() {
+        document.getElementById('loadingOverlay').style.opacity = '0';
+        setTimeout(function () {
+            document.getElementById('loadingOverlay').style.display = 'none';
+        }, 500); // Adjust the duration to match the transition duration
+    }
+
+    // Call showLoadingOverlay when the page loads
+    showLoadingOverlay();
+
+    // Set a timeout to hide the loading overlay after 5 seconds
+    setTimeout(function () {
+        hideLoadingOverlay();
+    }, 3700);
 </script>
