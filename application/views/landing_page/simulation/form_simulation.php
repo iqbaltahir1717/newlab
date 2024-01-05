@@ -60,6 +60,10 @@
     /* #header {
         display: none;
     } */
+
+    form {
+        height: 100vh;
+    }
 </style>
 
 <main id="main" style="background-color: #FFF; min-height:87vh; height: 87vh;">
@@ -205,6 +209,11 @@
                                         <div class="form-group col-lg-12">
                                             <label for="">Color Teeth References (Regular)</label>
                                             <br><img width="100%" src="<?= base_url('upload/question/teeth.png') ?>">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-12">
+                                            <button class="btn-secondary" style="width:100%; padding: 14.5px" title="Scan"><i class="fa-solid fa-expand"></i> &nbsp; SCAN NOW</button>
                                         </div>
                                     </div>
                                 <?php } else { ?>
