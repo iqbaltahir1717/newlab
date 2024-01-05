@@ -62,30 +62,35 @@
     } */
 </style>
 
-<main id="main" style="background-color: #FFF; min-height:87vh; height: 87vh;">
-    <section id="greetings" class="simulation h-100">
-        <div class="container-fluid px-0  h-100" style="position:relative">
-            <ul class="slider px-0  h-100">
-
-                <?php echo form_open_multipart("simulation/create_simulation") ?>
-                <?php foreach ($sim_question as $no => $key) {
-                ?>
-                    <input type="hidden" class="form-control" placeholder="" name="sim_response_id" value="<?= $this->uri->segment(3) ?> " required="required">
-                    <input type="hidden" class="form-control" placeholder="" name="sim_question_type[]" value="<?= $key->sim_question_type  ?> " required="required">
-                    <input type="hidden" class="form-control" placeholder="" name="sim_question_multi[]" value="<?= $key->sim_question_multi  ?> " required="required">
-                    <input type="hidden" class="form-control" placeholder="" name="question[]" value="<?= $key->sim_question_text ?> " required="required">
-                    <?php echo csrf(); ?>
-                    <li class="h-100 slider-item <?php if ($key->sim_question_order == 1) echo 'active' ?>">
-                        <div class="d-flex flex-wrap content h-100 justify-content-start">
-                            <div class="col-lg-6 px-0 h-100">
-                                <div class="image-container image-holder">
-                                    <div class="overlays"></div>
-                                    <img class="image-banner" src="<?= base_url('assets/core-images/image.png'); ?>" alt="preview">
-                                </div>
-                            </div>
-                            <div class="col-lg-5" style="padding: 32px;">
-                                <div class="text-heading">
-                                    <h3>Please fill your data first for see result.</h3>
+<main id="main" style="background-color: #EEEEEE; max-height:100vh;">
+    <section id="greetings" class="simulation">
+        <div class="container-fluid px-0">
+            <div class="d-flex flex-wrap content align-items-stretch">
+                <!-- <div class="col-lg-6 px-0">
+                    <div class="image-container">
+                        <div class="overlays"></div>
+                        <img src="<?= base_url('assets/core-images/image.png'); ?>" alt="preview">
+                    </div>
+                </div> -->
+                <div class="text-heading">
+                    <h3>Please fill your data first for see result.</h3>
+                </div>
+                <div class="col-lg-12 col-md-6 col-sm-12">
+                    <div class="d-flex flex-column">
+                        <div class="form-simulation">
+                            <?php echo form_open_multipart("simulation/create_simulation") ?>
+                            <?php foreach ($sim_question as $no => $key) {
+                            ?>
+                                <input type="hidden" class="form-control" placeholder="" name="sim_response_id" value="<?= $this->uri->segment(3) ?> " required="required">
+                                <input type="hidden" class="form-control" placeholder="" name="sim_question_type[]" value="<?= $key->sim_question_type  ?> " required="required">
+                                <input type="hidden" class="form-control" placeholder="" name="sim_question_multi[]" value="<?= $key->sim_question_multi  ?> " required="required">
+                                <input type="hidden" class="form-control" placeholder="" name="question[]" value="<?= $key->sim_question_text ?> " required="required">
+                                <?php echo csrf(); ?>
+                                <div class="col-lg-6 px-0">
+                                    <div class="image-container">
+                                        <div class="overlays"></div>
+                                        <img src="<?= base_url('assets/core-images/image.png'); ?>" alt="preview">
+                                    </div>
                                 </div>
                                 <?php if ($key->sim_question_type == 'dropdown') {
                                 ?>
@@ -106,19 +111,18 @@
                                     <?php } else { ?>
                                         <div class="row">
                                             <div class="form-group col-lg-12">
-                                                <label class="intro"><b><?= $key->sim_question_text ?> <span class="hint">(Choose one)​​</span> <span style="">*</span></b></label>
-                                                <div class="description">
-                                                    <select id="response<?= $no ?>" class="select" name="response<?= $no ?>" required style="width:100%">
-                                                        <option value="">-Choose <?= $key->sim_question_text ?>-</option>;
-                                                        <?php
-                                                        $option = $this->m_sim_q_option->read('', '', '', $key->sim_question_id);
-                                                        if ($option) {
-                                                            foreach ($option as $value) {
-                                                                echo '<option>' . $value->sim_q_option_text . '</option>';
-                                                            }
-                                                        } ?>
-                                                    </select>
-                                                </div>
+                                                <label for=""><b><?= $key->sim_question_text ?> <span class="hint">(Choose one)​​</span> <span style="">*</span></b></label>
+
+                                                <select id="response<?= $no ?>" class="select" name="response<?= $no ?>" required style="width:100%">
+                                                    <option value="">-Choose <?= $key->sim_question_text ?>-</option>;
+                                                    <?php
+                                                    $option = $this->m_sim_q_option->read('', '', '', $key->sim_question_id);
+                                                    if ($option) {
+                                                        foreach ($option as $value) {
+                                                            echo '<option>' . $value->sim_q_option_text . '</option>';
+                                                        }
+                                                    } ?>
+                                                </select>
                                             </div>
                                         </div>
                                     <?php } ?>
@@ -207,6 +211,24 @@
                                             <br><img width="100%" src="<?= base_url('upload/question/teeth.png') ?>">
                                         </div>
                                     </div>
+                                    <!-- <div class="row">
+                                                <div class="form-group col-lg-12">
+                                                    <a onclick="uploadFile();" class="btn btn-primary btn-sm btn-block" style="width:100%; padding: 14.5px" title="Scan"><i class="fa-solid fa-expand"></i> SCAN NOW</a>
+                                                </div>
+                                            </div> -->
+                                    </center>
+                                    <!-- <div class="card-product-item mt-4" id="card-color">
+                                            <hr>
+                                            <div class="d-flex mt-4">
+                                                <div class="card-detail col-lg px-0">
+                                                    <center>
+                                                        <h4><?= ucwords('Here is the result scan color of the image your uploaded') ?></h4>
+                                                        <div id="color" class="my-3" style="width:70px; height: 70px; border-radius:50%;">
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                            </div>
+                                        </div> -->
                                 <?php } else { ?>
                                     <div class="row">
                                         <div class="form-group col-lg-12">
@@ -215,28 +237,55 @@
                                         </div>
                                     </div>
                                 <?php } ?>
+                            <?php } ?>
+                            <div id="loading-spinner" style="display: none" class="text-center my-3">
+                                <!-- Your loading spinner HTML/CSS goes here -->
+                                <b>Scan on process, please wait ...</b>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-lg-12">
+                                    <button class="btn-secondary" style="width:100%; padding: 14.5px" title="Scan"><i class="fa-solid fa-expand"></i> &nbsp; SCAN NOW</button>
+                                </div>
+                            </div>
+
+                            <!-- <button id="submit" type="submit" class="btn btn-primary btn-sm" title="Tambah data"> Submit -></button> -->
+                            <?php echo form_close(); ?>
+                        </div>
+
+                        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalLabel">Crop Image Before Upload</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="img-container">
+                                            <div class="row">
+                                                <div class="col-md-8">
+                                                    <img src="" id="sample_image" />
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="preview"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button onclick="uploadFile()" type="button" class="btn btn-primary" id="crop">Crop</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </li>
-                <?php } ?>
-                <?php echo form_close(); ?>
-            </ul>
-            <div style="position:absolute; bottom: 50%; width: 100%; padding: 0 32px;" class="d-flex justify-content-between">
-                <div class="controls">
-                    <a class="previous nav-button">
-                        <span class="visually-hidden">Previous</span>
-                        <span class="icon arrow-left" aria-hidden="true"></span>
-                    </a>
-                </div>
-                <div class="controls">
-                    <a class="next nav-button">
-                        <span class="visually-hidden">Next</span>
-                        <span class="icon arrow-right" aria-hidden="true"></span>
-                    </a>
+                    </div>
                 </div>
             </div>
+        </div>
     </section>
-</main>
+</main><!-- End #main -->
 
 
 
