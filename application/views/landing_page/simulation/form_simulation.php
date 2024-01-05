@@ -6,6 +6,12 @@
 <script src="https://unpkg.com/dropzone"></script>
 <script src="https://unpkg.com/cropperjs"></script>
 
+<script>
+    function showValidationModal() {
+        $('#validationModal').modal('show');
+    }
+</script>
+
 <style>
     .image_area {
         position: relative;
@@ -70,7 +76,6 @@
     <section id="greetings" class="simulation h-100">
         <div class="container-fluid px-0  h-100" style="position:relative">
             <ul class="slider px-0  h-100">
-
                 <?php echo form_open_multipart("simulation/create_simulation") ?>
                 <?php foreach ($sim_question as $no => $key) {
                 ?>
@@ -84,18 +89,20 @@
                             <div class="col-lg-6 px-0 h-100">
                                 <div class="image-container image-holder">
                                     <div class="overlays"></div>
-
+                                    <div class="overlays2"></div>
                                     <img class="image-banner" src="<?= base_url('upload/banner/' . strtolower($sim_response[0]->problems_experienced) . '/' . ($no + 1) . '.png'); ?>" alt="preview">
                                 </div>
                             </div>
                             <div class="col-lg-5" style="padding: 32px;">
-                                <div class="text-heading">
-                                    <h3>Please fill your data first for see result.</h3>
+                                <div class="text-heading intro">
+                                    <h3>Let's Understand Your Skin.</h3>
+                                    <p>Before we reveal personalized results, please share some information about your skin.</p>
                                 </div>
+                                <hr>
                                 <?php if ($key->sim_question_type == 'dropdown') {
                                 ?>
                                     <?php if ($key->sim_question_multi == 'Y') { ?>
-                                        <div class="row" id="multiple">
+                                        <div class="row description" id="multiple">
                                             <div class="form-group col-lg-12">
                                                 <label for=""><b><?= $key->sim_question_text ?> <span class="hint">(Choose one or more)​</span> <span style="">*</span></b></label>
                                                 <select multiple class="select select2" name="response<?= $no ?>[]" required style="width:100%">
@@ -109,10 +116,10 @@
                                             </div>
                                         </div>
                                     <?php } else { ?>
-                                        <div class="row">
+                                        <div class="row description">
                                             <div class="form-group col-lg-12">
-                                                <label class="intro"><b><?= $key->sim_question_text ?> <span class="hint">(Choose one)​​</span> <span style="">*</span></b></label>
-                                                <div class="description">
+                                                <label><b><?= $key->sim_question_text ?> <span class="hint">(Choose one)​​</span> <span style="">*</span></b></label>
+                                                <div class="">
                                                     <select id="response<?= $no ?>" class="select" name="response<?= $no ?>" required style="width:100%">
                                                         <option value="">-Choose <?= $key->sim_question_text ?>-</option>;
                                                         <?php
@@ -128,7 +135,7 @@
                                         </div>
                                     <?php } ?>
                                 <?php } elseif ($key->sim_question_type == 'radio') { ?>
-                                    <div class="row">
+                                    <div class="row description">
                                         <div class=" form-group col-lg-12">
                                             <label for=""><b><?= $key->sim_question_text ?> <span>*</span></b></label>
                                             <div class="row mx-0">
@@ -155,14 +162,14 @@
                                     </div>
 
                                 <?php } elseif ($key->sim_question_type == 'textarea') { ?>
-                                    <div class="row">
+                                    <div class="row description">
                                         <div class="form-group col-lg-12">
                                             <label for=""><b><?= $key->sim_question_text ?> <span>*</span></b></label>
-                                            <textarea name="response<?= $no ?>" cols="20" rows="5" class="form-control" placeholder="<?= $key->sim_question_text ?>"></textarea>
+                                            <textarea required name="response<?= $no ?>" cols="20" rows="5" class="form-control" placeholder="<?= $key->sim_question_text ?>"></textarea>
                                         </div>
                                     </div>
                                 <?php } elseif ($key->sim_question_type == 'info') { ?>
-                                    <div class="row">
+                                    <div class="row description">
                                         <div class="form-group col-lg-12">
                                             <label for=""><b><?= $key->sim_question_text ?> <span>*</span></b></label>
                                             <?php
@@ -172,7 +179,7 @@
                                         </div>
                                     </div>
                                 <?php } elseif ($key->sim_question_type == 'file') { ?>
-                                    <div class="row align-items-end">
+                                    <div class="row align-items-end description">
                                         <div class="form-group col-lg-12">
                                             <label for=""><b><?= $key->sim_question_text ?> <span>*</span></b></label>
                                             <input id="fileupload" accept=".jpeg, .png, .jpg" type="file" class="form-control form-control-xl" style="height:auto !important; padding:12px !important" name="response<?= $no ?>" placeholder="Enter <?= $key->sim_question_text ?> " required>
@@ -182,10 +189,10 @@
                                                                                                                                                                                                                                             else echo "teeth example photos.png" ?>"><u><br>check example here</u></a>
                                         </div>
                                     </div>
-                                    <div class="row mt-4" id="level-bright">
+                                    <div class="row mt-4 description" id="level-bright">
                                         <div class="form-group col-lg-12 text-left">
                                             <label for=""><b>How bright do you want</b></label>
-                                            <select class="select" name="sim_response_level">
+                                            <select required class="select" name="sim_response_level">
                                                 <option value="">- Choose Level Bright -</option>
                                                 <?php for ($i = 1; $i <= 10; $i++) { ?>
                                                     <option value="<?= $i; ?>"><?= $i; ?></option>
@@ -193,39 +200,39 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="row" id="ruler-skin">
+                                    <div class="row description" id="ruler-skin">
                                         <div class="form-group col-lg-12">
                                             <label for="">Color Skin References (Regular)</label>
                                             <br><img width="100%" src="<?= base_url('upload/question/skin.png') ?>">
                                         </div>
                                     </div>
 
-                                    <div class="row" id="ruler-lips">
+                                    <div class="row description" id="ruler-lips">
                                         <div class="form-group col-lg-12">
                                             <label for="">Color Lips References (Regular)</label>
                                             <br><img width="100%" src="<?= base_url('upload/question/lips.png') ?>">
                                         </div>
                                     </div>
-                                    <div class="row" id="ruler-teeth">
+                                    <div class="row description" id="ruler-teeth">
                                         <div class="form-group col-lg-12">
                                             <label for="">Color Teeth References (Regular)</label>
                                             <br><img width="100%" src="<?= base_url('upload/question/teeth.png') ?>">
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row description">
                                         <div class="form-group col-lg-12">
                                             <button type="submit" class="btn-secondary" style="width:100%; padding: 14.5px" title="Scan"><i class="fa-solid fa-expand"></i> &nbsp; SCAN NOW</button>
                                         </div>
                                     </div>
 
                                 <?php } else { ?>
-                                    <div class="row">
+                                    <div class="row description">
                                         <div class="form-group col-lg-12">
                                             <label for=""><b><?= $key->sim_question_text ?> <span>*</span></b></label>
                                             <input id="input_ruler" type="<?= $key->sim_question_type ?>" class="form-control form-control-xl" style="height:auto !important; padding:12px !important" name="response<?= $no ?>" placeholder="Enter <?= $key->sim_question_text ?> " required>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    <div class="row description">
                                         <div class="form-group col-lg-12">
                                             <button type="submit" class="btn-secondary" style="width:100%; padding: 14.5px" title="Scan"><i class="fa-solid fa-expand"></i> &nbsp; SCAN NOW</button>
                                         </div>
@@ -313,14 +320,27 @@
     </div>
 </div>
 
+<div class="modal fade" id="validationModal" tabindex="-1" role="dialog" aria-labelledby="validationModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="validationModalLabel">Please fill required question</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Please fill in all required fields before proceeding.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <!-- <script src="<?php echo base_url() ?>assets/landing_page/vendor/jquery/jquery.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="<?php echo base_url() ?>assets/landing_page/js/main.js"></script>
-
-<!-- SWIPER FORM -->
-
 
 <script>
     $(document).ready(function() {
@@ -458,25 +478,33 @@
     }
 </script>
 
+<!-- SWIPER FORM -->
 <script>
     const items = document.querySelectorAll('.slider-item');
     const itemCount = items.length;
     const nextItem = document.querySelector('.next');
     const previousItem = document.querySelector('.previous');
-    const navItem = document.querySelector('a.toggle-nav');
+    // const scanButton = document.querySelector('.btn-secondary');
     let count = 0;
+    previousItem.style.display = 'none';
 
     function showNextItem() {
-        items[count].classList.remove('active');
+        // Check validation before moving to the next slide
+        if (validateCurrentSlide()) {
+            items[count].classList.remove('active');
 
-        if (count < itemCount - 1) {
-            count++;
+            if (count < itemCount - 1) {
+                count++;
+            } else {
+                count = 0;
+            }
+
+            items[count].classList.add('active');
+            updateButtonVisibility();
         } else {
-            count = 0;
+            // Display a modal if validation fails
+            showValidationModal();
         }
-
-        items[count].classList.add('active');
-        console.log(count);
     }
 
     function showPreviousItem() {
@@ -489,12 +517,40 @@
         }
 
         items[count].classList.add('active');
-        // Check if working...
-        console.log(count);
+        updateButtonVisibility();
     }
 
-    function toggleNavigation() {
-        this.nextElementSibling.classList.toggle('active');
+    function validateCurrentSlide() {
+        // Add your validation logic here
+        // Example: Check if all required fields in the current slide are filled
+        const currentSlideInputs = items[count].querySelectorAll('input[required], select[required], textarea[required]');
+        let isValid = true;
+
+        currentSlideInputs.forEach(input => {
+            if (!input.value.trim()) {
+                // Highlight the unfilled input field (you may want to customize this part)
+                input.style.border = '2px solid red';
+                isValid = false;
+            } else {
+                input.style.border = ''; // Reset border for filled inputs
+            }
+        });
+
+        return isValid;
+    }
+
+    function updateButtonVisibility() {
+        if (count === 0) {
+            previousItem.style.display = 'none';
+        } else {
+            previousItem.style.display = 'flex';
+        }
+
+        if (count === itemCount - 1) {
+            nextItem.style.display = 'none';
+        } else {
+            nextItem.style.display = 'flex';
+        }
     }
 
     function keyPress(e) {
@@ -507,8 +563,18 @@
         }
     }
 
+    function handleScanButtonClick() {
+        // Move to the next slide when the "Scan Now" button is clicked
+        showNextItem();
+    }
+
     nextItem.addEventListener('click', showNextItem);
     previousItem.addEventListener('click', showPreviousItem);
     document.addEventListener('keydown', keyPress);
-    navItem.addEventListener('click', toggleNavigation);
+
+    // Attach the click event handler for the "Scan Now" button
+    scanButton.addEventListener('click', handleScanButtonClick);
+
+    // Initial button visibility setup
+    updateButtonVisibility();
 </script>
