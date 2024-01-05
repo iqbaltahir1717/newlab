@@ -252,7 +252,13 @@ class Simulation extends CI_Controller
 
 		list($r, $g, $b) = sscanf('#' . $data['image_picker'], "#%02x%02x%02x");
 
-		$arr_body = ['#FDEED6', '#F0D2A2', '#E3BB7B', '#DCA96D', '#D79D6A', '#C88652', '#B5774D', '#A35C34', '#794835', '#70513C'];
+		if ($data['sim_response'][0]->problems_experienced == 'Skin')
+			$arr_body = ['#FDEED6', '#F0D2A2', '#E3BB7B', '#DCA96D', '#D79D6A', '#C88652', '#B5774D', '#A35C34', '#794835', '#70513C'];
+		else if ($data['sim_response'][0]->problems_experienced == 'Lips')
+			$arr_body = ['#D05F66', '#D06C71', '#CF7B7D', '#CF8D8D', '#CD9B9A', '#C9A7A6', '#AC8D8A', '#937670', '#7F645D', '#634C44'];
+		else
+			$arr_body = ['#EADDCB', '#F8EFDD', '#FAF1E4', '#F2E4C9', '#F1E2C9', '#F0DAB9', '#EFD5B1', '#E7C69D', '#E1B683', '#DDAE77'];
+
 		for ($i = 0; $i < count($arr_body); $i++) {
 			list($r_c, $g_c, $b_c) = sscanf($arr_body[$i], "#%02x%02x%02x");
 

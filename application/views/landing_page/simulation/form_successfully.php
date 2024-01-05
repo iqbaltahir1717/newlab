@@ -237,6 +237,7 @@
 
                             <?php }
                             } ?>
+                            <a id="lnkDownload" href="#">Save image</a>
 
                         </div>
                     </div>
@@ -272,8 +273,20 @@
         height: 400
     });
 
-    fabric.Image.fromURL("<?= base_url('upload/rb_image/' . $sim_response[0]->sim_image_rb); ?>", function(img) {
-        // fabric.Image.fromURL("<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>", function(img) {
+    var imageSaver = document.getElementById('lnkDownload');
+    imageSaver.addEventListener('click', saveImage, false);
+
+    function saveImage(e) {
+        this.href = canvas.toDataURL({
+            format: 'png',
+            quality: 0.8
+        });
+        this.download = 'canvas.png'
+    }
+
+    // fabric.Image.fromURL("<?= base_url('upload/rb_image/' . $sim_response[0]->sim_image_rb); ?>", function(img) {
+    // fabric.Image.fromURL("<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>", function(img) {
+    fabric.Image.fromURL("<?= base_url('upload/crop_image/' . $sim_response[0]->sim_image_crop); ?>", function(img) {
         img.filters.push(new fabric.Image.filters.Vibrance({
             vibrance: <?= $set_image->vibrance ?>
         }));
@@ -288,6 +301,13 @@
         img.filters.push(new fabric.Image.filters.Contrast({
             contrast: <?= $set_image->contrast ?>
         }));
+
+        img.filters.push(new fabric.Image.filters.BlendColor({
+            color: '#ffffff',
+            opacity: 1
+        }));
+
+        img.filters.push(new fabric.Image.filters.BlackWhite());
 
         console.log(fabric.Image.filters);
 

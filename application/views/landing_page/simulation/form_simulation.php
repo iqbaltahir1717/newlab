@@ -365,22 +365,23 @@
 
 <script language="JavaScript" type="text/javascript">
     $(document).ready(function() {
-        var problem = '<?= $sim_response[0]->problems_experienced ?>';
+        var problem = '<?= strtolower($sim_response[0]->problems_experienced); ?>';
 
         $('.select2').select2();
         $('#card-color').hide();
-        // $('#ruler-skin').hide();
+        $('#ruler-skin').hide();
         $('#ruler-lips').hide();
         $('#ruler-teeth').hide();
+        $('#ruler-' + problem).show();
         // $('#level-bright').hide();
 
 
-        if (problem == 'Skin' || problem == 'Teeth') {
+        // if (problem == 'Skin' || problem == 'Teeth') {
 
-            // $('#multiple').hide();
-            $('#submit').hide();
-            $('#input_ruler').hide();
-        }
+        //     // $('#multiple').hide();
+        //     $('#submit').hide();
+        //     $('#input_ruler').hide();
+        // }
 
         // alert(problem);
     });
