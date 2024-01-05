@@ -84,7 +84,8 @@
                             <div class="col-lg-6 px-0 h-100">
                                 <div class="image-container image-holder">
                                     <div class="overlays"></div>
-                                    <img class="image-banner" src="<?= base_url('assets/core-images/image.png'); ?>" alt="preview">
+
+                                    <img class="image-banner" src="<?= base_url('upload/banner/' . strtolower($sim_response[0]->problems_experienced) . '/' . ($no + 1) . '.png'); ?>" alt="preview">
                                 </div>
                             </div>
                             <div class="col-lg-5" style="padding: 32px;">
@@ -202,7 +203,7 @@
                                     <div class="row" id="ruler-lips">
                                         <div class="form-group col-lg-12">
                                             <label for="">Color Lips References (Regular)</label>
-                                            <br><img width="100%" src="<?= base_url('upload/question/libs.png') ?>">
+                                            <br><img width="100%" src="<?= base_url('upload/question/lips.png') ?>">
                                         </div>
                                     </div>
                                     <div class="row" id="ruler-teeth">
@@ -213,9 +214,10 @@
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-lg-12">
-                                            <button class="btn-secondary" style="width:100%; padding: 14.5px" title="Scan"><i class="fa-solid fa-expand"></i> &nbsp; SCAN NOW</button>
+                                            <button type="submit" class="btn-secondary" style="width:100%; padding: 14.5px" title="Scan"><i class="fa-solid fa-expand"></i> &nbsp; SCAN NOW</button>
                                         </div>
                                     </div>
+
                                 <?php } else { ?>
                                     <div class="row">
                                         <div class="form-group col-lg-12">
@@ -223,7 +225,14 @@
                                             <input id="input_ruler" type="<?= $key->sim_question_type ?>" class="form-control form-control-xl" style="height:auto !important; padding:12px !important" name="response<?= $no ?>" placeholder="Enter <?= $key->sim_question_text ?> " required>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="form-group col-lg-12">
+                                            <button type="submit" class="btn-secondary" style="width:100%; padding: 14.5px" title="Scan"><i class="fa-solid fa-expand"></i> &nbsp; SCAN NOW</button>
+                                        </div>
+                                    </div>
                                 <?php } ?>
+
+
                             </div>
                         </div>
                     </li>
@@ -275,6 +284,35 @@
     </section>
 </main>
 
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel">Crop Image Before Upload</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="img-container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <img src="" id="sample_image" />
+                        </div>
+                        <div class="col-md-4">
+                            <div class="preview"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button onclick="uploadFile()" type="button" class="btn btn-primary" id="crop">Crop</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <!-- <script src="<?php echo base_url() ?>assets/landing_page/vendor/jquery/jquery.min.js"></script> -->
@@ -282,60 +320,7 @@
 <script src="<?php echo base_url() ?>assets/landing_page/js/main.js"></script>
 
 <!-- SWIPER FORM -->
-<script>
-    const items = document.querySelectorAll('.slider-item');
-    const itemCount = items.length;
-    const nextItem = document.querySelector('.next');
-    const previousItem = document.querySelector('.previous');
-    const navItem = document.querySelector('a.toggle-nav');
-    let count = 0;
 
-    function showNextItem() {
-        items[count].classList.remove('active');
-
-        if (count < itemCount - 1) {
-            count++;
-        } else {
-            count = 0;
-        }
-
-        items[count].classList.add('active');
-        console.log(count);
-    }
-
-    function showPreviousItem() {
-        items[count].classList.remove('active');
-
-        if (count > 0) {
-            count--;
-        } else {
-            count = itemCount - 1;
-        }
-
-        items[count].classList.add('active');
-        // Check if working...
-        console.log(count);
-    }
-
-    function toggleNavigation() {
-        this.nextElementSibling.classList.toggle('active');
-    }
-
-    function keyPress(e) {
-        e = e || window.event;
-
-        if (e.keyCode == '37') {
-            showPreviousItem();
-        } else if (e.keyCode == '39') {
-            showNextItem();
-        }
-    }
-
-    nextItem.addEventListener('click', showNextItem);
-    previousItem.addEventListener('click', showPreviousItem);
-    document.addEventListener('keydown', keyPress);
-    navItem.addEventListener('click', toggleNavigation);
-</script>
 
 <script>
     $(document).ready(function() {
@@ -471,4 +456,59 @@
             }
         });
     }
+</script>
+
+<script>
+    const items = document.querySelectorAll('.slider-item');
+    const itemCount = items.length;
+    const nextItem = document.querySelector('.next');
+    const previousItem = document.querySelector('.previous');
+    const navItem = document.querySelector('a.toggle-nav');
+    let count = 0;
+
+    function showNextItem() {
+        items[count].classList.remove('active');
+
+        if (count < itemCount - 1) {
+            count++;
+        } else {
+            count = 0;
+        }
+
+        items[count].classList.add('active');
+        console.log(count);
+    }
+
+    function showPreviousItem() {
+        items[count].classList.remove('active');
+
+        if (count > 0) {
+            count--;
+        } else {
+            count = itemCount - 1;
+        }
+
+        items[count].classList.add('active');
+        // Check if working...
+        console.log(count);
+    }
+
+    function toggleNavigation() {
+        this.nextElementSibling.classList.toggle('active');
+    }
+
+    function keyPress(e) {
+        e = e || window.event;
+
+        if (e.keyCode == '37') {
+            showPreviousItem();
+        } else if (e.keyCode == '39') {
+            showNextItem();
+        }
+    }
+
+    nextItem.addEventListener('click', showNextItem);
+    previousItem.addEventListener('click', showPreviousItem);
+    document.addEventListener('keydown', keyPress);
+    navItem.addEventListener('click', toggleNavigation);
 </script>

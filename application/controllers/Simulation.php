@@ -285,6 +285,13 @@ class Simulation extends CI_Controller
 			$data['set_image'] = (object) $this->check_lips($lev_check . '_' . $lev_res);
 		}
 
+		if ($data['sim_response'][0]->problems_experienced == 'Teeth') {
+			$lev_check = round(($data['level'] + 1) / 2);
+
+			$lev_res = round($data['sim_response'][0]->sim_response_level / 2);
+			$data['set_image'] = (object) $this->check_teeth($lev_check . '_' . $lev_res);
+		}
+
 		// echo '<pre>';
 		// print_r($arr_body);
 		// echo '</pre>';
@@ -309,7 +316,7 @@ class Simulation extends CI_Controller
 		// die;
 
 		// TEMPLATE
-		$view         = "landing_page/simulation/form_successfully_testing";
+		$view         = "landing_page/simulation/form_successfully";
 		$viewCategory = "all";
 		TemplateForm($data, $view, $viewCategory);
 	}
@@ -476,6 +483,168 @@ class Simulation extends CI_Controller
 	}
 
 	function check_lips($value)
+	{
+		$arr = array(
+			'1_1' => array(
+				'vibrance' => 0,
+				'saturation' => 0,
+				'brightness' => 0,
+				'contrast' => 0,
+			),
+			'1_2' => array(
+				'vibrance' => -0.1,
+				'saturation' => 0.1,
+				'brightness' => 0,
+				'contrast' => 0,
+			),
+			'1_3' => array(
+				'vibrance' => -0.3,
+				'saturation' => -0.3,
+				'brightness' => -0.03,
+				'contrast' => 0,
+			),
+			'1_4' => array(
+				'vibrance' => -0.55,
+				'saturation' => -0.13,
+				'brightness' => -0.08,
+				'contrast' => 0,
+			),
+			'1_5' => array(
+				'vibrance' => -0.825,
+				'saturation' => -0.675,
+				'brightness' => -0.2,
+				'contrast' => 0,
+			),
+
+			'2_1' => array(
+				'vibrance' => 0.4,
+				'saturation' => 0.2,
+				'brightness' => 0.05,
+				'contrast' => 0.05,
+			),
+			'2_2' => array(
+				'vibrance' => 0,
+				'saturation' => 0,
+				'brightness' => 0,
+				'contrast' => 0,
+			),
+			'2_3' => array(
+				'vibrance' => -0.275,
+				'saturation' => -0.275,
+				'brightness' => 0,
+				'contrast' => 0,
+			),
+			'2_4' => array(
+				'vibrance' => -0.55,
+				'saturation' => -0.475,
+				'brightness' => -0.1,
+				'contrast' => 0,
+			),
+			'2_5' => array(
+				'vibrance' => -0.95,
+				'saturation' => -0.475,
+				'brightness' => -0.1,
+				'contrast' => 0,
+			),
+
+			'3_1' => array(
+				'vibrance' => 0.5,
+				'saturation' => 0.275,
+				'brightness' => 0.06,
+				'contrast' => 0.05,
+			),
+			'3_2' => array(
+				'vibrance' => 0.2,
+				'saturation' => 0.175,
+				'brightness' => 0.02,
+				'contrast' => 0.02,
+			),
+			'3_3' => array(
+				'vibrance' => 0,
+				'saturation' => 0,
+				'brightness' => 0,
+				'contrast' => 0,
+			),
+			'3_4' => array(
+				'vibrance' => -0.55,
+				'saturation' => -0.475,
+				'brightness' => -0.1,
+				'contrast' => 0,
+			),
+			'3_5' => array(
+				'vibrance' => -0.95,
+				'saturation' => -0.475,
+				'brightness' => -0.1,
+				'contrast' => 0,
+			),
+
+			'4_1' => array(
+				'vibrance' => 0.75,
+				'saturation' => 0.675,
+				'brightness' => 0.08,
+				'contrast' => 0.1,
+			),
+			'4_2' => array(
+				'vibrance' => 0.575,
+				'saturation' => 0.45,
+				'brightness' => 0.08,
+				'contrast' => 0.11,
+			),
+			'4_3' => array(
+				'vibrance' => 0.1,
+				'saturation' => 0.25,
+				'brightness' => 0.0,
+				'contrast' => 0.08,
+			),
+			'4_4' => array(
+				'vibrance' => 0,
+				'saturation' => 0,
+				'brightness' => 0,
+				'contrast' => 0,
+			),
+			'4_5' => array(
+				'vibrance' => -0.8,
+				'saturation' => -0.175,
+				'brightness' => -0.04,
+				'contrast' => 0.08,
+			),
+
+			'5_1' => array(
+				'vibrance' => 0.75,
+				'saturation' => 0.675,
+				'brightness' => 0.08,
+				'contrast' => 0.1,
+			),
+			'5_2' => array(
+				'vibrance' => 0.575,
+				'saturation' => 0.45,
+				'brightness' => 0.08,
+				'contrast' => 0.11,
+			),
+			'5_3' => array(
+				'vibrance' => 0.1,
+				'saturation' => 0.25,
+				'brightness' => 0.0,
+				'contrast' => 0.08,
+			),
+			'5_4' => array(
+				'vibrance' => 0.1,
+				'saturation' => 0.25,
+				'brightness' => 0.0,
+				'contrast' => 0.08,
+			),
+			'5_5' => array(
+				'vibrance' => 0,
+				'saturation' => 0,
+				'brightness' => 0,
+				'contrast' => 0,
+			),
+		);
+		return $arr[$value];
+	}
+
+
+	function check_teeth($value)
 	{
 		$arr = array(
 			'1_1' => array(

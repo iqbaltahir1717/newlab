@@ -62,7 +62,7 @@
     }
 
     div#comparison figure div {
-        background-image: url(<?= base_url('upload/crop_image/' . $sim_response[0]->sim_image_crop); ?>);
+        background-image: url(<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>);
         background-size: cover;
         background-repeat: no-repeat;
         background-position: left;
@@ -288,8 +288,8 @@
     }
 
     // fabric.Image.fromURL("<?= base_url('upload/rb_image/' . $sim_response[0]->sim_image_rb); ?>", function(img) {
-    // fabric.Image.fromURL("<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>", function(img) {
-    fabric.Image.fromURL("<?= base_url('upload/crop_image/' . $sim_response[0]->sim_image_crop); ?>", function(img) {
+    fabric.Image.fromURL("<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>", function(img) {
+        // fabric.Image.fromURL("<?= base_url('upload/crop_image/' . $sim_response[0]->sim_image_crop); ?>", function(img) {
         img.filters.push(new fabric.Image.filters.Vibrance({
             vibrance: <?= $set_image->vibrance ?>
         }));
