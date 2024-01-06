@@ -93,9 +93,9 @@ class Simulation extends CI_Controller
 
 	public function upload_image()
 	{
-		$filename = $_FILES['file']['name'];
+		$filename = rand(111111111, 999999999) . date('His');
 		$ext = pathinfo($filename, PATHINFO_EXTENSION);
-		$location = "upload/upload_image/" . $filename;
+		$location = "upload/upload_image/" . $filename . '.' . $ext;
 		move_uploaded_file($_FILES['file']['tmp_name'], $location);
 
 		// if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
@@ -657,35 +657,35 @@ class Simulation extends CI_Controller
 				'contrast' => 0,
 			),
 			'1_2' => array(
-				'vibrance' => -0.1,
-				'saturation' => 0.1,
+				'vibrance' => 0.275,
+				'saturation' => 0.225,
 				'brightness' => 0,
 				'contrast' => 0,
 			),
 			'1_3' => array(
-				'vibrance' => -0.3,
-				'saturation' => -0.3,
-				'brightness' => -0.03,
-				'contrast' => 0,
+				'vibrance' => 0.5,
+				'saturation' => 0.45,
+				'brightness' => -0.15,
+				'contrast' => 0.05,
 			),
 			'1_4' => array(
-				'vibrance' => -0.55,
-				'saturation' => -0.13,
-				'brightness' => -0.08,
-				'contrast' => 0,
+				'vibrance' => 0.5,
+				'saturation' => 0.625,
+				'brightness' => -0.15,
+				'contrast' => 0.2,
 			),
 			'1_5' => array(
-				'vibrance' => -0.825,
-				'saturation' => -0.675,
-				'brightness' => -0.2,
-				'contrast' => 0,
+				'vibrance' => 0.65,
+				'saturation' => 0.725,
+				'brightness' => -0.25,
+				'contrast' => 0.23,
 			),
 
 			'2_1' => array(
-				'vibrance' => 0.4,
-				'saturation' => 0.2,
-				'brightness' => 0.05,
-				'contrast' => 0.05,
+				'vibrance' => -0.275,
+				'saturation' => -0.15,
+				'brightness' => 0.04,
+				'contrast' => 0,
 			),
 			'2_2' => array(
 				'vibrance' => 0,
@@ -694,35 +694,35 @@ class Simulation extends CI_Controller
 				'contrast' => 0,
 			),
 			'2_3' => array(
-				'vibrance' => -0.275,
-				'saturation' => -0.275,
-				'brightness' => 0,
-				'contrast' => 0,
+				'vibrance' => 0.5,
+				'saturation' => 0.45,
+				'brightness' => -0.15,
+				'contrast' => 0.05,
 			),
 			'2_4' => array(
-				'vibrance' => -0.55,
-				'saturation' => -0.475,
-				'brightness' => -0.1,
-				'contrast' => 0,
+				'vibrance' => 0.5,
+				'saturation' => 0.625,
+				'brightness' => -0.15,
+				'contrast' => 0.2,
 			),
 			'2_5' => array(
-				'vibrance' => -0.95,
-				'saturation' => -0.475,
-				'brightness' => -0.1,
-				'contrast' => 0,
+				'vibrance' => 0.65,
+				'saturation' => 0.725,
+				'brightness' => -0.25,
+				'contrast' => 0.23,
 			),
 
 			'3_1' => array(
-				'vibrance' => 0.5,
-				'saturation' => 0.275,
-				'brightness' => 0.06,
-				'contrast' => 0.05,
+				'vibrance' => -0.275,
+				'saturation' => -0.3,
+				'brightness' => 0.04,
+				'contrast' => 0,
 			),
 			'3_2' => array(
-				'vibrance' => 0.2,
-				'saturation' => 0.175,
-				'brightness' => 0.02,
-				'contrast' => 0.02,
+				'vibrance' => -0.1,
+				'saturation' => -0.125,
+				'brightness' => 0.04,
+				'contrast' => 0,
 			),
 			'3_3' => array(
 				'vibrance' => 0,
@@ -731,35 +731,35 @@ class Simulation extends CI_Controller
 				'contrast' => 0,
 			),
 			'3_4' => array(
-				'vibrance' => -0.55,
-				'saturation' => -0.475,
+				'vibrance' => 0.275,
+				'saturation' => 0.35,
 				'brightness' => -0.1,
 				'contrast' => 0,
 			),
 			'3_5' => array(
-				'vibrance' => -0.95,
-				'saturation' => -0.475,
+				'vibrance' => 0.45,
+				'saturation' => 0.475,
 				'brightness' => -0.1,
 				'contrast' => 0,
 			),
 
 			'4_1' => array(
-				'vibrance' => 0.75,
-				'saturation' => 0.675,
-				'brightness' => 0.08,
-				'contrast' => 0.1,
+				'vibrance' => -0.15,
+				'saturation' => -0.4,
+				'brightness' => 0.19,
+				'contrast' => 0,
 			),
 			'4_2' => array(
-				'vibrance' => 0.575,
-				'saturation' => 0.45,
+				'vibrance' => -0.15,
+				'saturation' => -0.25,
 				'brightness' => 0.08,
-				'contrast' => 0.11,
+				'contrast' => 0,
 			),
 			'4_3' => array(
-				'vibrance' => 0.1,
-				'saturation' => 0.25,
-				'brightness' => 0.0,
-				'contrast' => 0.08,
+				'vibrance' => -0.1,
+				'saturation' => -0.075,
+				'brightness' => 0.08,
+				'contrast' => 0,
 			),
 			'4_4' => array(
 				'vibrance' => 0,
@@ -768,35 +768,35 @@ class Simulation extends CI_Controller
 				'contrast' => 0,
 			),
 			'4_5' => array(
-				'vibrance' => -0.8,
-				'saturation' => -0.175,
-				'brightness' => -0.04,
-				'contrast' => 0.08,
+				'vibrance' => 0.15,
+				'saturation' => 0.2,
+				'brightness' => 0,
+				'contrast' => 0,
 			),
 
 			'5_1' => array(
-				'vibrance' => 0.75,
-				'saturation' => 0.675,
-				'brightness' => 0.08,
-				'contrast' => 0.1,
+				'vibrance' => -0.15,
+				'saturation' => -0.4,
+				'brightness' => 0.19,
+				'contrast' => 0,
 			),
 			'5_2' => array(
-				'vibrance' => 0.575,
-				'saturation' => 0.45,
+				'vibrance' => -0.15,
+				'saturation' => -0.25,
 				'brightness' => 0.08,
-				'contrast' => 0.11,
+				'contrast' => 0,
 			),
 			'5_3' => array(
-				'vibrance' => 0.1,
-				'saturation' => 0.25,
-				'brightness' => 0.0,
-				'contrast' => 0.08,
+				'vibrance' => -0.1,
+				'saturation' => -0.075,
+				'brightness' => 0.08,
+				'contrast' => 0,
 			),
 			'5_4' => array(
-				'vibrance' => 0.1,
-				'saturation' => 0.25,
-				'brightness' => 0.0,
-				'contrast' => 0.08,
+				'vibrance' => -0.1,
+				'saturation' => -0.075,
+				'brightness' => 0.08,
+				'contrast' => 0,
 			),
 			'5_5' => array(
 				'vibrance' => 0,
@@ -804,6 +804,8 @@ class Simulation extends CI_Controller
 				'brightness' => 0,
 				'contrast' => 0,
 			),
+
+
 		);
 		return $arr[$value];
 	}

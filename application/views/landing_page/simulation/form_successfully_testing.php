@@ -37,9 +37,9 @@
                                 <span>Saturation</span>
                                 <input type="range" value="<?= $set_image->saturation ?>" min="-1" max="1" step="0.025" style="width: 200px;" onchange="setSaturation(this.value)" /><br>
                                 <span>Brightness</span>
-                                <input type="range" value="<?= $set_image->brightness ?>" min="-0.2" max="0.2" step="0.01" style="width: 200px;" onchange="setBrightness(this.value)" /><br>
+                                <input type="range" value="<?= $set_image->brightness ?>" min="-1" max="1" step="0.01" style="width: 200px;" onchange="setBrightness(this.value)" /><br>
                                 <span>Contrast</span>
-                                <input type="range" value="<?= $set_image->contrast ?>" min="0" max="0.3" step="0.01" style="width: 200px;" onchange="setContrast(this.value)" />
+                                <input type="range" value="<?= $set_image->contrast ?>" min="-1" max="1" step="0.01" style="width: 200px;" onchange="setContrast(this.value)" />
                                 <canvas id="canvas" width="500" height="600"></canvas>
                             </div>
                             <br>
@@ -136,6 +136,10 @@
             contrast: <?= $set_image->contrast ?>
         }));
 
+        // img.filters.push(new fabric.Image.filters.TeethWhitening({
+        //     intensity: 0.01
+        // }));
+
         console.log(fabric.Image.filters);
 
         img.applyFilters();
@@ -144,10 +148,40 @@
             left: 20,
             top: 20
         });
+
         canvas.add(img)
+
     }, {
         crossOrigin: 'anonymous'
     });
+
+    // Define the custom filter
+    fabric.Image.filters.TeethWhitening = fabric.util.createClass(
+        fabric.Image.filters.BaseFilter, {
+
+            type: 'TeethWhitening',
+
+            initialize: function(options) {
+                options = options || {};
+                this.intensity = options.intensity || 1;
+
+            },
+
+            applyTo: function(canvasEl) {
+                var context = canvasEl.getContext('2d');
+                alert('akk');
+                imageData = context.getImageData(0, 0, canvasEl.width, canvasEl.height);
+                data = imageData.data;
+
+                // Adjust the blue component to enhance white color
+                for (var i = 0; i < data.length; i += 4) {
+                    data[i + 2] = Math.min(255, data[i + 2] * (1 + this.intensity));
+                }
+
+                context.putImageData(imageData, 0, 0);
+            }
+        }
+    );
 
     function setContrast(value) {
         console.log('setContrast: ' + value);
