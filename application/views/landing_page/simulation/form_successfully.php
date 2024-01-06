@@ -276,16 +276,16 @@
         height: 400
     });
 
-    var imageSaver = document.getElementById('lnkDownload');
-    imageSaver.addEventListener('click', saveImage, false);
+    // var imageSaver = document.getElementById('lnkDownload');
+    // imageSaver.addEventListener('click', saveImage, false);
 
-    function saveImage(e) {
-        this.href = canvas.toDataURL({
-            format: 'png',
-            quality: 0.8
-        });
-        this.download = 'canvas.png'
-    }
+    // function saveImage(e) {
+    //     this.href = canvas.toDataURL({
+    //         format: 'png',
+    //         quality: 0.8
+    //     });
+    //     this.download = 'canvas.png'
+    // }
 
     // fabric.Image.fromURL("<?= base_url('upload/rb_image/' . $sim_response[0]->sim_image_rb); ?>", function(img) {
     fabric.Image.fromURL("<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>", function(img) {
@@ -441,11 +441,11 @@
         }, 500); // Adjust the duration to match the transition duration
     }
 
-    // // Call showLoadingOverlay when the page loads
-    // showLoadingOverlay();
+    // Call showLoadingOverlay when the page loads
+    showLoadingOverlay();
 
-    // // Set a timeout to hide the loading overlay after 5 seconds
-    // setTimeout(function() {
-    //     hideLoadingOverlay();
-    // }, 3700);
+    // Set a timeout to hide the loading overlay after 5 seconds
+    setTimeout(function() {
+        hideLoadingOverlay();
+    }, 3700);
 </script>
