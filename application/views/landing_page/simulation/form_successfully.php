@@ -146,8 +146,8 @@
                         </a>
                     </div>
                     <div style="padding: 32px 24px; border-radius: 21px; background: #FFF; box-shadow: 9px 9px 18px 0px rgba(121, 121, 121, 0.10), -9px -9px 18px 0px rgba(170, 170, 170, 0.05);" class="text-center">
-                        <h4 class="mb-3">Before After Enhance Skin</h4>
-                        <p style="color:#fafafa; padding:8px 16px; background:#000; border-radius:99px; font-size:16px;">System enhance your skin from <b>level <?= $level + 1 ?></b> <i class="fa-solid fa-arrow-right"></i> <b style="color:#F5CC2A">level <?= $sim_response[0]->sim_response_level ?></b></p>
+                        <h4 class="mb-3">Before After Enhance <?php echo $sim_response[0]->problems_experienced ?></h4>
+                        <p style="color:#fafafa; padding:8px 16px; background:#000; border-radius:99px; font-size:16px;">System enhance your <?php echo strtolower($sim_response[0]->problems_experienced) ?> from <b>level <?= $level + 1 ?></b> <i class="fa-solid fa-arrow-right"></i> <b style="color:#F5CC2A">level <?= $sim_response[0]->sim_response_level ?></b></p>
                         <div class="row mt-4 mb-4 justify-content-center">
                             <div id="comparison">
                                 <figure>
@@ -181,10 +181,10 @@
                                 </p>
                             </div>
                         </div>
-                        <!-- <p>Check Level Skin Number : <?= $level + 1 ?></p> -->
+
                         <hr style="border:1px solid #000">
-                        <h4>YOUR LEVEL SKIN</h4>
-                        <p>The scan result indicates that the brightness level of your skin is at a <span style="padding:4px 12px; color:#fafafa; background:#000; border-radius:99px; font-weight:bold">level <?= $level + 1 ?></span></p>
+                        <h4>YOUR LEVEL <?php echo strtoupper($sim_response[0]->problems_experienced) ?></h4>
+                        <p>The scan result indicates that the brightness level of your <?php echo strtolower($sim_response[0]->problems_experienced) ?> is at a <span style="padding:4px 12px; color:#fafafa; background:#000; border-radius:99px; font-weight:bold">level <?= $level + 1 ?></span></p>
                         <img src="<?= base_url('upload/rules/' . strtolower($sim_response[0]->problems_experienced) . '/' . $level + 1 . '.jpg'); ?>" alt="" srcset="">
 
                         <hr style="border:1px solid #000">
@@ -240,7 +240,7 @@
 
                             <?php }
                             } ?>
-                            <a id="lnkDownload" href="#">Save image</a>
+                            <!-- <a id="lnkDownload" href="#">Save image</a> -->
 
                         </div>
                     </div>

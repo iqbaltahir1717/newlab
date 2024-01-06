@@ -316,7 +316,10 @@ class Simulation extends CI_Controller
 		// die;
 
 		// TEMPLATE
-		$view         = "landing_page/simulation/form_successfully";
+		if (empty($data['set_image']))
+			$view         = "landing_page/simulation/form_successfully_body";
+		else
+			$view         = "landing_page/simulation/form_successfully";
 		$viewCategory = "all";
 		TemplateForm($data, $view, $viewCategory);
 	}

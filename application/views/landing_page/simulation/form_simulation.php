@@ -95,8 +95,8 @@
                             </div>
                             <div class="col-lg-5" style="padding: 32px;">
                                 <div class="text-heading intro">
-                                    <h3>Let's Understand Your Skin.</h3>
-                                    <p>Before we reveal personalized results, please share some information about your skin.</p>
+                                    <h3>Let's Understand Your <?php echo $sim_response[0]->problems_experienced ?>.</h3>
+                                    <p>Before we reveal personalized results, please share some information about your <?php echo strtolower($sim_response[0]->problems_experienced) ?>.</p>
                                 </div>
                                 <hr>
                                 <?php if ($key->sim_question_type == 'dropdown') {
@@ -224,7 +224,6 @@
                                             <button type="submit" class="btn-secondary" style="width:100%; padding: 14.5px" title="Scan"><i class="fa-solid fa-expand"></i> &nbsp; SCAN NOW</button>
                                         </div>
                                     </div>
-
                                 <?php } else { ?>
                                     <div class="row description">
                                         <div class="form-group col-lg-12">
@@ -232,6 +231,10 @@
                                             <input id="input_ruler" type="<?= $key->sim_question_type ?>" class="form-control form-control-xl" style="height:auto !important; padding:12px !important" name="response<?= $no ?>" placeholder="Enter <?= $key->sim_question_text ?> " required>
                                         </div>
                                     </div>
+
+                                <?php } ?>
+
+                                <?php if ($no == 7) { ?>
                                     <div class="row description">
                                         <div class="form-group col-lg-12">
                                             <button type="submit" class="btn-secondary" style="width:100%; padding: 14.5px" title="Scan"><i class="fa-solid fa-expand"></i> &nbsp; SCAN NOW</button>
