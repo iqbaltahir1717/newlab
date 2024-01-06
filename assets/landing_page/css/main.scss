@@ -679,3 +679,44 @@ $red: #e83f43;
 	white-space: nowrap;
 	width: 1px;
 }
+
+.nav-form {
+	position: absolute;
+	bottom: 50%;
+	width: 100%;
+	padding: 0 32px;
+}
+
+.simulation {
+	.container-right {
+		margin-bottom: 7em;
+	}
+}
+@media screen and (max-width: 767px) {
+	.simulation {
+		form {
+			height: auto !important;
+		}
+		.container-left {
+			height: auto !important;
+		}
+		.container-right {
+			margin-bottom: 32px;
+		}
+	}
+	.h-100 {
+		height: auto !important;
+	}
+	.nav-form {
+		background-color: $white;
+		bottom: 0;
+		padding: 0;
+		position: fixed;
+		z-index: 100;
+		justify-content: center !important;
+		border-top: 1px solid $border-color;
+	}
+	#main {
+		height: auto;
+	}
+}

@@ -63,17 +63,18 @@
         text-align: center;
     }
 
-    /* #header {
-        display: none;
-    } */
-
     form {
         height: 100vh;
     }
+
+    #main {
+        background-color: #FFF;
+        height: 87vh;
+    }
 </style>
 
-<main id="main" style="background-color: #FFF; min-height:87vh; height: 87vh;">
-    <section id="greetings" class="simulation h-100">
+<main id="main">
+    <div id="greetings" class="simulation h-100">
         <div class="container-fluid px-0  h-100" style="position:relative">
             <ul class="slider px-0  h-100">
                 <?php echo form_open_multipart("simulation/create_simulation") ?>
@@ -86,14 +87,14 @@
                     <?php echo csrf(); ?>
                     <li class="h-100 slider-item <?php if ($key->sim_question_order == 1) echo 'active' ?>">
                         <div class="d-flex flex-wrap content h-100 justify-content-start">
-                            <div class="col-lg-6 px-0 h-100">
+                            <div class="col-lg-6 px-0 h-100 container-left">
                                 <div class="image-container image-holder">
                                     <div class="overlays"></div>
                                     <div class="overlays2"></div>
                                     <img class="image-banner" src="<?= base_url('upload/banner/' . strtolower($sim_response[0]->problems_experienced) . '/' . ($no + 1) . '.png'); ?>" alt="preview">
                                 </div>
                             </div>
-                            <div class="col-lg-5" style="padding: 32px;">
+                            <div class="col-lg-5 container-right" style="padding: 32px;">
                                 <div class="text-heading intro">
                                     <h3>Let's Understand Your <?php echo $sim_response[0]->problems_experienced ?>.</h3>
                                     <p>Before we reveal personalized results, please share some information about your <?php echo strtolower($sim_response[0]->problems_experienced) ?>.</p>
@@ -184,10 +185,6 @@
                                             <label for=""><b><?= $key->sim_question_text ?> <span>*</span></b></label>
                                             <input id="fileupload" accept=".jpeg, .png, .jpg" type="file" class="form-control form-control-xl" style="height:auto !important; padding:12px !important" name="response<?= $no ?>" placeholder="Enter <?= $key->sim_question_text ?> " required>
                                         </div>
-                                        <div class="col-lg-12">
-                                            <span style="color:red"><i>Please choose a picture with close up to the object for achieve a more accurate color scan.</i></span> <a target="__blank" href="<?= base_url(); ?>upload/question/<?php if ($sim_response[0]->problems_experienced  == "Skin") echo "lip example photos.png";
-                                                                                                                                                                                                                                            else echo "teeth example photos.png" ?>"><u><br>check example here</u></a>
-                                        </div>
                                     </div>
                                     <div class="row mt-4 description" id="level-bright">
                                         <div class="form-group col-lg-12 text-left">
@@ -277,7 +274,7 @@
                     </div>
                 </div>
             </div>
-            <div style="position:absolute; bottom: 50%; width: 100%; padding: 0 32px;" class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between nav-form">
                 <div class="controls">
                     <a class="previous nav-button">
                         <span class="visually-hidden">Previous</span>
@@ -291,7 +288,7 @@
                     </a>
                 </div>
             </div>
-    </section>
+        </div>
 </main>
 
 <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">

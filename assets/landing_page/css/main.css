@@ -907,4 +907,44 @@ header .navbar {
   white-space: nowrap;
   width: 1px;
 }
+
+.nav-form {
+  position: absolute;
+  bottom: 50%;
+  width: 100%;
+  padding: 0 32px;
+}
+
+.simulation .container-right {
+  margin-bottom: 7em;
+}
+
+@media screen and (max-width: 767px) {
+  .simulation form {
+    height: auto !important;
+  }
+  .simulation .container-left {
+    height: auto !important;
+  }
+  .simulation .container-right {
+    margin-bottom: 32px;
+  }
+  .h-100 {
+    height: auto !important;
+  }
+  .nav-form {
+    background-color: #fff;
+    bottom: 0;
+    padding: 0;
+    position: fixed;
+    z-index: 100;
+    -webkit-box-pack: center !important;
+        -ms-flex-pack: center !important;
+            justify-content: center !important;
+    border-top: 1px solid #e0e0e0;
+  }
+  #main {
+    height: auto;
+  }
+}
 /*# sourceMappingURL=main.css.map */
