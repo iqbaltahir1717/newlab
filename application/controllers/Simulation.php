@@ -93,9 +93,9 @@ class Simulation extends CI_Controller
 
 	public function upload_image()
 	{
-		$filename = rand(111111111, 999999999) . date('His');
-		$ext = pathinfo($filename, PATHINFO_EXTENSION);
-		$location = "upload/upload_image/" . $filename . '.' . $ext;
+		$ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+		$filename = rand(111111111, 999999999) . date('His') . '.' . $ext;
+		$location = "upload/upload_image/" . $filename;
 		move_uploaded_file($_FILES['file']['tmp_name'], $location);
 
 		// if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
