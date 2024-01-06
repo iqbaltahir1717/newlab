@@ -604,7 +604,8 @@ header .navbar {
 }
 
 .simulation .text-heading h3 {
-  font-size: 48px;
+  font-size: 32px;
+  font-weight: 700;
 }
 
 .simulation .text-heading p {
@@ -916,10 +917,10 @@ header .navbar {
 }
 
 .simulation .container-right {
-  margin-bottom: 7em;
+  margin-bottom: 4em;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1024px) {
   .simulation form {
     height: auto !important;
   }
@@ -945,6 +946,10 @@ header .navbar {
   }
   #main {
     height: auto;
+  }
+  .overlays,
+  .overlays2 {
+    display: none;
   }
 }
 /*# sourceMappingURL=main.css.map */

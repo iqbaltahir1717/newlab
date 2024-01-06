@@ -129,6 +129,26 @@
     input[type=range]:focus::-moz-range-thumb {
         background: rgba(255, 255, 255, 0.5);
     }
+    <?php if(strtolower($sim_response[0]->problems_experienced) == 'lips' || strtolower($sim_response[0]->problems_experienced) == 'teeth' ) {
+?>
+    div#comparison canvas{
+        object-fit:cover;
+        height:100px !important;
+        width:100%;
+        position: relative !important;
+        object-position: left;
+    }
+    #canvas{
+        top:48px !important;
+    }
+    .canvas-container{
+        height: 100%;
+        display:flex !important;
+        flex-direction:column !important;
+        align-items:center !important;
+        justify-content: center !important;
+    }
+    <?php } ?>
 </style>
 <div class="loading-overlay" id="loadingOverlay">
     <div class="loading-text">
@@ -151,7 +171,7 @@
                         <div class="row mt-4 mb-4 justify-content-center">
                             <div id="comparison">
                                 <figure>
-                                    <canvas id="canvas" width="300px" height="400px"></canvas>
+                                    <canvas id="canvas" class="d-flex flex-column justify-content-center"></canvas>
                                     <div id="divisor"></div>
                                 </figure>
                                 <input type="range" min="0" max="100" value="50" id="slider" oninput="moveDivisor()">
@@ -184,7 +204,7 @@
 
                         <hr style="border:1px solid #000">
                         <h4>YOUR LEVEL <?php echo strtoupper($sim_response[0]->problems_experienced) ?></h4>
-                        <p>The scan result indicates that the brightness level of your <?php echo strtolower($sim_response[0]->problems_experienced) ?> is at a <span style="padding:4px 12px; color:#fafafa; background:#000; border-radius:99px; font-weight:bold">level <?= $level + 1 ?></span></p>
+                        <p>The scan result indicates that the brightness level of your <?php echo strtolower($sim_response[0]->problems_experienced) ?> is at a <br><br> <span style="padding:4px 12px; color:#fafafa; background:#000; border-radius:99px; font-weight:bold">level <?= $level + 1 ?></span></p>
                         <img src="<?= base_url('upload/rules/' . strtolower($sim_response[0]->problems_experienced) . '/' . $level + 1 . '.jpg'); ?>" alt="" srcset="">
 
                         <hr style="border:1px solid #000">
