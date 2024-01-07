@@ -323,9 +323,9 @@ class Simulation extends CI_Controller
 
 		$data['level'] = array_keys($p, max($p))[0];
 		if ($data['sim_response'][0]->problems_experienced == 'Skin') {
-			$lev_check = round(($data['level'] + 1));
+			$lev_check = round(($data['level'] + 1) / 2);
 
-			$lev_res = round($data['sim_response'][0]->sim_response_level);
+			$lev_res = round($data['sim_response'][0]->sim_response_level / 2);
 			$data['set_image'] = (object) $this->check_skin($lev_check . '_' . $lev_res);
 		}
 
@@ -444,12 +444,12 @@ class Simulation extends CI_Controller
 			'2_1' => array(
 				'vibrance' => -0.1,
 				'saturation' => -0.05,
-				'brightness' => 0.035,
+				'brightness' => 0.09,
 				'contrast' => 0.09,
 			),
 			'2_2' => array(
-				'vibrance' => 0,
-				'saturation' => 0,
+				'vibrance' => 0.4,
+				'saturation' => 0.3,
 				'brightness' => 0,
 				'contrast' => 0,
 			),
