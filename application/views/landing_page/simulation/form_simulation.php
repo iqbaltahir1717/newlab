@@ -418,17 +418,6 @@
         $('#ruler-lips').hide();
         $('#ruler-teeth').hide();
         $('#ruler-' + problem).show();
-        // $('#level-bright').hide();
-
-
-        // if (problem == 'Skin' || problem == 'Teeth') {
-
-        //     // $('#multiple').hide();
-        //     $('#submit').hide();
-        //     $('#input_ruler').hide();
-        // }
-
-        // alert(problem);
     });
 </script>
 
@@ -437,7 +426,7 @@
 
     async function uploadFile() {
         // Show the loading spinner before making the AJAX call
-        $('#loading-spinner').show();
+        // $('#loading-spinner').show();
 
         let formData = new FormData();
         formData.append("file", fileupload.files[0]);
@@ -450,27 +439,11 @@
             processData: false,
             success: function(html) {
                 // Hide the loading spinner in the success callback
-                $('#loading-spinner').hide();
-
-                // $('#color').css('background', '#' + html);
-                // $('#card-color').show();
-                // $('#multiple').show();
-                // $('#submit').show();
-                // $('#input_ruler').show();
-                // $('#level-bright').show();
-                // console.log(problem);
-
-                // if (problem == 'Teeth') {
-                //     $('#ruler-teeth').show();
-                // } else if ($('#response1').val().toLowerCase().replace(/\s/g, '') == 'face' || $('#response1').val().toLowerCase().replace(/\s/g, '') == 'bodyskin' || $('#response1').val().toLowerCase().replace(/\s/g, '') == 'foldareas') {
-                //     $('#ruler-skin').show();
-                // } else if ($('#response1').val().toLowerCase().replace(/\s/g, '') == 'lips') {
-                //     $('#ruler-lips').show();
-                // }
+                // $('#loading-spinner').hide();
             },
             error: function() {
                 // Hide the loading spinner in case of an error
-                $('#loading-spinner').hide();
+                // $('#loading-spinner').hide();
                 // Handle the error as needed
                 alert('Error uploading image');
             }

@@ -91,12 +91,63 @@ class Simulation extends CI_Controller
 		TemplateForm($data, $view, $viewCategory);
 	}
 
+	function compress_image($tempPath, $originalPath, $imageQuality)
+	{
+		// Get image info 
+		$imgInfo = getimagesize($tempPath);
+		$mime = $imgInfo['mime'];
+		$exif = exif_read_data($tempPath);
+		if (!empty($exif['Orientation'])) {
+			switch ($exif['Orientation']) {
+				case 3:
+					$angle = 180;
+					break;
+
+				case 6:
+					$angle = -90;
+					break;
+
+				case 8:
+					$angle = 90;
+					break;
+				default:
+					$angle = 0;
+					break;
+			}
+		}
+
+		// Create a new image from file 
+		switch ($mime) {
+			case 'image/jpeg':
+				$image = imagecreatefromjpeg($tempPath);
+				break;
+			case 'image/png':
+				$image = imagecreatefrompng($tempPath);
+				break;
+			case 'image/gif':
+				$image = imagecreatefromgif($tempPath);
+				break;
+			default:
+				$image = imagecreatefromjpeg($tempPath);
+		}
+
+		// Save image 
+		$image = imagerotate($image, $angle, 0);
+		imagejpeg($image, $originalPath, $imageQuality);
+		// Return compressed image 
+		return $image;
+	}
+
 	public function upload_image()
 	{
 		$ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
 		$filename = rand(111111111, 999999999) . date('His') . '.' . $ext;
-		$location = "upload/upload_image/" . $filename;
+		$oripath = "./upload/ori_upload_image/";
+		$location =  $oripath . $filename;
 		move_uploaded_file($_FILES['file']['tmp_name'], $location);
+		$path = "./upload/upload_image/" . $filename;
+		$this->compress_image($location, $path, 50);
+		compressImages("./upload/upload_image/", $filename);
 
 		// if (move_uploaded_file($_FILES['file']['tmp_name'], $location)) {
 		// 	$color = Imagecolorpicker($ext, $location);
@@ -105,30 +156,30 @@ class Simulation extends CI_Controller
 		// 	echo 'Failure';
 		// }
 
-		$rand = rand(111111111, 999999999);
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, 'https://api.remove.bg/v1.0/removebg');
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-		curl_setopt($ch, CURLOPT_POST, 1);
-		$post = array(
-			// 'image_file' => fopen($location, 'r'),
-			'image_url' => base_url($location),
-			'size' => 'auto'
-		);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-		$headers = array();
-		$headers[] = 'X-Api-Key: hk4gPcAkLyPLne9FpMqgPt6R';
-		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-		$result = curl_exec($ch);
-		curl_close($ch);
-		$rb_name = 'rb_image_' . $rand . '.png';
-		$fp = fopen('upload/rb_image/' . $rb_name, "wb");
-		fwrite($fp, $result);
-		fclose($fp);
+		// $rand = rand(111111111, 999999999);
+		// $ch = curl_init();
+		// curl_setopt($ch, CURLOPT_URL, 'https://api.remove.bg/v1.0/removebg');
+		// curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		// curl_setopt($ch, CURLOPT_POST, 1);
+		// $post = array(
+		// 	// 'image_file' => fopen($location, 'r'),
+		// 	'image_url' => base_url($location),
+		// 	'size' => 'auto'
+		// );
+		// curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+		// $headers = array();
+		// $headers[] = 'X-Api-Key: hk4gPcAkLyPLne9FpMqgPt6R';
+		// curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		// $result = curl_exec($ch);
+		// curl_close($ch);
+		// $rb_name = 'rb_image_' . $rand . '.png';
+		// $fp = fopen('upload/rb_image/' . $rb_name, "wb");
+		// fwrite($fp, $result);
+		// fclose($fp);
 
 		$data['sim_response_id']   = $this->uri->segment(3);
 		$data['sim_image_upload'] = $filename;
-		$data['sim_image_rb'] = $rb_name;
+		$data['sim_image_rb'] = '';
 		$data['updatetime']         = date('Y-m-d H:i:s');
 		$this->m_sim_response->update($data);
 	}

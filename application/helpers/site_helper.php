@@ -494,9 +494,9 @@ if (!function_exists('compressImages')) {
         $config['source_image']   = $path . $filename;
         $config['create_thumb']   = FALSE;
         $config['maintain_ratio'] = FALSE;
-        $config['quality']        = '20%';
-        $config['width']          = 128;
-        $config['height']         = 128;
+        $config['quality']        = '100%';
+        $config['width']          = 300;
+        $config['height']         = 400;
         $config['new_image']      = $path . $filename;
         get_instance()->load->library('image_lib', $config);
         get_instance()->image_lib->resize();
