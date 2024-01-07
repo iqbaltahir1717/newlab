@@ -71,7 +71,45 @@
         background-color: #FFF;
         height: 87vh;
     }
+
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        margin-top: auto;
+        margin-left: auto;
+    }
+
+    .loading-spinner {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
 </style>
+
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+</div>
 
 <main id="main">
     <div id="greetings" class="simulation h-100">
@@ -342,10 +380,15 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="<?php echo base_url() ?>assets/landing_page/js/main.js"></script>
 
+<!-- Modify your existing script -->
 <script>
     $(document).ready(function() {
         var $modal = $('#modal');
+        var $loadingOverlay = $('#loadingOverlay'); // Added this line
         var image = document.getElementById('sample_image');
+        const loading = document.querySelector('.loading-overlay');
+        loading.style.display = 'none';
+        var cropper;
 
         $('#fileupload').change(function(event) {
             var files = event.target.files;
@@ -377,6 +420,10 @@
         });
 
         $("#crop").click(function() {
+            // Show loading overlay
+            $loadingOverlay.show();
+            loading.style.display = 'flex';
+
             canvas = cropper.getCroppedCanvas({
                 width: 100,
                 height: 100,
@@ -398,7 +445,10 @@
                             console.log(data);
                             $modal.modal('hide');
                             $('#uploaded_image').attr('src', data);
-                            //alert("success upload image");
+                            // Hide loading overlay after 5 seconds
+                            setTimeout(function() {
+                                $loadingOverlay.hide();
+                            }, 3000);
                         }
                     });
                 }

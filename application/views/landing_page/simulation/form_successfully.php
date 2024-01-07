@@ -129,25 +129,28 @@
     input[type=range]:focus::-moz-range-thumb {
         background: rgba(255, 255, 255, 0.5);
     }
-    <?php if(strtolower($sim_response[0]->problems_experienced) == 'lips' || strtolower($sim_response[0]->problems_experienced) == 'teeth' ) {
-?>
-    div#comparison canvas{
-        object-fit:cover;
-        height:100px !important;
-        width:100%;
+
+    <?php if (strtolower($sim_response[0]->problems_experienced) == 'lips' || strtolower($sim_response[0]->problems_experienced) == 'teeth') {
+    ?>div#comparison canvas {
+        object-fit: cover;
+        height: 100px !important;
+        width: 100%;
         position: relative !important;
         object-position: left;
     }
-    #canvas{
-        top:48px !important;
+
+    #canvas {
+        top: 48px !important;
     }
-    .canvas-container{
+
+    .canvas-container {
         height: 100%;
-        display:flex !important;
-        flex-direction:column !important;
-        align-items:center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
         justify-content: center !important;
     }
+
     <?php } ?>
 </style>
 <div class="loading-overlay" id="loadingOverlay">
@@ -290,7 +293,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
 <script>
     var canvas = new fabric.Canvas("canvas", {
-        backgroundColor: 'white',
+        backgroundColor: 'red',
         // backgroundImage: "<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>",
         width: 300,
         height: 400
