@@ -140,7 +140,7 @@
     }
 
     #canvas {
-        top: 48px !important;
+        top: 50px !important;
     }
 
     .canvas-container {
@@ -178,9 +178,6 @@
                                     <div id="divisor"></div>
                                 </figure>
                                 <input type="range" min="0" max="100" value="50" id="slider" oninput="moveDivisor()">
-                            </div>
-                            <div class="col-md-6">
-
                             </div>
                             <br>
                         </div>
@@ -296,7 +293,8 @@
         backgroundColor: 'red',
         // backgroundImage: "<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>",
         width: 300,
-        height: 400
+        height: 400,
+
     });
 
     // var imageSaver = document.getElementById('lnkDownload');
