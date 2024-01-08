@@ -30,14 +30,6 @@
         border: 1px solid red;
     }
 
-    .preview2 {
-        overflow: hidden;
-        width: 160px;
-        height: 160px;
-        margin: 10px;
-        border: 1px solid red;
-    }
-
     .modal-lg {
         max-width: 1000px !important;
     }
@@ -292,7 +284,7 @@
                 <?php } ?>
                 <?php echo form_close(); ?>
             </ul>
-            <!-- <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -319,7 +311,7 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
             <div class="d-flex justify-content-between nav-form">
                 <div class="controls">
                     <a class="previous nav-button">
@@ -353,54 +345,14 @@
                             <img src="" id="sample_image" />
                         </div>
                         <div class="col-md-4">
-                            <center><span>Ambil Gambar Sesuai Contoh Dibawah</span> <br>
-                                <img src="<?php echo base_url('upload/example/' . strtolower($sim_response[0]->problems_experienced) . '-titik.png') ?>" width="200" height="200" alt="">
-                                <br>
-                                <span>Hasil Crop</span>
-                                <div class="preview"></div>
-                            </center>
+                            <div class="preview"></div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <!-- <button onclick="uploadFile()" type="button" class="btn btn-primary" id="crop">Crop</button> -->
-                <button type="button" class="btn btn-primary" id="crop">Crop</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="modal-2" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalLabel">Crop Image Before Upload</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="img-container">
-                    <div class="row">
-                        <div class="col-md-8">
-                            <img src="" id="sample_image2" />
-                        </div>
-                        <div class="col-md-4">
-                            <center><span>Ambil Gambar Sesuai Contoh Dibawah</span> <br>
-                                <img src="<?php echo base_url('upload/example/' . strtolower($sim_response[0]->problems_experienced) . '-example.png') ?>" width="200" height="200" alt="">
-                                <br>
-                                <span>Hasil Crop</span>
-                                <div class="preview2"></div>
-                            </center>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="crop2">Crop</button>
+                <button onclick="uploadFile()" type="button" class="btn btn-primary" id="crop">Crop</button>
             </div>
         </div>
     </div>
@@ -432,10 +384,8 @@
 <script>
     $(document).ready(function() {
         var $modal = $('#modal');
-        var $modal2 = $('#modal-2');
         var $loadingOverlay = $('#loadingOverlay'); // Added this line
         var image = document.getElementById('sample_image');
-        var image2 = document.getElementById('sample_image2');
         const loading = document.querySelector('.loading-overlay');
         loading.style.display = 'none';
         var cropper;
@@ -446,7 +396,6 @@
             $modal.modal('show');
             var done = function(url) {
                 image.src = url;
-                image2.src = url;
                 $modal.modal('show');
             };
 
@@ -461,10 +410,8 @@
 
         $modal.on('shown.bs.modal', function() {
             cropper = new Cropper(image, {
-                // cropBoxResizable: false,
-                // toggleDragModeOnDblclick: false,
                 aspectRatio: 1,
-                viewMode: 1,
+                viewMode: 2,
                 preview: '.preview'
             });
         }).on('hidden.bs.modal', function() {
@@ -478,7 +425,7 @@
             loading.style.display = 'flex';
 
             canvas = cropper.getCroppedCanvas({
-                width: 300,
+                width: 100,
                 height: 100,
             });
 
@@ -498,66 +445,6 @@
                             console.log(data);
                             $modal.modal('hide');
                             $('#uploaded_image').attr('src', data);
-
-                            // if ('<?= strtolower($sim_response[0]->problems_experienced) ?>' != 'skin')
-                            $modal2.modal('show');
-
-                            // Hide loading overlay after 5 seconds
-                            setTimeout(function() {
-                                $loadingOverlay.hide();
-                            }, 3000);
-                        }
-                    });
-                }
-            });
-        });
-
-
-        if ('<?= strtolower($sim_response[0]->problems_experienced) ?>' == 'skin') {
-            ratio = 3 / 4;
-            width = 300;
-            height = 400;
-        } else {
-            ratio = 3 / 1;
-            width = 300;
-            height = 100;
-        }
-        $modal2.on('shown.bs.modal', function() {
-            cropper = new Cropper(image2, {
-                aspectRatio: ratio,
-                viewMode: 2,
-                preview: '.preview2'
-            });
-        }).on('hidden.bs.modal', function() {
-            cropper.destroy();
-            cropper = null;
-        });
-
-        $("#crop2").click(function() {
-            // Show loading overlay
-            $loadingOverlay.show();
-            loading.style.display = 'flex';
-
-            canvas = cropper.getCroppedCanvas({
-                width: width,
-                height: height,
-            });
-
-            canvas.toBlob(function(blob) {
-                var reader = new FileReader();
-                reader.readAsDataURL(blob);
-                reader.onloadend = function() {
-                    var base64data = reader.result;
-                    console.log(base64data);
-                    $.ajax({
-                        url: "<?= base_url('simulation/crop_image2/' . decrypt_url($this->uri->segment(3))) ?>",
-                        method: "POST",
-                        data: {
-                            image: base64data
-                        },
-                        success: function(data) {
-                            console.log(data);
-                            $modal2.modal('hide');
                             // Hide loading overlay after 5 seconds
                             setTimeout(function() {
                                 $loadingOverlay.hide();

@@ -184,6 +184,22 @@ class Simulation extends CI_Controller
 		$this->m_sim_response->update($data);
 	}
 
+	public function crop_image2()
+	{
+		$datas = $_POST["image"];
+		$image_array_1 = explode(";", $datas);
+		$image_array_2 = explode(",", $image_array_1[1]);
+		$datas = base64_decode($image_array_2[1]);
+		$filename = time() . '.png';
+		$imageName = 'upload/upload_image/' . $filename;
+		file_put_contents($imageName, $datas);
+
+		$data['sim_response_id']   = $this->uri->segment(3);
+		$data['sim_image_upload'] = $filename;
+		$data['updatetime']         = date('Y-m-d H:i:s');
+		$this->m_sim_response->update($data);
+	}
+
 	public function crop_image()
 	{
 		$datas = $_POST["image"];

@@ -67,11 +67,13 @@
         background-repeat: no-repeat;
         background-position: left;
         position: absolute;
-        width: 150px;
+        width: <?php if (strtolower($sim_response[0]->problems_experienced) == 'skin') echo '150px';
+                else echo '300px'; ?>;
         box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.3);
         overflow: hidden;
         bottom: 0;
-        height: 400px;
+        height: <?php if (strtolower($sim_response[0]->problems_experienced) == 'skin') echo '400px';
+                else echo '100px'; ?>;
     }
 
     input[type=range] {
@@ -131,7 +133,8 @@
     }
 
     <?php if (strtolower($sim_response[0]->problems_experienced) == 'lips' || strtolower($sim_response[0]->problems_experienced) == 'teeth') {
-    ?>div#comparison canvas {
+    ?>
+    /* div#comparison canvas {
         object-fit: cover;
         height: 100px !important;
         width: 100%;
@@ -149,7 +152,7 @@
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
-    }
+    } */
 
     <?php } ?>
 </style>
@@ -289,11 +292,19 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/4.5.0/fabric.min.js"></script>
 <script>
+    if ('<?= strtolower($sim_response[0]->problems_experienced) ?>' == 'skin') {
+        width = 300;
+        height = 400;
+    } else {
+        width = 300;
+        height = 100;
+    }
+
     var canvas = new fabric.Canvas("canvas", {
         backgroundColor: 'red',
         // backgroundImage: "<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>",
-        width: 300,
-        height: 400,
+        width: width,
+        height: height,
 
     });
 
