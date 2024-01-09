@@ -952,4 +952,34 @@ header .navbar {
     display: none;
   }
 }
+
+.crop-content {
+  position: absolute !important;
+  top: 16px;
+  left: 16px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.crop-content .continaer-cropping {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  gap: 24px;
+}
+
+.example-crop img {
+  width: 100% !important;
+  height: 100% !important;
+}
 /*# sourceMappingURL=main.css.map */

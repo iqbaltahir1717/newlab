@@ -113,6 +113,10 @@
             transform: rotate(360deg);
         }
     }
+
+    .cropper-container {
+        width: 100% !important;
+    }
 </style>
 
 <div class="loading-overlay" id="loadingOverlay">
@@ -348,17 +352,24 @@
             </div>
             <div class="modal-body">
                 <div class="img-container">
-                    <div class="row">
-                        <div class="col-md-8">
+                    <div class="row" style="position:relative">
+                        <div class="col-md-9">
                             <img src="" id="sample_image" />
                         </div>
-                        <div class="col-md-4">
-                            <center><span>Ambil Gambar Sesuai Contoh Dibawah</span> <br>
-                                <img src="<?php echo base_url('upload/example/' . strtolower($sim_response[0]->problems_experienced) . '-titik.png') ?>" width="200" height="200" alt="">
-                                <br>
-                                <span>Hasil Crop</span>
-                                <div class="preview"></div>
+                        <div class="col-md-3">
+                            <center>
+                                <div class="example-crop mt-5">
+                                    <span>Crop Reference</span>
+                                    <img src="<?php echo base_url('upload/example/' . strtolower($sim_response[0]->problems_experienced) . '-titik.png') ?>" width="170" height="170" alt="">
+                                </div>
                             </center>
+                        </div>
+                        <div class="crop-content">
+                            <div class="container-croping">
+                                <div class="preview-crop">
+                                    <div class="preview"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -384,16 +395,23 @@
             <div class="modal-body">
                 <div class="img-container">
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-9">
                             <img src="" id="sample_image2" />
                         </div>
-                        <div class="col-md-4">
-                            <center><span>Ambil Gambar Sesuai Contoh Dibawah</span> <br>
-                                <img src="<?php echo base_url('upload/example/' . strtolower($sim_response[0]->problems_experienced) . '-example.png') ?>" width="200" height="200" alt="">
-                                <br>
-                                <span>Hasil Crop</span>
-                                <div class="preview2"></div>
+                        <div class="col-md-3">
+                            <center>
+                                <div class="example-crop mt-5">
+                                    <span>Crop Reference</span>
+                                    <img src="<?php echo base_url('upload/example/' . strtolower($sim_response[0]->problems_experienced) . '-example.png') ?>" width="200" height="200" alt="">
+                                </div>
                             </center>
+                        </div>
+                        <div class="crop-content">
+                            <div class="container-croping">
+                                <div class="preview-crop">
+                                    <div class="preview2"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

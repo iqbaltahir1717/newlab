@@ -133,26 +133,17 @@
     }
 
     <?php if (strtolower($sim_response[0]->problems_experienced) == 'lips' || strtolower($sim_response[0]->problems_experienced) == 'teeth') {
-    ?>
-    /* div#comparison canvas {
-        object-fit: cover;
+    ?>div#comparison {
         height: 100px !important;
-        width: 100%;
-        position: relative !important;
-        object-position: left;
     }
 
-    #canvas {
-        top: 50px !important;
+    div#comparison figure {
+        height: 100px !important;
     }
 
-    .canvas-container {
-        height: 100%;
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-    } */
+    div#comparison figure div {
+        width: 150px;
+    }
 
     <?php } ?>
 </style>

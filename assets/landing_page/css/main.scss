@@ -725,3 +725,23 @@ $red: #e83f43;
 		display: none;
 	}
 }
+
+.crop-content {
+	position: absolute !important;
+	top: 16px;
+	left: 16px;
+	width: fit-content;
+	.continaer-cropping {
+		display: flex;
+		justify-content: start;
+		flex-wrap: wrap;
+		flex-direction: row;
+		gap: 24px;
+	}
+}
+.example-crop {
+	img {
+		width: 100% !important;
+		height: 100% !important;
+	}
+}
