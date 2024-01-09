@@ -293,26 +293,11 @@
 
     var canvas = new fabric.Canvas("canvas", {
         backgroundColor: 'red',
-        // backgroundImage: "<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>",
         width: width,
         height: height,
-
     });
 
-    // var imageSaver = document.getElementById('lnkDownload');
-    // imageSaver.addEventListener('click', saveImage, false);
-
-    // function saveImage(e) {
-    //     this.href = canvas.toDataURL({
-    //         format: 'png',
-    //         quality: 0.8
-    //     });
-    //     this.download = 'canvas.png'
-    // }
-
-    // fabric.Image.fromURL("<?= base_url('upload/rb_image/' . $sim_response[0]->sim_image_rb); ?>", function(img) {
     fabric.Image.fromURL("<?= base_url('upload/upload_image/' . $sim_response[0]->sim_image_upload); ?>", function(img) {
-        // fabric.Image.fromURL("<?= base_url('upload/crop_image/' . $sim_response[0]->sim_image_crop); ?>", function(img) {
         img.filters.push(new fabric.Image.filters.Vibrance({
             vibrance: <?= $set_image->vibrance ?>
         }));
@@ -328,25 +313,19 @@
             contrast: <?= $set_image->contrast ?>
         }));
 
-        // img.filters.push(new fabric.Image.filters.BlendColor({
-        //     color: '#ffffff',
-        //     opacity: 1
-        // }));
-
-        // img.filters.push(new fabric.Image.filters.BlackWhite());
-
-        console.log(fabric.Image.filters);
-
         img.applyFilters();
-        img.scaleToWidth(300)
+        img.scaleToWidth(300);
         img.set({
             left: 0,
-            top: 0
+            top: 0,
+            selectable: false, // Disable selection
+            evented: false, // Disable events
         });
-        canvas.add(img)
+        canvas.add(img);
     }, {
         crossOrigin: 'anonymous'
     });
+
 
     function setContrast(value) {
         console.log('setContrast: ' + value);
